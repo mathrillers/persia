@@ -1,0 +1,193 @@
+{#
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-table"></i> Liste des Annonces</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                            <li><i class="fa fa-table"></i>Annonces</li>
+                            <li><i class="fa fa-th-list"></i>Liste Annonces</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- page start-->
+                <ul>
+                    <li>
+                        <a href="{{ path('annoncee_index') }}">Liste des des Annonces</a>
+                    </li>
+
+                </ul>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Information Annonce
+                            </header>
+                            <div class="panel-body">
+                                <div class="form" style="text-align: center">
+                                    <h1>Annonce</h1>
+
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <th>Reference</th>
+                                            <td>{{ annonce.reference }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Typeannonce</th>
+                                            <td>{{ annonce.typeAnnonce }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Description</th>
+                                            <td>{{ annonce.description }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Montant</th>
+                                            <td>{{ annonce.montant }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Etat</th>
+                                            <td>{{ annonce.etat }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Commission</th>
+                                            <td>{{ annonce.commission }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Nbrevues</th>
+                                            <td>{{ annonce.nbreVues }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Datedepot</th>
+                                            <td>{% if annonce.dateDepot %}{{ annonce.dateDepot|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Datepublication</th>
+                                            <td>{% if annonce.datePublication %}{{ annonce.datePublication|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Statutdepot</th>
+                                            <td>{{ annonce.statutDepot }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Annonceid</th>
+                                            <td>{{ annonce.annonceId }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+{% endblock %}
+#}
+
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-user-md"></i> Information de l'Annonce</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="../layout.html.twig">Home</a></li>
+                            <li><i class="icon_documents_alt"></i>Annonce</li>
+                            <li><i class="fa fa-user-md"></i>Information Annonce</li>
+                        </ol>
+                    </div>
+                </div>
+                <a class="btn btn-navbar" href="{{ path('annoncee_index') }}">Liste des Annonces</a>
+
+                <!-- page start-->
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <div class="panel-body">
+                            <div class="tab-content">
+
+                                <!-- profile -->
+                                <div id="profile" class="tab-pane active">
+                                    <section class="panel">
+
+                                        <div class="panel-body bio-graph-info">
+                                            <h1>Information Annonce </h1>
+                                            <div class="row">
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Reference :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.reference }}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Type d"Annonce :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Typeannonce }}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Description :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Description }}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Montant :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Montant }}/DH</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Etat de L'Annonce :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Etat }}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Nombre De Vue :</span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Commission }}/DH</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Date de Creation :</span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% if annonce.Nbrevues %}  {{ annonce.Nbrevues }} {% else %} Pas Encore Consulter{% endif %}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Commission :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Datedepot|date('j F,Y,g:i A') }}</p>
+                                                </div>
+
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Date de Publication :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% if annonce.Datepublication %}  {{ annonce.Datepublication|date('j F,Y,g:i A') }} {% else %} Pas Encore Publier{% endif %}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span class="label label-info">Statut de Publication :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ annonce.Statutdepot }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </div>
+                                <!-- edit-profile -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+{% endblock %}

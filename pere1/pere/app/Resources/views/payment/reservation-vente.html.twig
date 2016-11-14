@@ -1,0 +1,87 @@
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+<div class="modal-dialog" style="width: 700px">
+    <div class="modal-content">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="log_form" style="text-align: center">
+                <h2 data-readOnly=""></h2>
+
+
+                <div class="container">
+                    <section id="pricg_sec">
+                        <div class="row">
+                            <!-- Pricing Table 1 -->
+                            <div class="col-xs-6">
+                                <div class="pric_tab text-center">
+                                    <h1 class="tab_titl">
+                                        Réservation: {{ annonce.titre }}
+                                    </h1>
+                                    <div class="spacer-30"></div>
+                                    <div class="form-group ">
+
+                                        {{ form_start(formReservVente, { 'method': 'POST','attr': {'class': 'form'} } ) }}
+
+                                        <div id="infos-annonce" class="form" >
+
+                                                <div class="pric_ara">
+
+                                                    <h3 class="pric">  {{ annonce.montant }}Dh<i> Total </i></h3>
+                                                </div>
+                                                <ul class="pric_feat">
+                                                    <li> Description de L'annonce :
+
+                                                        {{ annonce.description }}
+                                                    </li>
+                                                    <li> Type : {{ annonce.typeAnnonce }} </li>
+
+                                                </ul>
+
+
+                                        </div>
+                                        {{form_widget(formReservVente.check, { 'name':'check_paiement_court_ok','required':false,'attr': { 'onclick':"$('.hosted-form').slideToggle()",'class': 'form-control'}} )  }}
+                                        * Cochez sur cette case pour procéder au paiement !
+
+                                        <!-- The $10 amount is set on the server side -->
+                                        <div id="payment-form-now" class="hosted-form" style="display: none">
+
+
+                                                <div class="pric_ara ">
+
+                                                    <h3 class="pric"> Avance (20%) : {{ annonce.montant*0.2 }}<i> Dh </i></h3>
+                                                </div>
+                                                <ul class="pric_feat">
+                                                    <li> Description de L'annonce :
+
+                                                        {{ annonce.description }}
+                                                    </li>
+
+
+                                                </ul>
+
+
+
+                                            </div>
+
+
+
+                                        <div class="spacer-30"></div>
+                                        {{form_widget(formReservVente.valider, {'id':'process-payment-btn','name':'valider_reservation','attr': { 'class': 'btn btn-primary btn-lg btn-block'}} )  }}
+
+
+                                        {{ form_end(formReservVente,{'render_rest':false}) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

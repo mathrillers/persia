@@ -1,0 +1,346 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}
+        {{ parent() }} - Accueil
+
+    {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}}" alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class=" dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class=" "> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header bradcrumb -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> Pricing Tables </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="index-2.html"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Pricing Tables </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="index-2.html"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+        {% block body %}
+
+<div class="spacer-60"></div>
+<div class="container">
+    <!-- Pricing Section -->
+    <section id="pricg_sec">
+        <div class="row">
+            <!-- Pricing Table 1 -->
+            <div class="col-xs-3">
+                <div class="pric_tab text-center">
+                    <h2 class="tab_titl">
+                        standard
+                    </h2>
+                    <div class="pric_ara">
+                        <h3 class="pric"> $69<i> /monthly </i></h3>
+                    </div>
+                    <ul class="pric_feat">
+                        <li> 0 Minutes Included </li>
+                        <li> 15 GB Storage </li>
+                        <li> Unlimited Users </li>
+                        <li> Access to All 20+ </li>
+                        <li> 15 Proposals </li>
+                    </ul>
+                    <a href="#" class="pric_btn"> select plan </a>
+                </div>
+            </div>
+            <!-- Pricing Table 2 -->
+            <div class="col-xs-3">
+                <div class="pric_tab oran_tab text-center">
+                    <h2 class="tab_titl">
+                        proffesional
+                    </h2>
+                    <div class="pric_ara">
+                        <h3 class="pric"> $79<i> /monthly </i></h3>
+                    </div>
+                    <ul class="pric_feat">
+                        <li> 0 Minutes Included </li>
+                        <li> 15 GB Storage </li>
+                        <li> Unlimited Users </li>
+                        <li> Access to All 20+ </li>
+                        <li> 15 Proposals </li>
+                    </ul>
+                    <a href="#" class="pric_btn"> select plan </a>
+                </div>
+            </div>
+            <!-- Pricing Table 3 -->
+            <div class="col-xs-3">
+                <div class="pric_tab text-center">
+                    <h2 class="tab_titl">
+                        power user
+                    </h2>
+                    <div class="pric_ara">
+                        <h3 class="pric"> $89<i> /monthly </i></h3>
+                    </div>
+                    <ul class="pric_feat">
+                        <li> 0 Minutes Included </li>
+                        <li> 15 GB Storage </li>
+                        <li> Unlimited Users </li>
+                        <li> Access to All 20+ </li>
+                        <li> 15 Proposals </li>
+                    </ul>
+                    <a href="#" class="pric_btn"> select plan </a>
+                </div>
+            </div>
+            <!-- Pricing Table 4 -->
+            <div class="col-xs-3">
+                <div class="pric_tab text-center">
+                    <h2 class="tab_titl">
+                        premium
+                    </h2>
+                    <div class="pric_ara">
+                        <h3 class="pric"> $99<i> /monthly </i></h3>
+                    </div>
+                    <ul class="pric_feat">
+                        <li> 0 Minutes Included </li>
+                        <li> 15 GB Storage </li>
+                        <li> Unlimited Users </li>
+                        <li> Access to All 20+ </li>
+                        <li> 15 Proposals </li>
+                    </ul>
+                    <a href="#" class="pric_btn"> select plan </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </section>
+    <div class="spacer-60"></div>
+</div>
+<!-- /.container -->
+<!-- Footer -->
+<footer>
+    <!-- Footer Top -->
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <!-- About Section -->
+                <div class="col-md-3 abt_sec">
+                    <h2 class="foot_title">
+                        About Wedoor
+                    </h2>
+                    <p>
+                        Ethical quinoa slow-carb squid, irony Pitchfork tousled hella art party PBR&amp;B cray dreamcatcher brunch.
+                    </p>
+
+                    <div class="spacer-20"></div>
+
+                    <p>
+                        Bicycle rights jean shorts organic, street art PBR occupy flexitarian pour-over master cleanse farm-to-table.
+
+                    </p>
+
+                </div>
+                <!-- Latest Tweets -->
+                <div class="col-md-3">
+                    <h2 class="foot_title">
+                        Latest Tweets
+                    </h2>
+                    <ul class="tweets">
+                        <li> <i class="fa fa-twitter"></i>
+                            <p class="twee">
+                                Check out this great <a href="#">#themeforest</a> item 'Responsive Photography WordPress <a href="#">http://drbl.in/871942</a>
+                            </p>
+
+                            <p class="datd"> 6 April 2015 </p>
+                            <div class="clearfix"></div>
+                        </li>
+
+
+                        <li class="spacer-20"></li>
+
+                        <li><i class="fa fa-twitter"></i>
+
+                            <p class="twee">
+                                <a href="#"> #MadeBySeries </a> Made By: Chris Coyier, Founder <a href="#">  http://ow.ly/LeAKf </a>
+                            </p>
+
+                            <p class="datd"> 6 April 2015 </p>
+                            <div class="clearfix"></div>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Contact Info -->
+                <div class="col-md-3">
+                    <h2 class="foot_title">
+                        Contact Info
+                    </h2>
+                    <ul class="cont_info">
+                        <li><i class="fa fa-map-marker"></i>
+                            <p>371 Linden Avenue Longwood, FL 32750 </p>
+                        </li>
+                        <li><i class="fa fa-phone"></i>
+                            <p> <a href="tel:407-546-2034"> Phone: 407-546-2034 </a> </p>
+                        </li>
+                        <li><i class="fa fa-envelope"></i>
+                            <p> <a href="mailto:connect@crelegant.com?Subject=template%20enquiry"> Email: connect@crelegant.com </a> </p>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Useful Links -->
+                <div class="col-md-3">
+                    <h2 class="foot_title">
+                        Useful Links
+                    </h2>
+                    <ul class="foot_nav">
+                        <li> <a href="index-2.html">Home Search</a> </li>
+                        <li> <a href="property_listing.html">Properties Inspection</a> </li>
+                        <li> <a href="agents.html">Agents Consult</a> </li>
+                        <li> <a href="blog.html">Latest News</a> </li>
+                        <li> <a href="contact.html">Get in touch</a> </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+
+{% endblock %}
+
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+
+{% endblock %}

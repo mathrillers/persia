@@ -1,0 +1,835 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    {{ parent() }} - Details
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- bxslider -->
+    <link href="{{ asset('assets/css/jquery.bxslider.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}} " alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class="active dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header Stat Banner -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl">Détails de la réservation sur l'annonce: {{ annonce.titre }} </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="{{ path('homepage') }}"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Property Details </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="{{ path('homepageAnnonce') }}"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+{% block body %}
+    <div class="spacer-60"></div>
+    <div class="container">
+        <div class="row">
+            <!-- Proerty Details Section -->
+            <section class="row">
+            <section id="prop_detal" class="col-md-8">
+                <div class="row">
+                    <div class="panel panel-default">
+                        <!-- Proerty Slider Images -->
+                        <div class="panel-image">
+                            <ul id="prop_slid">
+                                {% for image in images %}
+
+                                        <li><img class="img-responsive" src="{{ asset(image.url) }}" alt="Property Slide Image" style="max-height:600px ;width:100%" >
+                                        </li>
+
+                                {% endfor %}
+                            </ul>
+                            <!-- Proerty Slider Thumbnails -->
+                            <div class="col-md-12 rel_img">
+                                <ul id="slid_nav">
+                                    {% set n = -1 %}
+                                    {% for image in images %}
+
+                                            {% set n = n+1 %}
+                                            <li>
+                                                <a data-slide-index="{{ n }}" href="#"><img class="img-responsive img-hover" src="{{ asset(image.url) }}" style="margin-bottom: 10px; max-height:100px ;width:100%"  alt="">
+                                                </a>
+                                            </li>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="prop_feat">
+
+                                <p class="area"><i class="fa fa-home"></i> {{ annonce.immobilier.adresse }}</p>
+                                <p class="bedrom"><i class="fa fa-star-o"></i> Add to Favorites </p>
+                                <p class="bedrom"><i class="fa fa-print"></i> Print This Details </p>
+
+                                <div class="share_btn">
+                                    <a href="#"> <i class="fa fa-share-alt"></i>
+                                    </a>
+                                    <div class="soc_btn">
+                                        <ul>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="spacer-20"></div>
+                            <div class="col-md-9 ">
+                            <h3 class="sec_titl">{{ annonce.titre }}</h3>
+                                </div>
+                            <div class="col-md-3 ">
+                                {% if app.user %}
+                                    {% if reserv %}
+
+                                <div class="col_labls larg_labl">
+                                    <p class="or_labl">Réservé</p>
+                                </div>
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            </div>
+
+                            <div>
+                                <div class="col-md-9 ">
+                                    <div class="col_labls larg_labl">
+                                        <p class="or_labl">{{ annonce.typeAnnonce }}</p>
+                        {% if annonce.typeAnnonce=="Location" %}
+
+                            {% if annonce.typeDelai %}
+
+                                <p class="blu_labl"> {{ annonce.prixDelai }} DH /Jour</p>
+                                {% else %}
+                                    <p class="blu_labl"> {{ annonce.prixDelai }} DH /Mois</p>
+
+                            {% endif %}
+                        {% endif %}
+
+                                        {% if annonce.typeAnnonce=="Vente" %}
+
+                                            <p class="blu_labl"> {{ annonce.montant }} DH</p>
+
+                                        {% endif %}
+                                    </div>
+                                    <p class="sec_desc">
+                                        {{ annonce.description }}
+                                    </p>
+
+                                    {#
+                                                                        {% if app.user %}
+                                                                            <a href="#reserv_box" class="btn btn-primary btn-lg btn-block" data-togg="modal">Réserver</a>
+                                                                        {% endif %}
+                                    {#{% if user %}
+                                                                        <script type="text/javascript"   src="https://www.simplify.com/commerce/simplify.pay.js"></script>
+                                                                        <button data-sc-key="{{ key.public_key }}"
+                                                                                data-name="{{ pers.nom }} {{ pers.prenom }}"
+                                                                                data-description="{{ annonce.description }}"
+                                                                                data-reference="{{ annonce.reference }}"
+                                                                                data-amount="{{ annonce.montant }}"
+                                                                                 data-color="#{{color.orange}}"
+                                                                                &#123;&#35;data-operation="create.token"&#35;&#125;
+                                                                                &#123;&#35;data-unstyled="true"&#35;&#125;
+                                                                                data-receipt="true"
+                                                                                data-masterpass="true"
+                                                                                data-redirect-url="{{ path('mastercard') }}">
+                                                                            Payer maintenant
+                                                                        </button>
+
+                                                                        {% if app.user.compteId %}
+                                                                            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                                                                <input type='hidden' value="{{ annonce.montant }}" name="amount" />
+                                                                                <input name="currency_code" type="hidden" value="USD" />
+                                                                                <input name="shipping" type="hidden" value="0.00" />
+                                                                                <input name="tax" type="hidden" value="0.00" />
+                                                                                <input name="return" type="hidden" value="{{ path('mastercards') }}" />
+                                                                                <input name="cancel_return" type="hidden" value="{{ path('mastercards') }}" />
+                                                                                <input name="notify_url" type="hidden" value="{{ path('homepage') }}" />
+                                                                                <input name="cmd" type="hidden" value="_xclick" />
+                                                                                <input name="business" type="hidden" value="abdelhafidbouazzaoui-facilitator@gmail.com" />
+                                                                                <input name="item_name" type="hidden" value="{{ annonce.titre }}" />
+                                                                                <input name="no_note" type="hidden" value="1" />
+                                                                                <input name="lc" type="hidden" value="FR" />
+                                                                                <input name="bn" type="hidden" value="PP-BuyNowBF" />
+                                                                                <input name="custom" type="hidden" value="{{ app.user.compteId }}" />
+                                                                                <input alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
+                                                                            </form>
+                                    {% endif %}
+
+                                                                        {% endif %}#}
+                                </div>
+
+
+                                <!-- Property Additional Info -->
+                                <div class="prop_addinfo col-md-12">
+                                    <h2 class="add_titl">
+                                        Additional Details
+                                    </h2>
+
+                                    <div class="info_sec first">
+                                        <div class="col-md-8">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> Ville: <span> {{ annonce.immobilier.quartier.ville }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> superficie: <span> {{ annonce.immobilier.superficie }} m </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> Garages: <span> {{ annonce.immobilier.garage }} </span> </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <ul>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">Chambres: <span> {{ annonce.immobilier.nbrChambre }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">Salon: <span> {{ annonce.immobilier.nbreSalon }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">jardin: <span> {{ annonce.immobilier.jardin }} </span> </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+
+                <!-- Proerty Map -->
+
+
+
+
+            </section>
+
+            <!-- Sidebar Section -->
+            <section id="sidebar" class="col-md-4">
+                <!-- Search Form -->
+        {#        <div class="row">
+                    <div class="col-md-12">
+                        <div class="srch_frm">
+                            <h3>Recherche</h3>
+                            {{ form_start(formPart, { 'name':'researchPartForm','method': 'POST','attr': {'id':'contactForm','class': 'form'} } ) }}
+
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Mot-clé</label>
+                                    {{ form_widget(formPart.research.mot_cle,{'id':'keyword','attr':{'autofocus':true,'class':'form-control'} }) }}
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Lieu </label>
+                                    {{ form_widget(formPart.research.ville,{'name':'State','attr':{'class':'form-control'} }) }}
+
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls col-md-6 first">
+                                    <label>Type </label>
+                                    {{ form_widget(formPart.research.typeImmobilier,{'name':'Type','attr':{'class':'form-control'} }) }}
+
+                                </div>
+                                <div class="controls col-md-6">
+                                    <label>Actions </label>
+                                    {{ form_widget(formPart.research.actes,{'name':'Actions','attr':{'class':'form-control'} }) }}
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Budget </label>
+                                    <div class="row">
+                                        <div class=" col-md-6">
+                                            <span id="min" class=""> 0 Dh </span>  </div>
+
+                                        <div class="col-md-6">
+                                            <span id="max" class=""> 10 000Dh </span>                </div>
+                                    </div>
+                                    {{ form_widget(formPart.research.budget,{'id':'budget','name':'Budget','attr':{'class':'form-control'} }) }}
+
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div id="success4"></div>
+                            <!-- For success/fail messages -->
+                            {{ form_widget(formPart.research.chercher,{'label':'Chercher','attr':{'class':'btn btn-primary'}}) }}
+                            {{ form_end(formPart,{'render_rest':false}) }}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>#}
+                <!-- Categories -->
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                           Réservation: {{ reservation.dateReservation|date('y-m-d') }} - {{ reservation.montant }} Dh
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="categ_info">
+{% for paie in paiements %}
+                        <div class="info_sec first">
+                            <div class="col-md-12">
+                                <a href="#">
+                                    <i class="fa fa-long-arrow-right"></i>
+                                    <p class="infos">{{ paie.datePaiement|date('y-m-d') }} - {{ paie.montant }}Dh - {{ paie.modePaiement }}</p>
+                                </a>
+                            </div>
+
+                        </div>
+{% endfor %}
+                        <div class="info_sec">
+                            <div class="col-md-6">
+                                <a href="#">
+                                    <i class="fa fa-long-arrow-right"></i>
+                                    <p class="infos">Branding (4) </p>
+                                </a>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a href="#">
+                                    <i class="fa fa-long-arrow-right"></i>
+                                    <p class="infos">WordPress (2) </p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="info_sec">
+                            <div class="col-md-6">
+                                <a href="#">
+                                    <i class="fa fa-long-arrow-right"></i>
+                                    <p class="infos">Architecture (12) </p>
+                                </a>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a href="#">
+                                    <i class="fa fa-long-arrow-right"></i>
+                                    <p class="infos">Resposnive (6) </p>
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+                <div class="spacer-30"></div>
+                <!-- Featured Properties -->
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                                Featured Properties
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="side_feat">
+                        <div class="panel panel-default">
+                            <div class="panel-image col-md-3">
+                                <a href="property_details.php"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_1.jpg') }}" alt=""> </a>
+                            </div>
+
+                            <div class="panel-body col-md-9">
+                                <h3 class="sec_titl">
+                                    <a href="property_details.php"> Nulla sed dolor vestibu porttitor erat ultricies </a>
+                                </h3>
+
+                                <div class="prop_feat">
+                                    <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                    <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-image col-md-3">
+                                <a href="property_details.php"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_2.jpg') }}" alt=""> </a>
+
+                            </div>
+
+                            <div class="panel-body col-md-9">
+                                <h3 class="sec_titl">
+                                    <a href="property_details.php">Nulla sed dolor vestibu porttitor erat ultricies </a>
+                                </h3>
+
+                                <div class="prop_feat">
+                                    <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                    <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-image col-md-3">
+                                <a href="property_details.php"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_3.jpg') }}" alt=""> </a>
+
+                            </div>
+
+                            <div class="panel-body col-md-9">
+                                <h3 class="sec_titl">
+                                    <a href="property_details.php"> Nulla sed dolor vestibu porttitor erat ultricies  </a>
+                                </h3>
+
+                                <div class="prop_feat">
+                                    <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                    <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+                <!-- Tags -->
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                                Tags
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="tags_sec">
+
+                        <div class="tags_box first">
+                            <a href="#"> Modern </a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Amazing</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Responsive</a>
+                        </div>
+
+                        <div class="tags_box first">
+                            <a href="#"> Development</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Rent</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Properties</a>
+                        </div>
+
+                        <div class="tags_box first">
+                            <a href="#"> Themeforest</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Development</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> php  </a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <!-- /.row -->
+
+
+            </section>
+                </section>
+
+            <div class="spacer-30"></div>
+
+
+            <section class="row">
+            <section id="prop_feat2" class="col-md-8">
+                <!-- /.row -->
+                <div class="row prlist_sec">
+                    <div class="titl_sec">
+                        <div class="col-lg-8">
+
+                            <h3 class="main_titl text-left">
+                                Paiement
+                            </h3>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="spacer-10"></div>
+                            <a style="font-size: 12px;text-align :center"  class="btn btn-primary btn-lg btn-block"
+                               onclick="$('.hosted-pay-form').slideToggle()">Nouveau Paiement</a>
+      {#                      {% if not  paie %}
+                                <a style="font-size: 12px;text-align :center"  class="btn btn-primary btn-lg btn-block"
+                             onclick="$('.hosted-pay-form').slideToggle()">Nouveau Paiement</a>
+                            {% else %}
+                                <div class="col_labls larg_labl">
+                                    <p class="or_labl">Paiement Complet</p>
+                                </div>
+                            {% endif %}#}
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="pay_info">
+                        <div class=" panel-default">
+
+                            <div class="col-lg-12">
+
+                                <h3 class="main_titl text-left">
+                                    Réservation: {{ reservation.dateReservation|date('y-m-d') }} Montant: {{ reservation.montant }} Dh
+                                </h3>
+
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div class="spacer-10"></div>
+
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <h4 class="main_titl text-left">
+                                        Transactions
+                                    </h4>
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th> Date  </th>
+                                            <th>  Montant </th>
+                                            <th>  Mode </th></tr>
+                                        {% for paie in paiements %}
+                                            <tr>
+                                                <div class="col-md-12">
+                                                    <td>{{ paie.datePaiement|date('y-m-d') }} </td><td> {{ paie.montant }}Dh </td><td> {{ paie.modePaiement }}</td>
+
+                                                </div>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="main_titl text-left">
+                                        Postulation
+                                    </h4>
+
+                                    <a href="#">
+                                        <i class="fa fa-long-arrow-right"></i>
+                                        <p class="infos"><b>Date :</b>{{ postuler.datePost|date('y-m-d') }} </p>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                    <a href="#">
+                                        <i class="fa fa-long-arrow-right"></i>
+                                        <p class="infos"><b> Montant : </b>{{ postuler.postMontant }}Dh </p>
+                                    </a>
+                                    <div class="clearfix"></div>
+                                    <a href="#">
+                                        <i class="fa fa-long-arrow-right"></i>
+                                        <p class="infos"><b> Statut :</b> {{ postuler.statut }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="spacer-30"></div>
+                        </div>
+
+
+                        <div class=" row">
+                            <div class="col-md-6">
+                        <a href="{{ path("facturation", {'annonceId': annonce.annonceId}) }}" style="font-size: 12px;text-align :center"  class="btn btn-primary btn-lg btn-block">Facture</a>
+                    </div>
+                            <div class="col-md-6">
+                            <a href="{{ path("facture", {'annonceId': annonce.annonceId}) }}" style="font-size: 12px;text-align :center"  class="btn btn-success btn-lg btn-block">voir</a>
+                                </div>
+                        </div>
+                        <div class="spacer-30"></div>
+                    </div>
+                      </div>
+
+                </section>
+
+                <section id="sidebar2" class="col-md-4">
+                    <div class="row hosted-pay-form"  style="display:none">
+                        {{ form_start(formNewPay,{'method':'POST','attr':{'class':'log_form'}}) }}
+                        <div class="col-lg-12 ">
+                        <div class="titl_sec">
+                            <div class="col-lg-12">
+
+                                <h3 class="main_titl text-left">
+                                 Formulaire Nouveau Paiement
+                                </h3>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            <div class="row side_feat">
+
+
+
+                                <div class="spacer-20"></div>
+                        <div class="row ">
+
+                                <div class=" col-md-4">
+                                    {{ form_widget(formNewPay.choix,{'id':'mon_choix','type':'number','attr':{'class':'form-control'}}) }}
+                                </div>
+
+                                <div class=" col-md-8">
+                                    <h3 class="sec_titl">
+                                Nombre de mois a payer
+                                    </h3>
+
+                                </div>
+
+
+                        </div>
+                                <div class="spacer-20"></div>
+
+                            <div class="clearfix"></div>
+
+                            <div class=" col-md-12">
+                         {{ form_widget(formNewPay.valider,{'id':'val_pay','attr':{'class':'btn  btn-primary'}}) }}
+
+
+                        </div>
+                                <div class="spacer-20"></div>
+ </div>
+
+                        </div>
+                        {{ form_end(formNewPay,{'render_rest':false}) }}
+                    </div>
+
+                    <div class="spacer-30"></div>
+
+                    <div class="row pay_info"  id="pay_infos">
+
+                    </div>
+                </section>
+                <div class="spacer-60"></div>
+            </section>
+
+        </div>
+    </div>
+{% endblock %}
+
+  {% block modal %}
+      {{ parent() }}
+
+
+  {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- BX Slider -->
+    <script src="{{ asset('assets/js/jquery.bxslider.min.js') }}"></script>
+    <!-- Script to Activate the Carousel -->
+    <script type="text/javascript">
+        $("#budget").slider({min  : 0, max  : 10000, value: [2000, 10000], labelledby: ['min', 'max']});
+        </script>
+
+
+
+    <script>
+
+        /* Product Slider Codes */
+        $(document).ready(function () {
+            'use strict';
+
+            $('#prop_slid').bxSlider({
+                pagerCustom: '#slid_nav'
+            });
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+    <script>
+        $('#val_pay').click(function (event){
+            var tranche = $("#mon_choix").val();
+            var post={{ postuler.postId }};
+
+            {#   $("#pay_infos").load("{{ path('new_pay', {'post': postuler.postId,'tranche':2 }) }}");  #}
+            $("#pay_infos").load('http://localhost/pere/web/app_dev.php/compte/pay/new/'+post+'/'+tranche );
+        });
+    </script>
+
+
+{% endblock %}

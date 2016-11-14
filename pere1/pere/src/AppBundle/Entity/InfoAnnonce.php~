@@ -1,0 +1,165 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * InfoAnnonce
+ *
+ * @ORM\Table(name="info_annonce", indexes={@ORM\Index(name="personneID", columns={"personneID"}), @ORM\Index(name="FK_infos", columns={"annonceID"})})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InfoAnnonceRepository")
+ */
+class InfoAnnonce
+{
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="favori", type="boolean", nullable=true)
+     */
+    private $favori;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="aime", type="boolean", nullable=true)
+     */
+    private $aime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="info_ID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $infoId;
+
+    /**
+     * @var \AppBundle\Entity\Personne
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="personneID", referencedColumnName="personne_ID")
+     * })
+     */
+    private $personneid;
+
+    /**
+     * @var \AppBundle\Entity\Annonce
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Annonce")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="annonceID", referencedColumnName="annonce_ID")
+     * })
+     */
+    private $annonceid;
+
+
+
+    /**
+     * Set favori
+     *
+     * @param boolean $favori
+     *
+     * @return InfoAnnonce
+     */
+    public function setFavori($favori)
+    {
+        $this->favori = $favori;
+
+        return $this;
+    }
+
+    /**
+     * Get favori
+     *
+     * @return boolean
+     */
+    public function getFavori()
+    {
+        return $this->favori;
+    }
+
+    /**
+     * Set aime
+     *
+     * @param boolean $aime
+     *
+     * @return InfoAnnonce
+     */
+    public function setAime($aime)
+    {
+        $this->aime = $aime;
+
+        return $this;
+    }
+
+    /**
+     * Get aime
+     *
+     * @return boolean
+     */
+    public function getAime()
+    {
+        return $this->aime;
+    }
+
+    /**
+     * Get infoId
+     *
+     * @return integer
+     */
+    public function getInfoId()
+    {
+        return $this->infoId;
+    }
+
+    /**
+     * Set personneid
+     *
+     * @param \AppBundle\Entity\Personne $personneid
+     *
+     * @return InfoAnnonce
+     */
+    public function setPersonneid(\AppBundle\Entity\Personne $personneid = null)
+    {
+        $this->personneid = $personneid;
+
+        return $this;
+    }
+
+    /**
+     * Get personneid
+     *
+     * @return \AppBundle\Entity\Personne
+     */
+    public function getPersonneid()
+    {
+        return $this->personneid;
+    }
+
+    /**
+     * Set annonceid
+     *
+     * @param \AppBundle\Entity\Annonce $annonceid
+     *
+     * @return InfoAnnonce
+     */
+    public function setAnnonceid(\AppBundle\Entity\Annonce $annonceid = null)
+    {
+        $this->annonceid = $annonceid;
+
+        return $this;
+    }
+
+    /**
+     * Get annonceid
+     *
+     * @return \AppBundle\Entity\Annonce
+     */
+    public function getAnnonceid()
+    {
+        return $this->annonceid;
+    }
+}

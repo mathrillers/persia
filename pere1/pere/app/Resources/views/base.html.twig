@@ -1,0 +1,478 @@
+
+{#
+   This is the base template used as the application layout which contains the
+   common elements and decorates all the other templates.
+   See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
+#}
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>{% block title %}Pereson{% endblock %}</title>
+
+
+
+        {% block stylesheets %}
+            {#
+                        {% stylesheets
+                        '%kernel.root_dir%/assets/css/bootstrap.css'
+                        '%kernel.root_dir%/assets/font-awesome/css/font-awesome.min.css'
+                        '%kernel.root_dir%/assets/css/owl.carousel.css'
+                        '%kernel.root_dir%/assets/css/owl.transitions.css'
+                        '%kernel.root_dir%/assets/css/flexslider.css'
+                        '%kernel.root_dir%/assets/css/main_style.css'
+                        filter='cssrewrite' output='app.css' %}
+                        <link rel="stylesheet" href="{{ asset_url }}"  type="text/css"/>
+                           {% endstylesheets %}
+
+    #}
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css')}}"  type="text/css"/>
+
+            <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.css') }}"  type="text/css"/>
+            <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.css') }}"  type="text/css"/>
+            <link rel="stylesheet" href="{{ asset('assets/css/owl.transitions.css') }}"  type="text/css"/>
+
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-slider.css') }}"  type="text/css"/>
+
+            <link rel="stylesheet" href="{{ asset('assets/css/flexslider.css') }}"  type="text/css"/>
+            <link rel="stylesheet" href="{{ asset('assets/css/main_style.css') }}"  type="text/css"/>
+
+            <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}"  type="text/css"/>
+
+
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}" />
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}" {% block body_script %}{% endblock %}>
+    {% block header %}
+
+
+        <!-- Top Bar -->
+        <section class="top_sec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 top_lft">
+                        <div class="soc_ico">
+                            <ul>
+                                <li class="tweet">
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="fb">
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="insta">
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li class="linkd">
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li class="ytube">
+                                    <a href="#">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li class="rss">
+                                    <a href="#">
+                                        <i class="fa fa-rss"></i>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                        <div class="inf_txt">
+                            <p>Luxury Real Estate Specialists Worldwide</p>
+                        </div>
+
+                    </div>
+                    <!-- /.top-left -->
+                    <div class="col-xs-12 col-md-6 top_rgt">
+                        <div class="sig_in">
+
+
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+
+                                    <div class="dropdown">
+
+                           <a class="dropdown-toggle" data-toggle="dropdown" href="#"  >   <i class="fa fa-user"></i>
+                               {{ app.user.username }}       </a>
+
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="{{ path('mon_compte') }}"  >   <i class="fa fa-user"></i>
+                                                    Compte     </a>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li class="dropdown-header">
+
+                                            <li>
+                                            <li>
+                                                <a href="{{ path('mes_annonces')}}">mes annonces </a>
+                                            </li>
+                                            <li>
+                                            <a href="{{ path('mes_biens')}}"> mes biens</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ path('mes_reservations')}}"> mes reservations</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('mes_postulations')}}"> mes postulations</a>
+                                            </li>
+
+                                            <li>
+                                            <a href="{{ path('mes_favoris')}}">mes favoris </a>
+                                                    </li>
+
+
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <li role="separator" class="divider"></li>
+                                            <li>
+                                                <a href=" {{ path('index_page') }}"> <i class="fa fa-user">    ADMIN</i></a>
+                                            </li>
+
+                                            {% endif %}
+                                            <li role="separator" class="divider"></li>
+                                            <li>
+                                                <a href="{{ path('logout_check') }}">Déconnexion </a>
+                                            </li>
+                                        </ul>
+                                        <a href="{{ path('mes_notifications') }}"  >
+                                            <div id="notif" >
+                                                <span class=" bg-warning badge">{{ app.session.get("notif") }}</span>
+                                            </div>
+                                        </a>
+                                    </div>
+
+
+                                {% endif %}
+
+                                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="#login_box" class="log_btn" data-toggle="modal"> Sign in </a>
+
+                            <a href=" {{ path('create_account') }}"> S'inscrire</a>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="submit_prop">
+                            <h3 class="subm_btn"><a href="{{ path('addannonce') }}" >
+                                    <i class="fa fa-bars"></i>
+                                    <span> Déposer une annonce</span></a>
+                            </h3>
+                         {#   <h3 class="subm_btn"><a href="#prop_box" data-toggle="modal">
+                                    <i class="fa fa-bars"></i>
+                                    <span> Submit Property </span></a>
+                            </h3>#}
+                        </div>
+
+                    </div>
+                    <!-- /.top-right -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </section>
+
+
+    {% endblock %}
+    {% block flash_message %}
+        {% for flash_message in app.session.flashbag.get('notice') %}
+            <div class="alert text-center alert-success flash-notice alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('error') %}
+            <div class="alert text-center alert-danger flash-notice alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+    {% endblock %}
+
+        {% block body %}
+
+
+
+        {% endblock %}
+
+
+
+    {% block connexion %}
+
+    {% endblock %}
+    <!-- Footer -->
+    <footer>
+        {% block footer %}
+
+            <!-- Footer Top -->
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <!-- About Section -->
+                        <div class="col-md-3 abt_sec">
+                            <h2 class="foot_title">
+                               A propos de PERESON IMMOBILIER
+                            </h2>
+                            <p>
+                                Ethical quinoa slow-carb squid, irony Pitchfork tousled hella art party PBR&amp;B cray dreamcatcher brunch.
+                            </p>
+
+                            <div class="spacer-20"></div>
+
+                            <p>
+                                Bicycle rights jean shorts organic, street art PBR occupy flexitarian pour-over master cleanse farm-to-table.
+
+                            </p>
+
+                        </div>
+                        <!-- Latest Tweets -->
+                        <div class="col-md-3">
+                            <h2 class="foot_title">
+                             Dernières annonces
+                            </h2>
+                            <ul class="tweets">
+                                <li> <i class="fa fa-twitter"></i>
+                                    <p class="twee">
+                                        Check out this great <a href="#">#themeforest</a> item 'Responsive Photography WordPress <a href="#">http://drbl.in/871942</a>
+                                    </p>
+
+                                    <p class="datd"> 6 April 2015 </p>
+                                    <div class="clearfix"></div>
+                                </li>
+
+
+                                <li class="spacer-20"></li>
+
+                                <li><i class="fa fa-twitter"></i>
+
+                                    <p class="twee">
+                                        <a href="#"> #MadeBySeries </a> Made By: Chris Coyier, Founder <a href="#">  http://ow.ly/LeAKf </a>
+                                    </p>
+
+                                    <p class="datd"> 6 April 2015 </p>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!-- Contact Info -->
+                        <div class="col-md-3">
+                            <h2 class="foot_title">
+                                Contact Info
+
+                            </h2>
+                            <ul class="cont_info">
+                                <li><i class="fa fa-map-marker"></i>
+                                    <p>{{   mes_annonces.agence.adresse}}</p>
+                                </li>
+                                <li><i class="fa fa-phone"></i>
+                                    <p> <a href="tel:407-546-2034"> Phone: +212{{  mes_annonces.agence.telephone}}</a> </p>
+                                </li>
+                                <li><i class="fa fa-envelope"></i>
+                                    <p> <a href="mailto:connect@crelegant.com?Subject=template%20enquiry"> Email: {{   mes_annonces.agence.email}} </a> </p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!-- Useful Links -->
+                        <div class="col-md-3">
+                            <h2 class="foot_title">
+                              Liens utiles
+                            </h2>
+                            <ul class="foot_nav">
+                                <li> <a href="{{ path('home') }}">Accueil</a> </li>
+                                <li> <a href="{{ path('homepageAnnonce') }}">Annonces</a> </li>
+                                <li> <a href="{{ path('addannonce') }}">Déposer une annonce</a> </li>
+                                <li> <a href="{{ path('faire_don') }}">Faire un don</a> </li>
+                                <li> <a href="contact.html">FAQ</a> </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+
+            </div>
+
+            <div class="footer_copy_right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <p>&copy; Copyright 2016. All Rights Reserved by <a href="#"> PERESON IMMOBILIER </a>
+                            </p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p>Developed by <a href="http://internationaltechnologies.net"> International Technologies</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endblock %}
+
+
+    </footer>
+
+    {% block modal %}
+
+        <!-- Modal HTML -->
+        <div id="login_box" class="modal fade">
+            {% include ":security:login.html.twig" %}
+        </div>
+
+        <div id="reg_box" class="modal fade">
+            {% include ":security:create-account.html.twig" %}
+        </div>
+
+        <div id="prop_box" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="log_form">
+                            <h2 class="frm_titl"> Property Listing </h2>
+                            <form name="sentMessage" id="listform" novalidate>
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <input type="text" class="form-control" id="list_name" required data-validation-required-message="Please enter the listing name." placeholder="Listing Name">
+                                        <p class="help-block"></p>
+                                    </div>
+
+                                    <div class="controls">
+                                        <input type="text" class="form-control" id="addr" required data-validation-required-message="Please enter your Address." placeholder="Address">
+
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls col-md-6 first">
+                                        <select name="Type" class="form-control" required="" data-validation-required-message="Please select a type.">
+                                            <option value="0" selected="selected">Select the listing type</option>
+                                            <option value="1">Industrial</option>
+                                            <option value="2">Commercial</option>
+                                            <option value="3">Household</option>
+                                        </select>
+                                    </div>
+                                    <div class="controls col-md-6">
+                                        <select name="Actions" class="form-control" required="" data-validation-required-message="Please select a Actions.">
+                                            <option value="0" selected="selected">Select the Action</option>
+                                            <option value="1">For Rent</option>
+                                            <option value="2">For Sale</option>
+                                        </select>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls col-md-6 first">
+                                        <input type="text" class="form-control" id="area" required data-validation-required-message="Please enter the Area." placeholder="Area(sq.ft)">
+                                    </div>
+                                    <div class="controls col-md-6">
+                                        <input type="text" class="form-control" id="rate" required data-validation-required-message="Please enter your Rate." placeholder="Rate">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls col-md-6 first">
+                                        <input type="text" class="form-control" id="agt_name" required data-validation-required-message="Please enter the Agent name." placeholder="Agent Name">
+                                    </div>
+                                    <div class="controls col-md-6">
+                                        <input type="text" class="form-control" id="agt_number" required data-validation-required-message="Please enter the Agent Contact Number." placeholder="Agent Contact Number">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="control-group form-group">
+                                    <div class="controls">
+                                        <textarea rows="10" cols="60" class="form-control" id="message" required data-validation-required-message="Please enter your Property description" maxlength="999" style="resize:none" placeholder="Property Description"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit Property</button>
+                                    <div id="success4"></div>
+                                    <!-- For success/fail messages -->
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+        {% block javascripts %}
+
+            <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}" > </script>
+            <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}" > </script>
+            <script  type="text/javascript"  src="{{ asset('assets/js/bootstrap-slider.js')}}"></script>
+{#
+<script type="text/javascript" src="Resources/assets/js/bootstrap.min.js" > </script>
+{% javascripts     '@AppBundle/Resources/assets/js/bootstrap.min.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}" > </script>
+{% endjavascripts %}
+#}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <script type="text/javascript">
+                function check_demande() {
+                    $.ajax({
+                        type:'get',
+                        url: "{{ path('count_notif') }}",
+
+                        ifModified:true,
+                        success: function(data){
+                     //       $('#notif').html('   <span id="notif" class=" bg-success badge"> +'+ data+' </span>'); //span où tu veux que ce nombre apparaisse
+                            $('#notif').html(data.badge); //span où tu veux que ce nombre apparaisse
+                        }
+                    });
+                    setTimeout(check_demande, 30000);
+                }
+                check_demande();
+            </script>
+
+            <script>
+                jQuery.fn.shake = function() {
+                    this.each(function(i) {
+                        $(this).css({ "position": "relative" });
+                        for (var x = 1; x <= 3; x++) {
+                            $(this).animate({ left: -5 }, 10).animate({ left: 0 }, 50).animate({ left: 5 }, 10).animate({ left: 0 }, 50);
+                        }
+                    });
+
+                    return this;
+
+                }
+                $("document").ready(function move() {
+                        $(".new").shake();
+
+                        setTimeout(move, 4000);
+                                    });
+            </script>
+    {% endif %}
+        {% endblock %}
+</body>
+</html>

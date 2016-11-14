@@ -1,0 +1,116 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Modifier Paiements</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Paiements</li>
+                        <li><i class="fa fa-th-list"></i>Modifier Paiement</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+            <ul>
+                <li>
+                    <a href="{{ path('paiement_index') }}">Back to the list</a>
+                </li>
+
+            </ul>
+            {{ form_start(edit_form) }}
+
+            <div class="form-group">
+
+
+                <div class="col-lg-6"> {{ form_label(edit_form.modePaiement) }}</div>
+                <div class="col-lg-6">  {{ form_widget(edit_form.modePaiement) }}
+                </div>
+
+
+            </div>
+            <br><br>
+
+            <div class="form-group">
+
+
+                <div class="col-lg-6">  {{ form_label(edit_form.datePaiement) }}</div>
+                <div class="col-lg-6">
+                    {{ form_widget(edit_form.datePaiement) }}
+                </div>
+
+
+            </div>
+            <br><br><br><br>
+
+            <div class="form-group">
+
+
+                <div class="col-lg-6"> {{ form_label(edit_form.montant) }}</div>
+                <div class="col-lg-6">
+                    {{ form_widget(edit_form.montant ,{ 'attr': { 'readonly':'readonly'}}) }}
+                </div>
+
+
+            </div>
+            <br><br>
+
+            <div class="form-group">
+                <div class="col-lg-6"> {{ form_label(edit_form.reservation.montant) }}</div>
+                <div class="col-lg-6">    {{ form_widget(edit_form.reservation.montant ,{ 'attr': {'readonly':'readonly'}}) }}
+                </div>
+                <br><br>
+
+                <div class="form-group">
+                    <div class="col-lg-6">  {{ form_label(edit_form.reservation.dateReservation) }}</div>
+                    <div class="col-lg-6">    {{ form_widget(edit_form.reservation.dateReservation) }}
+                    </div>
+                    <br><br>
+
+                    <div class="form-group">
+                        <div class="col-lg-6">  {{ form_label(edit_form.reservation.postuler.statut) }}</div>
+                        <div class="col-lg-6">    {{ form_widget(edit_form.reservation.postuler.statut) }}
+                        </div>
+                        <br><br>
+
+                        <div class="form-group">
+                            <div class="col-lg-6">  {{ form_label(edit_form.reservation.postuler.annonce) }}</div>
+                            <div class="col-lg-6">    {{ form_widget(edit_form.reservation.postuler.annonce) }}
+                            </div>
+                            <br><br>
+
+                            <div class="form-group">
+                                <div class="col-lg-6"> {{ form_label(edit_form.reservation.postuler.personne) }}</div>
+                                <div class="col-lg-6">    {{ form_widget(edit_form.reservation.postuler.personne) }}
+                                </div>
+                                <br><br>
+
+
+                                <br><br> <br><br>
+
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-5 col-lg-10">
+                                        <button class="btn btn-warning" type="submit">Modifier</button>
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_form) }}
+
+
+                                <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}
+
+

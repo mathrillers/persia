@@ -1,0 +1,121 @@
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+<div class="modal-dialog" style="text-align: center ;width: 700px">
+    <div class="modal-content">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="log_form" style="text-align: center">
+                <h2 data-readOnly=""></h2>
+
+
+                <div class="container">
+                    <section id="pricg_sec">
+                        <div class="row">
+                            <!-- Pricing Table 1 -->
+                            <div class="col-xs-6">
+                                <div class="pric_tab text-center">
+                                    <h1 class="tab_titl">
+                                        Réservation: {{ annonce.titre }}/{{ annonce.reference }}
+                                    </h1>
+                                    <div class="spacer-30"></div>
+                                    <div class="form-group ">
+
+                                        {{ form_start(formReserv, { 'method': 'POST','attr': {'class': 'form'} } ) }}
+
+                                        <div id="infos-annonce" class="form" >
+                                            <br><br>
+                                            {% if annonce.typeDelai %}
+                                                <div class="pric_ara">
+
+                                                    <h3 class="pric">  {{ annonce.montant }}Dh<i> Total </i></h3>
+                                                </div>
+                                                <ul class="pric_feat">
+                                                    <li> Description de L'annonce :
+
+                                                        {{ annonce.description }}
+                                                    </li>
+                                                    <li> Durée : {{ annonce.periodeDelai }}<i> Jours. </i></li>
+
+                                                </ul>
+
+                                            {% else %}
+                                                <div class="pric_ara">
+
+                                                    <h3 class="pric"> {{ annonce.prixDelai }}Dh<i> /Mois. </i></h3>
+
+                                                </div>
+                                                <ul class="pric_feat">
+                                                    <li> Description de L'annonce :
+
+                                                        {{ annonce.description }}
+                                                    </li>
+                                                    <li> Durée : {{ annonce.periodeDelai }}<i> Mois. </i></li>
+
+                                                </ul>
+
+
+
+                                            {% endif %}
+
+                                        </div>
+                                        {{form_widget(formReserv.check, { 'name':'check_paiement_court_ok','required':false,'attr': { 'onclick':"$('.hosted-form').slideToggle()",'class': 'form-control'}} )  }}
+                                        * Cochez sur cette case pour procéder au paiement !
+
+                                        <!-- The $10 amount is set on the server side -->
+                                        <div id="payment-form-now" class="hosted-form" style="display:none">
+
+                                            {% if annonce.typeDelai %}
+                                                <div class="pric_ara">
+
+                                                    <h3 class="pric">  {{ annonce.montant }}Dh<i> Total </i></h3>
+                                                </div>
+                                                <ul class="pric_feat">
+                                                    <li> Description de L'annonce :
+
+                                                        {{ annonce.description }}
+                                                    </li>
+                                                    <li> Durée : {{ annonce.periodeDelai }}<i> Jours. </i></li>
+
+                                                </ul>
+
+                                                {% else %}
+
+                                                    <ul class="pric_feat">
+                                                        <li> Caution : {{ annonce.prixDelai }} Dh  </li>
+                                                        <li> 1er Mois de loyer : {{ annonce.prixDelai }} Dh </li>
+                                                        <li> Commission : {{ annonce.prixDelai }} Dh </li>
+
+                                                    </ul>
+
+                                                    <div class="pric_ara">
+
+                                                        <h3 class="pric"> Total : {{ annonce.prixDelai*3 }}<i> Dh </i></h3>
+
+                                                    </div>
+
+                                            {% endif %}
+
+                                            </div>
+
+
+
+                                        <div class="spacer-30"></div>
+                                        {{form_widget(formReserv.valider, {'id':'process-payment-btn','name':'valider_reservation','attr': { 'class': 'btn btn-primary btn-lg btn-block'}} )  }}
+
+
+                                        {{ form_end(formReserv,{'render_rest':false}) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

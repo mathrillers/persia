@@ -1,0 +1,300 @@
+
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Nouvelle Annonce</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Annonces</li>
+                        <li><i class="fa fa-th-list"></i>Nouvelle Annonces</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+
+            <a class="btn btn-navbar" href="{{ path('annoncee_index') }}">Liste des Annonces</a>
+
+
+            <!--***********************************************************************************-->
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Cree Une Nouvelle Annonce
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+
+                                    {{ form_start(form,{'id':'feedback_form','method':'post','attr':{'class':'form-validate form-horizontal'}}) }}
+                                    <div class="form-group" style="text-align: center">
+
+
+                                        <div class="col-lg-6" style="text-align: center"> {{ form_label(form.typeAnnonce) }}  </div>
+                                        <div class="col-lg-4">  {{ form_widget(form.typeAnnonce) }}
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group" style="text-align: center">
+
+
+                                        <div class="col-lg-6" style="text-align: center"> {{ form_label(form.description) }}  </div>
+                                        <div class="col-lg-4">   {{ form_widget(form.description) }}
+                                        </div>
+
+
+                                    </div>
+                                    {#<div class="form-group" style="text-align: center">
+
+
+                                        <div class="col-lg-6" style="text-align: center">   {{ form_label(form.montant) }}  </div>
+                                        <div class="col-lg-4">   {{ form_widget(form.montant) }}
+                                        </div>
+
+
+                                    </div>#}
+                               {#     <div class="form-group" style="text-align: center">
+
+
+                                        <div class="col-lg-6" style="text-align: center">  {{ form_label(form.commission) }}  </div>
+                                        <div class="col-lg-4">
+                                            {{ form_widget(form.commission) }}
+                                        </div>
+
+
+                                    </div>#}
+
+                                    <div class="form-group" style="text-align: center">
+                                        <div class="col-lg-6" style="text-align: center">  {{ form_label(form.reference) }}  </div>
+                                        <div class="col-lg-4">
+                                            {{ form_widget(form.reference) }}
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group" style="text-align: center">
+
+                                        <div class="col-lg-6" style="text-align: center"> {{ form_label(form.depositaire) }}  </div>
+                                        <div class="col-lg-4">
+                                            {{ form_widget(form.depositaire) }}
+                                        </div>
+
+                                    </div>
+
+                              {#   <div class="btn-group btn-toggle" data-toggle="buttons">
+                                    <label class="btn btn-primary active">
+                                        <input type="radio" name="options" id="option1" value="option1"> On
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="options" id="option2" value="option2" checked=""> Off
+                                    </label>
+                                </div>#}
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.reference) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.reference,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.adresse) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.adresse,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.prix) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.prix,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.nbrChambre) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.nbrChambre,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.nbreSalon) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.nbreSalon,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.superficie) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.superficie,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.jardin) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.jardin,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.garage) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.garage,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.etat) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.etat,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.proprietaire) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.proprietaire,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br> <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.immobilier.idType) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.idType,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(formville.ville) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(formville.ville,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div><br><br>
+                                <div class="form-group">
+                                <div class="controls col-md-6" style="text-align: center" >
+                                    <label class="control-label">Quartier :</label></div>
+                                    <div class="controls col-md-4">   <select id="mon_quartier" name="mon_quartier"
+                                            class="form-control"></select>
+                                </div></div><br><br>
+
+
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(form.type_delai) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.type_delai,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(form.periode_delai) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.periode_delai,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(form.prix_delai) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.prix_delai,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+
+                                </div><br><br>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-5 col-lg-10">
+
+                                            <button class="btn btn-primary" type="submit">Save</button>
+                                            <button class="btn btn-default" type="reset">Cancel</button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form,{'render_rest':false}) }}
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script >
+
+
+        $("document").ready(function () {
+            $("#form_ville").change(function () {
+                //console.log($( "#form_ville" ).val());
+                $.ajax({
+                    type: 'get',
+                    url: 'http://localhost/pere/web/app_dev.php/quartier/' + $(this).val(),
+                    beforeSend: function () {
+                        //console.log('ca charge');
+                        $("#mon_quartier option").remove();
+                    },
+                    success: function (data) {
+                        //$("#form_annonce_description").val(data.quartiers).change();
+                        $.each(data.quartiers, function (index, value) {
+                            $("#mon_quartier").append($('<option>', {value: value['id'], text: value['nom']}));
+                        });
+                    }
+                });
+            })
+        });
+
+        $("select").ready(function(){
+            $("#mon_quartier").change(function(){
+               // console.log($(this).val());
+                $( "#mon_quartier option:selected" );
+            })
+        })
+
+    </script>
+{% endblock %}
+

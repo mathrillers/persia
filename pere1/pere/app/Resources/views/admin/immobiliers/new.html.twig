@@ -1,0 +1,243 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Biens</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Biens</li>
+                        <li><i class="fa fa-th-list"></i>Nouveau Bien</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+
+            <a class="btn btn-navbar" href="{{ path('immobiliers_index') }}">Liste des Biens</a>
+
+
+            <!--***********************************************************************************-->
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Cree Un Nouveau Bien
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+
+                                {{ form_start(form,{'method':'POST'}) }}
+                                {#{{ form_widget(form) }}#}
+
+                                {{ form_errors(form) }}
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.reference) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.reference, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.adresse) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.adresse, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+                                {# <div class="form-group ">
+
+                                     <div class="col-lg-6">{{ form_label(form.immobilier.quartier.ville) }}</div>
+                                     <div class="col-lg-4">
+
+                                         {{ form_widget(form.immobilier.ville, {'attr': {'class': 'form-control '}}) }}
+
+                                     </div>
+
+                                 </div><br><br>#}
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6"
+                                         style="text-align: center">{{ form_label(form.immobilier.ville) }} </div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.immobilier.ville,{'attr':{'class':'form-control'}}) }}
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group">
+                                    <div class="controls col-md-6" style="text-align: center">
+                                        <label class="control-label">Quartier :</label></div>
+                                    <div class="controls col-md-4"><select id="mon_quartier" name="mon_quartier"
+                                                                           class="form-control"></select>
+                                    </div>
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.prix) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.prix, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.nbrChambre) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.nbrChambre, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.nbreSalon) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.nbreSalon, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.superficie) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.superficie, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.jardin) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.jardin, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.garage) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.garage, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.etat) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.etat, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.proprietaire) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.proprietaire, {'attr': {'class': 'form-control  m-bot15'}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.immobilier.idType) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.immobilier.idType, {'attr': {'class': 'form-control  m-bot15'}}) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.files) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.files, {'attr': {'class': 'form-control '}}) }}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-5 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(form,{'render_rest':false}) }}
+
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}
+

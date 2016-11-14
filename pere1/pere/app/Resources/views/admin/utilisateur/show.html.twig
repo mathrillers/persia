@@ -1,0 +1,92 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Utilisateurs</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Utilisateurs</li>
+                        <li><i class="fa fa-th-list"></i>Information Utilisateur</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+
+            <a class="btn btn-navbar" href="{{ path('utilisateur_index') }}">Liste des Utilisateurs</a>
+
+
+            <!--***********************************************************************************-->
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Cree Un Nouveau Utilisateur
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                <h1>Personne</h1>
+
+                                <table>
+                                    <tbody>
+
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>{{ personne.nom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Prenom</th>
+                                        <td>{{ personne.prenom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{{ personne.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telephone</th>
+                                        <td>{{ personne.telephone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adresse</th>
+                                        <td>{{ personne.adresse }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Datenaissance</th>
+                                        <td>{% if personne.dateNaissance %}{{ personne.dateNaissance|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pays</th>
+                                        <td>{{ personne.pays }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ville</th>
+                                        <td>{{ personne.ville }}</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}

@@ -1,0 +1,166 @@
+{#
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Agence edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('agence_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+#}
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Modifier Agence</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Agences</li>
+                        <li><i class="fa fa-th-list"></i>Modifier Agence</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+            <ul>
+                <li>
+                    <a href="{{ path('agencee_index') }}">La liste des Agences</a>
+                </li>
+
+            </ul>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Modifier Info Agence
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                {{ form_start(edit_form) }}
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6" style="text-align: center"><br><br><br><br>Logo :</div>
+                                    <div class="col-lg-4"
+                                         style="height:200px;width: 375px; text-align: center">  {% if agence.logo %}
+                                            <img src="{{ asset(agence.logo) }}"
+                                                 class="img-responsive img-thumbnail"
+                                                 alt="Responsive image"
+                                                 style=" max-width: 100%;max-height: 100%;min-width: 100%;min-height: 100%">{% else %}Aucune Photo{% endif %}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6"> {{ form_label(edit_form.nom) }}</div>
+                                    <div class="col-lg-4">  {{ form_widget(edit_form.nom) }}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6"> {{ form_label(edit_form.adresse) }}</div>
+                                    <div class="col-lg-4">   {{ form_widget(edit_form.adresse) }}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6"> {{ form_label(edit_form.telephone) }}</div>
+                                    <div class="col-lg-4">   {{ form_widget(edit_form.telephone) }}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6"> {{ form_label(edit_form.email) }}</div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(edit_form.email) }}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6">  {{ form_label(edit_form.description) }}</div>
+                                    <div class="col-lg-4">
+                                        {{ form_widget(edit_form.description) }}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+                                <div class="form-group" style="text-align: center">
+
+
+                                    <div class="col-lg-6">  {{ form_label(edit_form.numeroCb) }}</div>
+                                    <div class="col-lg-4">    {{ form_widget(edit_form.numeroCb) }}
+                                    </div>
+
+
+                                </div>
+                                <br><br><br>
+
+
+                                <div class="form-group" style="text-align: center">
+                                    <div class="col-lg-offset-5 col-lg-10">
+                                        <button class="btn btn-warning" type="submit">Modifier</button>
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_form,{'render_rest':false}) }}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}
+

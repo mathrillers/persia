@@ -1,0 +1,108 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Postulations</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Postulation</li>
+                        <li><i class="fa fa-th-list"></i>Liste Postulations</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+                    <a href="{{ path('postuler_index') }}">Liste des Postulations</a>
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Modification des Informations du Bien
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+
+                                {{ form_start(edit_form) }}
+
+
+                                {#<div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.personne) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_widget(edit_form.personne) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.annonce) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_widget(edit_form.annonce) }}
+                                    </div>
+
+
+                                </div><br><br>#}
+                                <div class="form-group">
+                                    <div class="col-lg-6 first" style="text-align: center">
+
+                                        <label for="ville" class="required">Propriétaire : </label>
+                                    </div>   <div class="controls col-md-4">          <select id="personne" name="personne" class="form-control">
+                                            {% for val in edform.personne.vars.choices %}
+                                                <option value="{{ val.value }}" {% if val.value==postuler.personne.personneId %} selected="selected" {% endif %}>
+                                                    {{ val.label }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-6" style="text-align: center">
+                                        <label for="mon_annonce" class="required">Annonce : </label>
+                                    </div>  <div class="controls col-md-4">   <select id="mon_annonce" name="mon_annonce" class="form-control">
+                                            {% for val in edform.annonce.vars.choices %}
+                                                <option value="{{ val.value }}" {% if val.value==postuler.annonce.annonceId %} selected="selected" {% endif %}>
+                                                    {{ val.label }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-5 col-lg-10">
+                                        {{ form_widget(edit_form.save) }}
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_form,{'render_rest':false}) }}
+                                {#</form>#}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}
+

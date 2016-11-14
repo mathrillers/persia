@@ -1,0 +1,736 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}
+        {{ parent() }} - Accueil
+
+    {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}}" alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class=" dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header bradcrumb -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> Property Listing </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="index-2.html"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Property Listing </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="index-2.html"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+        {% block body %}
+
+            <div class="spacer-60"></div>
+            <div class="container">
+                <div class="row">
+                    <!-- Properties Section -->
+                    <section id="feat_propty">
+                        <div class="container">
+                            <div class="row">
+                                <!-- Property listing 1 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_1.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Sale
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Property listing 2 -->
+
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_4.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Rent
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Property listing 3 -->
+
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_8.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Sale
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="spacer-30"></div>
+
+                            <div class="row">
+                                <!-- Property listing 4 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_5.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Rent
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Property listing 5 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_3.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Rent
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Property listing 6 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_6.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Sale
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="spacer-30"></div>
+
+                            <div class="row">
+                                <!-- Property listing 7 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_7.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Rent
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Property listing 8 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_2.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Sale
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Property listing 9 -->
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-image">
+                                            <img class="img-responsive img-hover" src="{{ asset('images/property/property_9.jpg')}}" alt="">
+                                            <div class="img_hov_eff">
+                                                <a class="btn btn-default btn_trans" href="property_details.html"> More Details </a>
+                                            </div>
+
+                                        </div>
+                                        <div class="sal_labl">
+                                            For Rent
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="prop_feat">
+                                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                                <p class="bedrom"><i class="fa fa-bed"></i> 3 Bedrooms</p>
+                                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                            </div>
+                                            <h3 class="sec_titl">
+                                                Amillarah Private Islands                 </h3>
+
+                                            <p class="sec_desc">
+                                                Heirloom art party iPhone kogi American Apparel stumptown try-hard tousled organic...
+                                            </p>
+                                            <div class="panel_bottom">
+                                                <div class="col-md-6">
+                                                    <p class="price text-left"> $250,100</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="readmore text-right"> <a href="property_details.html"> Read More </a> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="share_btn">
+                                        <i class="fa fa-share-alt"></i>
+                                        <div class="soc_btn">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="spacer-40"></div>
+                            <!-- Pagination -->
+                            <div class="pagin">
+                                <ul>
+                                    <li> <a class="active" href="#"> 1 </a> </li>
+                                    <li> <a href="#"> 2 </a> </li>
+
+                                    <li> <a href="#"> 3 </a> </li>
+
+                                    <li> <a href="#"> 4 </a> </li>
+
+                                    <li>
+                                        <a href="#"> <i class="fa fa-long-arrow-right"></i> </a>
+                                    </li>
+
+
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <!-- /.container -->
+                    </section>
+                    <div class="spacer-60"></div>
+
+                </div>
+            </div>
+{% endblock %}
+
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+{% endblock %}

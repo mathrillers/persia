@@ -1,0 +1,679 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}
+        {{ parent() }} - Accueil
+
+    {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}}" alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class=" dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="active "> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header bradcrumb -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> Features </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="index-2.html"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Features </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="index-2.html"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+        {% block body %}
+
+            <div class="spacer-60"></div>
+            <div class="container">
+                <div class="row">
+                    <!-- Features Section -->
+                    <section id="serv_pg" class="col-md-12">
+                        <!-- What we do -->
+                        <div class="row skill_sec">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        what we do
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-xs-12 serv_col">
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-laptop"></i>
+                                    </div>
+                                    <h3 class="fun_num">fully responsive</h3>
+                                    <p class="desc"> Heirloom art party iPhone American Apparel stumptown try-hard torganic daw </p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-cogs"></i>
+                                    </div>
+                                    <h3 class="fun_num">easy to customize</h3>
+                                    <p class="desc"> Heirloom art party iPhone American Apparel stumptown try-hard torganic daw </p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-file-code-o"></i>
+                                    </div>
+                                    <h3 class="fun_num">html / css</h3>
+                                    <p class="desc">Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic Daw</p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-wrench"></i>
+                                    </div>
+                                    <h3 class="fun_num">free support</h3>
+                                    <p class="desc">Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic Daw</p>
+                                </div>
+
+                                <div class="clearfix spacer-50"></div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-camera"></i>
+                                    </div>
+                                    <h3 class="fun_num">Creative design</h3>
+                                    <p class="desc"> Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic Daw </p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-toggle-off"></i>
+                                    </div>
+                                    <h3 class="fun_num">Web development</h3>
+                                    <p class="desc"> Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic Daw </p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <h3 class="fun_num">visual composer</h3>
+                                    <p class="desc">Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic Daw</p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-umbrella"></i>
+                                    </div>
+                                    <h3 class="fun_num">internet marketing</h3>
+                                    <p class="desc">Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic Daw</p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="spacer-30"></div>
+            <!-- Callout Section -->
+            <div class="row">
+                <div class="call_sec text-center">
+                    <h2 class="cal_titl">
+                        call us today for your next trip
+                    </h2>
+                    <div class="spacer-30"></div>
+                    <p class="cal_info">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus arcu ligula, gravida blandit velit accumsan eu.
+                        <br> Morbi consequat justo libero, ut aliquet ligula vestibulum in. Vivamus eu tincidunt
+                    </p>
+                    <div class="spacer-30"></div>
+                    <!-- Buttons -->
+                    <div class="btns">
+                        <a href="#" class="wht_btn">contact us</a>
+                        <a href="#" class="orn_btn">purchase now</a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="spacer-30"></div>
+
+            <div class="container">
+                <div class="row">
+                    <!-- Features Section -->
+                    <section id="serv_pg2" class="col-md-12">
+                        <!-- Services -->
+                        <div class="row skill_sec m0">
+
+                            <div class="col-xs-12 serv_btm">
+                                <div class="col-xs-4 text-left">
+                                    <div class="side_ico">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div class="ico_desc">
+                                        <h3 class="fun_num">visual composer</h3>
+                                        <p class="desc"> Beard migas shabby chic scenesters dollar toast, meh forage single-origin coffee. Vegan meh Blue Bottle Carles </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4 text-left">
+                                    <div class="side_ico">
+                                        <i class="fa fa-laptop"></i>
+                                    </div>
+                                    <div class="ico_desc">
+                                        <h3 class="fun_num">fully responsive</h3>
+                                        <p class="desc"> Beard migas shabby chic scenesters dollar toast, meh forage single-origin coffee. Vegan meh Blue Bottle Carles </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4 text-left">
+                                    <div class="side_ico">
+                                        <i class="fa fa-camera"></i>
+                                    </div>
+                                    <div class="ico_desc">
+                                        <h3 class="fun_num">creative design</h3>
+                                        <p class="desc"> Beard migas shabby chic scenesters dollar toast, meh forage single-origin coffee. Vegan meh Blue Bottle Carles </p>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix spacer-50"></div>
+
+                                <div class="col-xs-4 text-left">
+                                    <div class="side_ico">
+                                        <i class="fa fa-file-code-o"></i>
+                                    </div>
+                                    <div class="ico_desc">
+                                        <h3 class="fun_num">visual composer</h3>
+                                        <p class="desc"> Beard migas shabby chic scenesters dollar toast, meh forage single-origin coffee. Vegan meh Blue Bottle Carles </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4 text-left">
+                                    <div class="side_ico">
+                                        <i class="fa fa-cogs"></i>
+                                    </div>
+                                    <div class="ico_desc">
+                                        <h3 class="fun_num">easy to customize</h3>
+                                        <p class="desc"> Beard migas shabby chic scenesters dollar toast, meh forage single-origin coffee. Vegan meh Blue Bottle Carles </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-4 text-left">
+                                    <div class="side_ico">
+                                        <i class="fa fa-wrench"></i>
+                                    </div>
+                                    <div class="ico_desc">
+                                        <h3 class="fun_num">free support</h3>
+                                        <p class="desc"> Beard migas shabby chic scenesters dollar toast, meh forage single-origin coffee. Vegan meh Blue Bottle Carles </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <!-- Features Section -->
+                    <section id="abt_sec" class="col-md-12">
+                        <div class="spacer-30"></div>
+                        <!-- Progressbar Section -->
+                        <div id="prog_sec" class="row skill_sec">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        our skills
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-xs-12 skill_ara">
+                                <div class="col-sm-5 p0">
+                                    <p class="m0"> Post-ironic Truffaut gluten-free photo booth, DIY fingerstache mixtape Etsy next level typewriter chambray stumptown flexitarian kogi distillery. </p>
+                                    <div class="spacer-30"></div>
+                                    <p class="m0"> Kale chips scenester ethical, squid keffiyeh craft beer post-ironic four dollar toast banjo messenger bag typewriter. Trust fund squid Wes Anderson fingerstache. </p>
+                                </div>
+                                <div class="col-sm-7 p0">
+                                    <div class="prog_sec">
+                                        <p class=labl> WordPress </p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="80" style="width: 80%;">
+                                                <span> 80 </span> <i class="per_cent"> % </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="prog_sec">
+                                        <p class=labl> Photoshop </p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="92" style="width: 92%;">
+                                                <span> 92 </span> <i class="per_cent"> % </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="prog_sec">
+                                        <p class=labl> Javascript </p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="44" style="width: 44%;">
+                                                <span> 44 </span> <i class="per_cent"> % </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="prog_sec">
+                                        <p class=labl> HTML / CSS </p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" style="width: 60%;">
+                                                <span> 60 </span> <i class="per_cent"> % </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="spacer-30"></div>
+
+                        <!-- Pricing Section -->
+                        <section id="pricg_sec">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Pricing Tables
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Pricing Table 1 -->
+                                <div class="col-xs-3">
+                                    <div class="pric_tab text-center">
+                                        <h2 class="tab_titl">
+                                            standard
+                                        </h2>
+                                        <div class="pric_ara">
+                                            <h3 class="pric"> $69<i> /monthly </i></h3>
+                                        </div>
+                                        <ul class="pric_feat">
+                                            <li> 0 Minutes Included </li>
+                                            <li> 15 GB Storage </li>
+                                            <li> Unlimited Users </li>
+                                            <li> Access to All 20+ </li>
+                                            <li> 15 Proposals </li>
+                                        </ul>
+                                        <a href="#" class="pric_btn"> select plan </a>
+                                    </div>
+                                </div>
+                                <!-- Pricing Table 2 -->
+                                <div class="col-xs-3">
+                                    <div class="pric_tab oran_tab text-center">
+                                        <h2 class="tab_titl">
+                                            proffesional
+                                        </h2>
+                                        <div class="pric_ara">
+                                            <h3 class="pric"> $79<i> /monthly </i></h3>
+                                        </div>
+                                        <ul class="pric_feat">
+                                            <li> 0 Minutes Included </li>
+                                            <li> 15 GB Storage </li>
+                                            <li> Unlimited Users </li>
+                                            <li> Access to All 20+ </li>
+                                            <li> 15 Proposals </li>
+                                        </ul>
+                                        <a href="#" class="pric_btn"> select plan </a>
+                                    </div>
+                                </div>
+                                <!-- Pricing Table 3 -->
+                                <div class="col-xs-3">
+                                    <div class="pric_tab text-center">
+                                        <h2 class="tab_titl">
+                                            power user
+                                        </h2>
+                                        <div class="pric_ara">
+                                            <h3 class="pric"> $89<i> /monthly </i></h3>
+                                        </div>
+                                        <ul class="pric_feat">
+                                            <li> 0 Minutes Included </li>
+                                            <li> 15 GB Storage </li>
+                                            <li> Unlimited Users </li>
+                                            <li> Access to All 20+ </li>
+                                            <li> 15 Proposals </li>
+                                        </ul>
+                                        <a href="#" class="pric_btn"> select plan </a>
+                                    </div>
+                                </div>
+                                <!-- Pricing Table 4 -->
+                                <div class="col-xs-3">
+                                    <div class="pric_tab text-center">
+                                        <h2 class="tab_titl">
+                                            premium
+                                        </h2>
+                                        <div class="pric_ara">
+                                            <h3 class="pric"> $99<i> /monthly </i></h3>
+                                        </div>
+                                        <ul class="pric_feat">
+                                            <li> 0 Minutes Included </li>
+                                            <li> 15 GB Storage </li>
+                                            <li> Unlimited Users </li>
+                                            <li> Access to All 20+ </li>
+                                            <li> 15 Proposals </li>
+                                        </ul>
+                                        <a href="#" class="pric_btn"> select plan </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.row -->
+                        </section>
+
+
+                        <div class="spacer-30"></div>
+                        <!-- Fun Facts Section -->
+                        <div class="row skill_sec">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        fun facts
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-xs-12 fun_fac">
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-heart-o"></i>
+                                    </div>
+                                    <h3 class="fun_num counter">18,450</h3>
+                                    <p class="desc">Satisfied Customers</p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <h3 class="fun_num counter">9,100</h3>
+                                    <p class="desc"> team members </p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-thumbs-o-up"></i>
+                                    </div>
+                                    <h3 class="fun_num counter">24,500</h3>
+                                    <p class="desc">likes on facebook</p>
+                                </div>
+
+                                <div class="col-xs-3 text-center">
+                                    <div class="circ_ico">
+                                        <i class="fa fa-coffee"></i>
+                                    </div>
+                                    <h3 class="fun_num counter">10,000</h3>
+                                    <p class="desc">cups of coffee</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="spacer-30"></div>
+
+                        <!-- Our clients -->
+                        <div id="clients" class="row skill_sec">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        our sponsors
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="pag-carousel" class="row">
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_1.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_2.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_3.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_4.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_5.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_6.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_7.png')}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="owl_col">
+                                    <div class="mid_img"> <img class="img-responsive customer-img" src="{{ asset('images/clients/cl_logo_8.png')}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+
+                        </div>
+
+                    </section>
+
+                    <div class="spacer-60"></div>
+
+                </div>
+            </div>
+{% endblock %}
+
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- Owl Carousel JavaScript -->
+    <script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
+
+    <!-- Counter JavaScript -->
+    <script src="{{ asset('assets/js/waypoints.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js')}}"></script>
+
+
+    <!-- Script to Activate the Carousel -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            'use strict';
+            $("#pag-carousel").owlCarousel({
+                items: 5,
+                itemsDesktop: [1199, 5],
+                itemsDesktopSmall: [979, 4],
+                itemsTablet: [768, 3],
+                itemsMobile: [479, 2],
+                navigation: true,
+                navigationText: [
+                    "<i class='fa fa-chevron-left icon-white'></i>",
+                    "<i class='fa fa-chevron-right icon-white'></i>"
+                ],
+                autoPlay: false,
+                pagination: false
+            });
+
+            // Script to Activate the Counters
+
+            $('.counter').counterUp({
+                delay: 50,
+                time: 5000
+            });
+
+            // Script to Activate the Progress Bars
+
+            $('.progress-bar span').counterUp({
+                delay: 10,
+                time: 3000
+            });
+            var progrs = $('.progress-bar');
+
+            $(window).scroll(function () {
+                var y = $(this).scrollTop();
+                var z = $('#prog_sec').offset().top;
+
+                if (y >= z) {
+                    progrs.removeClass('blnk').addClass('profill');
+                } else {
+                    progrs.removeClass('profill').addClass('blnk');
+                }
+            });
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,740 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Details
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- bxslider -->
+    <link href="{{ asset('assets/css/jquery.bxslider.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}} " alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class="active dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header Stat Banner -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> Property Details </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="{{ path('homepage') }}"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Property Details </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="{{ path('homepageAnnonce') }}"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+{% block body %}
+    <div class="spacer-60"></div>
+    <div class="container">
+        <div class="row">
+        <!-- Proerty Details Section -->
+        <section id="prop_detal" class="col-md-8">
+            <div class="row skill_sec">
+                <div class="titl_sec">
+                    <div class="col-lg-12">
+                        <h3 class="main_titl text-left">
+                            Edit une annonce
+                        </h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                {{ form_start(formannonce) }}
+                <div class="col-lg-12 serv_col">
+                    <div class="log_form">
+
+                        <div class="control-group form-group">
+                            <div class="controls col-md-6 first">
+                                {{ form_row(formannonce.titre) }}
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="controls col-md-6">
+                                {{ form_row(formannonce.typeAnnonce) }}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                {{ form_row(formannonce.description)}}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="demo">
+                            <div class="control-group form-group">
+                                <div class="controls col-md-9 first">
+                                    {{ form_row(formannonce.immobilier.adresse,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="controls col-md-3">
+                                    {{ form_row(formannonce.immobilier.prix,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls col-md-3 first">
+                                    <label for="pays" class="required">Pays : </label>
+                                    <select id="pays" name="pays" class="form-control">
+                                        {% for val in formville.pays.vars.choices %}
+                                            <option value="{{ val.value }}" {% if val.value==annonce.immobilier.quartier.ville.pays.paysId %} selected="selected" {% endif %}>
+                                                {{ val.label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="controls col-md-3">
+                                    <label id="labelville" class="required">Ville : </label>
+                                    <select id="ville" name="ville" class="form-control">
+                                        {% for val in formville.ville.vars.choices %}
+                                            <option value="{{ val.value }}" {% if val.value==annonce.immobilier.quartier.ville.villeId %} selected="selected" {% endif %}>
+                                                {{ val.label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                {#<div class="controls col-md-3">
+                                    {{ form_row(formannonce.immobilier.quartier.quartierNom) }}
+                                </div>#}
+                                <div class="controls col-md-3">
+                                    <label id="labelquartier" class="required">Quartier : </label>
+                                    <select id="mon_quartier" name="mon_quartier" class="form-control">
+                                        <option value="{{ annonce.immobilier.quartier.quartierId }}">{{ annonce.immobilier.quartier.quartierNom }}</option>
+                                    </select>
+                                </div>
+                                <div class="controls col-md-3">
+                                    {{ form_row(formannonce.immobilier.idType,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="controls col-md-3">
+                                    {{ form_row(formannonce.immobilier.prix,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls col-md-3 first">
+                                    {{ form_row(formannonce.immobilier.nbrChambre,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="controls col-md-3">
+                                    {{ form_row(formannonce.immobilier.nbreSalon,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="controls col-md-2">
+                                    {{ form_row(formannonce.immobilier.superficie,{'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="controls col-md-2">
+                                    {#{% if(annonce.immobilier.garage==1) %}
+                                        {{ form_row(formannonce.immobilier.garage, {'value': annonce.immobilier.garage,'attr': {'checked': 'checked'} }) }}
+                                    {% else %}
+                                        {{ form_row(formannonce.immobilier.garage, {'value': annonce.immobilier.garage }) }}
+                                    {% endif %}#}
+                                    {{ form_row(formannonce.immobilier.garage,{'attr':{'class':'form-control'},"required":false}) }}
+                                </div>
+                                <div class="controls col-md-2">
+                                    {{ form_row(formannonce.immobilier.jardin,{'attr':{'class':'form-control'},"required":false}) }}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls col-md-6 first">
+                                    {#{{ form_row(formannonce.files) }}#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 serv_col">
+                    <div class="log_form">
+                        <button type="submit" class="btn btn-primary">EDIT UNE ANNONCE</button>
+                    </div>
+                </div>
+                {{ form_row(formannonce._token) }}
+                {{ form_end(formannonce,{'render_rest':false}) }}
+            </div>
+            <!-- /.row -->
+
+            <div class="spacer-30"></div>
+
+            <div class="row skill_sec">
+                <div class="titl_sec">
+                    <div class="col-lg-12">
+                        <h3 class="main_titl text-left">
+                            Property Gallery
+                        </h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-12">
+                    {% for imgs in images %}
+                        <div class="col-md-4 col-sm-6 col-xs-12"   style=" margin-bottom: 10px;">
+                            <img src="{{ asset(imgs.url) }}"
+                                 class="img-responsive img-thumbnail"
+                                 alt="Responsive image"
+                                 style="width: 300px; height: 200px; margin-bottom: 10px;">
+                            {% if imgs.isBienActive %}
+                                <a class="btn btn-success btn-sm"
+                                   href="{{ path('image_edit', {'AnnonceId': annonce.annonceId, 'id': imgs.imageId}) }}">Principale</a>
+                            {% else %}
+                                <a class="btn btn-warning btn-sm"
+                                   href="{{ path('image_edit', {'AnnonceId': annonce.annonceId, 'id': imgs.imageId}) }}">Principale</a>
+                            {% endif %}
+                            <a class="btn btn-danger btn-sm right" href="{{ path('image_delete', {'AnnonceId': annonce.annonceId, 'id': imgs.imageId}) }}">Delete</a>
+                        </div>
+
+                    {% endfor %}
+                </div>
+                <div class="spacer-20"></div>
+                <div class="col-md-12 serv_col">
+                    <div class="log_form">
+                        {{ form_start(formfiles) }}
+                        <div class="control-group form-group">
+                            <div class="controls col-md-7 first">
+                                {{ form_row(formfiles.files) }}
+                            </div>
+                            <div class="controls col-md-5">
+                                {{ form_row(formfiles.save) }}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        {{ form_end(formfiles) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacer-30"></div>
+
+            <!-- /.row -->
+
+
+        </section>
+
+        <!-- Sidebar Section -->
+        <section id="sidebar" class="col-md-4">
+            <!-- Search Form -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="srch_frm">
+                        <h3>Real Estate Search</h3>
+                        <form name="sentMessage" id="contactForm" novalidate>
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Keyword </label>
+                                    <input type="text" class="form-control" id="keyword" required data-validation-required-message="Please enter a keyword." placeholder="Any keyword">
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Location </label>
+                                    <select name="State" class="form-control" required data-validation-required-message="Please select a state.">
+                                        <option value="" selected="selected">Any Location</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls col-md-6 first">
+                                    <label>Type </label>
+                                    <select name="Type" class="form-control" required data-validation-required-message="Please select a type.">
+                                        <option value="" selected="selected">Industrial</option>
+                                        <option value="2">Commercial</option>
+                                        <option value="3">Household</option>
+                                    </select>
+                                </div>
+                                <div class="controls col-md-6">
+                                    <label>Actions </label>
+                                    <select name="Actions" class="form-control" required data-validation-required-message="Please select a Actions.">
+                                        <option value="" selected="selected">For Rent</option>
+                                        <option value="2">For Sale</option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="control-group form-group">
+                                <div class="controls col-md-6 first">
+                                    <label>Min. Price </label>
+                                    <select name="min-price" class="form-control" required data-validation-required-message="Please select a Min. Price.">
+                                        <option value="" selected="selected">$50</option>
+                                        <option value="2">$100</option>
+                                        <option value="3">$200</option>
+                                        <option value="3">$300</option>
+                                        <option value="3">$400</option>
+                                        <option value="3">$500</option>
+                                        <option value="3">$700</option>
+                                        <option value="3">$800</option>
+                                        <option value="3">$900</option>
+                                        <option value="3">$1000</option>
+                                        <option value="3">$1500</option>
+                                        <option value="3">$2000</option>
+                                        <option value="3">$2500</option>
+                                    </select>
+                                </div>
+                                <div class="controls col-md-6">
+                                    <label>Max. Price </label>
+                                    <select name="max-price" class="form-control" required data-validation-required-message="Please select a Max. Price.">
+                                        <option value="" selected="selected">$200</option>
+                                        <option value="2">$300</option>
+                                        <option value="3">$400</option>
+                                        <option value="3">$500</option>
+                                        <option value="3">$600</option>
+                                        <option value="3">$700</option>
+                                        <option value="3">$800</option>
+                                        <option value="3">$900</option>
+                                        <option value="3">$1000</option>
+                                        <option value="3">$1500</option>
+                                        <option value="3">$2000</option>
+                                        <option value="3">$2500</option>
+                                        <option value="3">$3000</option>
+                                    </select>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div id="success"></div>
+                            <!-- For success/fail messages -->
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="spacer-30"></div>
+            <!-- Categories -->
+            <div class="row">
+                <div class="titl_sec">
+                    <div class="col-lg-12">
+
+                        <h3 class="main_titl text-left">
+                            Categories
+                        </h3>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="categ_info">
+
+                    <div class="info_sec first">
+                        <div class="col-md-6">
+                            <a href="#">
+                                <i class="fa fa-long-arrow-right"></i>
+                                <p class="infos">Articles (3) </p>
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="#">
+                                <i class="fa fa-long-arrow-right"></i>
+                                <p class="infos">Real Estate (8) </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="info_sec">
+                        <div class="col-md-6">
+                            <a href="#">
+                                <i class="fa fa-long-arrow-right"></i>
+                                <p class="infos">Branding (4) </p>
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="#">
+                                <i class="fa fa-long-arrow-right"></i>
+                                <p class="infos">WordPress (2) </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="info_sec">
+                        <div class="col-md-6">
+                            <a href="#">
+                                <i class="fa fa-long-arrow-right"></i>
+                                <p class="infos">Architecture (12) </p>
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="#">
+                                <i class="fa fa-long-arrow-right"></i>
+                                <p class="infos">Resposnive (6) </p>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+            <div class="spacer-30"></div>
+            <!-- Featured Properties -->
+            <div class="row">
+                <div class="titl_sec">
+                    <div class="col-lg-12">
+
+                        <h3 class="main_titl text-left">
+                            Featured Properties
+                        </h3>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="side_feat">
+                    <div class="panel panel-default">
+                        <div class="panel-image col-md-3">
+                            <a href="property_details.php"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_1.jpg') }}" alt=""> </a>
+                        </div>
+
+                        <div class="panel-body col-md-9">
+                            <h3 class="sec_titl">
+                                <a href="property_details.php"> Nulla sed dolor vestibu porttitor erat ultricies </a>
+                            </h3>
+
+                            <div class="prop_feat">
+                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-image col-md-3">
+                            <a href="property_details.php"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_2.jpg') }}" alt=""> </a>
+
+                        </div>
+
+                        <div class="panel-body col-md-9">
+                            <h3 class="sec_titl">
+                                <a href="property_details.php">Nulla sed dolor vestibu porttitor erat ultricies </a>
+                            </h3>
+
+                            <div class="prop_feat">
+                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-image col-md-3">
+                            <a href="property_details.php"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_3.jpg') }}" alt=""> </a>
+
+                        </div>
+
+                        <div class="panel-body col-md-9">
+                            <h3 class="sec_titl">
+                                <a href="property_details.php"> Nulla sed dolor vestibu porttitor erat ultricies  </a>
+                            </h3>
+
+                            <div class="prop_feat">
+                                <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="spacer-30"></div>
+            <!-- Tags -->
+            <div class="row">
+                <div class="titl_sec">
+                    <div class="col-lg-12">
+
+                        <h3 class="main_titl text-left">
+                            Tags
+                        </h3>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="tags_sec">
+
+                    <div class="tags_box first">
+                        <a href="#"> Modern </a>
+                    </div>
+
+                    <div class="tags_box">
+                        <a href="#"> Amazing</a>
+                    </div>
+
+                    <div class="tags_box">
+                        <a href="#"> Responsive</a>
+                    </div>
+
+                    <div class="tags_box first">
+                        <a href="#"> Development</a>
+                    </div>
+
+                    <div class="tags_box">
+                        <a href="#"> Rent</a>
+                    </div>
+
+                    <div class="tags_box">
+                        <a href="#"> Properties</a>
+                    </div>
+
+                    <div class="tags_box first">
+                        <a href="#"> Themeforest</a>
+                    </div>
+
+                    <div class="tags_box">
+                        <a href="#"> Development</a>
+                    </div>
+
+                    <div class="tags_box">
+                        <a href="#"> php  </a>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <!-- /.row -->
+
+            <div class="spacer-30"></div>
+
+        </section>
+
+        <div class="spacer-60"></div>
+
+    </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<!-- BX Slider -->
+<script src="{{ asset('assets/js/jquery.bxslider.min.js') }}"></script>
+    <script >
+
+        $("document").ready(function(){
+            $("#ville").change(function(){
+                //console.log($( "#ville" ).val());
+                $.ajax({
+                    type:'get',
+                    url:'http://localhost/pere/web/app_dev.php/quartier/' + $(this).val(),
+                    beforeSend: function(){
+                        //console.log('ca charge');
+                        $("#mon_quartier option").remove();
+                    },
+                    success: function(data){
+                        //$("#formAnnonce_annonce_description").val(data.quartiers).change();
+                        $.each(data.quartiers, function(index,value){
+                            $("#mon_quartier").append($('<option>',{value:value['id'] , text:value['nom']}));
+                        });
+                    }
+                });
+            });
+
+            $("#pays").change(function(){
+                //console.log($( "#pays" ).val());
+                $.ajax({
+                    type:'get',
+                    url:'http://localhost/pere/web/app_dev.php/ville/' + $(this).val(),
+                    beforeSend: function(){
+                        //console.log('ca charge');
+                        $("#ville option").remove();
+                        $("#mon_quartier option").remove();
+                    },
+                    success: function(data){
+                        //$("#formAnnonce_annonce_description").val(data.quartiers).change();
+                        $.each(data.villes, function(index,value){
+                            $("#ville").append($('<option>',{value:value['id'] , text:value['nom']}));
+                        });
+                    }
+                });
+
+                if($(this).val()==2){
+                    //console.log('ok');
+                    $("#labelville").text("Departement");
+                    $("#labelquartier").text("Ville");
+                }else{
+                    $("#labelville").text("Ville");
+                    $("#labelquartier").text("Quartier");
+                }
+            })
+        })
+
+
+    </script>
+<!-- Script to Activate the Carousel -->
+<script>
+    /* Product Slider Codes */
+    $(document).ready(function () {
+        'use strict';
+
+        $('#prop_slid').bxSlider({
+            pagerCustom: '#slid_nav'
+        });
+
+        $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $(this).parent().siblings().removeClass('open');
+            $(this).parent().toggleClass('open');
+        });
+    });
+</script>
+
+{% endblock %}

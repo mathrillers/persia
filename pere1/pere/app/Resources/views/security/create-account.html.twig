@@ -1,0 +1,54 @@
+
+
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="log_form">
+                <h2 class="frm_titl"> Create Account </h2>
+
+                {#        {{ form_start(form, { 'method': 'POST'}) }}
+               {{ form_widget(form.login) }}
+               {{ form_widget(form.password) }}
+               {{ form_widget(form.send) }}
+               {{ form_end(form) }}#}
+                <form name="sentMessage" id="RegisForm" novalidate  action="{{ path('create_account') }}" method="post">
+
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <input type="text" class="form-control" id="username" required data-validation-required-message="Please enter your username." placeholder="Username">
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="controls">
+                            <input type="email" class="form-control" id="e-mail" required data-validation-required-message="Please enter your email." placeholder="Email">
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="controls">
+                            <input type="password" class="form-control" id="passd" required data-validation-required-message="Please enter your password." placeholder="Password">
+
+                            <p class="help-block"></p>
+                        </div>
+                        <div class="controls">
+                            <input type="password" class="form-control" id="re-passd" required data-validation-required-message="Please enter your password." placeholder="Retype Password">
+
+                            <p class="help-block"></p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                        <div id="success3"></div>
+                        <!-- For success/fail messages -->
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

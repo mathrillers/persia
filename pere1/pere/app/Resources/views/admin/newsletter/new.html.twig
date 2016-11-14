@@ -1,0 +1,70 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-files-o"></i> Formulaire D'ajout</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                            <li><i class="icon_document_alt"></i>Newsletter</li>
+                            <li><i class="fa fa-files-o"></i>Ajouter un Email</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- page start-->
+
+                <!--***********************************************************************************-->
+                <!-- Form validations -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Ajouter un Email
+                            </header>
+                            <div class="panel-body">
+                                <div class="form">
+                                        {{ form_start(form,{'attr':{'class':'form-validate form-horizontal'},'id':'register_form'}) }}
+                                        <div class="form-group ">
+                                            <label for="fullname" class="control-label col-lg-2">{{ form_label(form.email) }} <span class="required">*</span></label>
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.email,{ 'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="address" class="control-label col-lg-2">Date inscription  <span class="required">*</span></label>
+                                            <div class="col-lg-10">
+                                                {{ form_widget(form.dateInscription) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="agree" class="control-label col-lg-2 col-sm-3">{{ form_label(form.active) }} <span class="required">*</span></label>
+                                            <div class="col-lg-1">
+                                                {{ form_widget(form.active,{ 'attr':{'class':'checkbox form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-2 col-lg-10">
+                                                {{ form_widget(form.subscribe,{'label':'Ajouter', 'attr':{'class':'btn btn-primary'}}) }}
+                                                <a class="btn btn-default" href="{{ path('newsletter_index') }}">Annuler</a>
+                                            </div>
+                                        </div>
+                                        {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+{% endblock %}

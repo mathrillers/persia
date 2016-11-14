@@ -1,0 +1,220 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="../layout.html.twig">Home</a></li>
+                            <li><i class="icon_documents_alt"></i>Comptes</li>
+                            <li><i class="fa fa-user-md"></i>Profile</li>
+                        </ol>
+                    </div>
+                </div>
+                <a class="btn btn-navbar" href="{{ path('comptes_index') }}">Liste des Comptes</a>
+
+                <div class="row">
+                    <!-- profile-widget -->
+                    <div class="col-lg-12">
+                        <div class="profile-widget profile-widget-info">
+                            <div class="panel-body">
+                                <div class="col-lg-4 col-sm-4">
+
+                                    <div class="follow-ava">
+                                        <img src="{{ compte.photo }}" alt="">
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-8 col-sm-8 follow-info">
+                                    <p> <h4>{{ personne.nom }}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ personne.prenom }}</h4></p>
+                                    <br><h6>
+                                        {% for role in compte.roles %}
+                                            <span><i class="icon_clock_alt"></i>{{ role.roleNom }}</span>
+                                        {% endfor %}
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- page start-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading tab-bg-info">
+                                <ul class="nav nav-tabs">
+
+                                </ul>
+                            </header>
+                            <div class="panel-body">
+                                <div class="tab-content">
+
+                                    <!-- profile -->
+                                    <div id="profile" class="tab-pane active" style="text-align: center">
+                                        <section class="panel">
+
+
+                                            <h1>Information Compte-Utilisateur </h1>
+
+                                            <br><br>
+                                            <div class=" col-lg-12">
+                                                <div class=" col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Nom :</span></p></div>
+                                                <div class=" col-lg-3" style="text-align: center">{{ personne.nom }}
+
+                                                </div>
+                                                <div class="col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Prenom :</span></p></div>
+                                                <div class=" col-lg-3" style="text-align: center">{{ personne.prenom }}
+
+                                                </div>
+                                            </div>
+<br><br>
+                                            <div class=" col-lg-12">
+                                                <div class=" col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Email :</span></p></div>
+                                                <div class=" col-lg-3" style="text-align: center">{{ personne.email }}
+
+                                                </div>
+                                                <div class="col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Adresse :</span></p></div>
+                                                <div class="col-lg-3" style="text-align: center">{{ personne.adresse }}
+
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Date de naissance :</span></p>
+                                                </div>
+                                                <div class="col-lg-3"
+                                                     style="text-align: center">{{ personne.dateNaissance|date('j F Y  | g:i A') }}
+
+                                                </div>
+
+                                                <div class="col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Pays :</span></p></div>
+                                                <div class="col-lg-3" style="text-align: center">{{ personne.pays }}
+
+                                                </div>
+                                            </div>
+                                            <br><br>
+                                            <div class=" col-lg-12">
+                                                <div class="col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Ville :</span></p></div>
+                                                <div class="col-lg-3" style="text-align: center">{{ personne.ville }}
+
+                                                </div>
+
+                                                <div class="col-lg-3" style="text-align: center">
+                                                    <p><span class="label label-info">Login :</span></p>
+                                                </div>
+                                                <div class="col-lg-3" style="text-align: center">{{ compte.username }}
+
+                                                </div>
+                                            </div>
+                                            <br><br><div class=" col-lg-12">
+                                            <div class="col-lg-3" ></div>
+                                            <div class="col-lg-3" style="text-align: center">
+                                                <p><span class="label label-info">Etat du Compte :</span></p></div>
+                                            <div class="bio-row col-lg-3" style="text-align: center">
+                                                {% if compte.active==0 %} Activé {% else %} Désactivé{% endif %}
+
+                                            </div>
+                                            <div class="col-lg-3" ></div>
+                                            </div>
+                                        </section>
+
+                                    </div>
+                                    <!-- edit-profile -->
+                                    {#<div id="edit-profile" class="tab-pane">
+                                      <section class="panel">
+                                            <div class="panel-body bio-graph-info">
+                                                <h1> Profile Info</h1>
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">First Name</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="f-name" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Last Name</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="l-name" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">About Me</label>
+                                                        <div class="col-lg-10">
+                                                            <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Country</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="c-name" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Birthday</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="b-day" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Occupation</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="occupation" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Email</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="email" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Mobile</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="mobile" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Website URL</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="url" placeholder="http://www.demowebsite.com ">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-lg-offset-2 col-lg-10">
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                            <button type="button" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </section>
+                                    </div>#}
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+{% endblock %}

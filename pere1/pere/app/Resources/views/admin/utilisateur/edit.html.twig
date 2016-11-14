@@ -1,0 +1,194 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Utilisateurs</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Utilisateurs</li>
+                        <li><i class="fa fa-th-list"></i>Modifier Utilisateur</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+            <ul>
+                <li>
+                    <a href="{{ path('utilisateur_index') }}">Back to the list</a>
+                </li>
+
+            </ul>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Modifier Info Utilisateur
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                {{ form_start(edit_form) }}
+
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center"> {{ form_label(edit_form.nom) }}</div>
+                                        <div class="col-lg-6" >  {{ form_widget(edit_form.nom) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.prenom) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">   {{ form_widget(edit_form.prenom) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.email) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">   {{ form_widget(edit_form.email) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.adresse) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.adresse) }}
+                                    </div>
+
+
+                                </div><br><br><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center"> {{ form_label(edit_form.telephone) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.telephone) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.dateNaissance) }}</div>
+                                    <div class="col-lg-6" >    {{ form_widget(edit_form.dateNaissance) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.pays) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {% if edit_form.ville %}
+                                            {{ form_widget(edit_form.pays) }}
+                                        {% else %}{{ form_widget(edit_form.pays,{'placeholder' : 'Choisir un pays !'}) }}{% endif %}                                    </div>
+
+                                </div>
+
+
+                                </div><br><br>
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.ville) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {% if edit_form.ville %}
+                                        {{ form_widget(edit_form.ville) }}
+                                        {% else %}{{ form_widget(edit_form.ville,{'placeholder' : 'Choisir une Ville !'}) }}{% endif %}                                    </div>
+
+                                </div><br><br>
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.compte.username) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.compte.username) }}
+                                    </div>
+
+                                </div><br><br>
+
+
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.compte.password.first) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.compte.password.first) }}
+                                    </div>
+
+                                </div><br><br>
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.compte.password.second) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.compte.password.second) }}
+                                    </div>
+
+                                </div><br><br>
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center">  {{ form_label(edit_form.compte.active) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.compte.active) }}
+                                    </div>
+
+                                </div><br><br>
+                               {# <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center"> {{ form_label(edit_form.compte.salt) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+                                        {{ form_widget(edit_form.compte.salt) }}
+                                    </div>
+
+                                </div><br><br>#}
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6" style="text-align: center"> {{ form_label(edit_form.compte.role) }}</div>
+                                    <div class="col-lg-6" style="text-align: center">
+
+                                        {{ form_widget(edit_form.compte.role) }}
+
+                                    </div>
+
+                                </div>
+                                <br><br>  <br><br>  <br><br>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-warning" type="submit">Modifier</button>
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_form,{'render_rest':false}) }}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}

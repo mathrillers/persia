@@ -1,0 +1,201 @@
+
+{% if error %}
+    <div class="alert text-center alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+{#
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+#}
+
+            <div class="col-md-12" id="form-tab">
+
+                <ul id="myTab" class="nav nav-tabs nav-pills nav-justified">
+                    <li class="active"><a href="#service-one" data-toggle="tab">Connexion</a>
+                    </li>
+                    <li class=""><a href="#service-two" data-toggle="tab">Inscription</a>
+                    </li>
+
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="service-one">
+
+                    <div class="srch_frm log_form">
+
+                <h2 class="frm_titl"> Formulaire de connexion </h2>
+
+                <form name="sentMessage" id="loginForm" novalidate  action="{{ path('login_check') }}" method="post">
+
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <input type="text" class="form-control" id="u-name" name="_username" value="{{ last_username }}" required data-validation-required-message="Please enter your username." placeholder="Username">
+
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="controls">
+                            <input type="password" class="form-control" id="password" name="_password" required data-validation-required-message="Please enter your password." placeholder="Password">
+
+                            <p class="help-block"></p>
+                        </div>
+                        <div class="checkbox col-md-6">
+                            <label for="remember_me">
+                                <input type="checkbox" id="remember_me" name="_remember_me" checked> Remember me
+                            </label>
+                        </div>
+                        <div class="forg_pass col-md-6 text-right">
+                            <a class="" href="{{ path("password_reset") }}"> Forgot your password?  </a>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+
+                        <div id="success2"></div>
+                        <!-- For success/fail messages -->
+                    </div>
+
+                </form>
+            </div>
+                    </div>
+                    <!-- /.row -->
+
+
+
+
+
+                <div class="tab-pane fade " id="service-two">
+
+                    <div class="agen_info2">
+
+                        {{ form_start(formInsc, { 'name':'sentMessage','method': 'POST','attr': {'id':'contactForm','class': 'form'} } ) }}
+                        {{ form_errors(formInsc) }}
+                        <div class="control-group form-group first">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img class="img-responsive img-hover" src="{{ asset('images/agents/agent_1.jpg')}}" alt="">
+                                    {{ form_widget(formInsc.photo.file,{'required':false}) }}
+                                    <div class="cont_frm2">
+                                        <h2 class="frm_titl"> MON COMPTE</h2>
+
+                                        <div class="controls">
+                                             {{ form_widget(formInsc.personne.compte.username,{'attr':{'class':'form-control','placeholder':'username'}}) }}
+                                            <p class="help-block"></p>
+                                        </div>
+
+                                        <div class="controls">
+
+                                            {{ form_widget(formInsc.personne.compte.password,{'id':'password','attr':{'class':'form-control','placeholder':'password'}}) }}
+                                            <p class="help-block"></p>
+                                        </div>
+
+                                        <div class="controls">
+                                            {{ form_widget(formInsc.conf_psw,{'id':'conf_password','attr':{'class':'form-control','placeholder':'password'}}) }}
+
+
+                                            <p class="help-block"></p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class=" panel-default">
+
+                                        <div class="panel-body">
+                                            <div class="row agen_desc">
+                                                <div class="col-md-7">
+
+
+                                                </div>
+                                                <div class="col-md-5 p0">
+                                                    <div class="soc_icon">
+                                                      </div>
+
+                                                </div>
+                                            </div>
+                                            <h2 class="frm_titl"> MES INFORMATIONS</h2>
+                                            <div class="form-group">
+                                                <div class="controls  col-sm-6">
+
+                                                    {{ form_widget(formInsc.personne.nom, { 'id':'nom','attr': {'class': 'form-control','placeholder':'Nom' } }) }}
+                                                    <p class="help-block"></p>
+                                                </div>
+                                                <div class="controls  col-sm-6">
+
+                                                    {{ form_widget(formInsc.personne.prenom, {'id':'prenom', 'attr': {'class': 'form-control','placeholder':'Prénom' } }) }}
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+                                            <div class="controls col-sm-12">
+                                                {#   <input type="email" class="form-control" id="email"  required data-validation-required-message="Please enter an email address." placeholder="Email Address">
+                                                 #}
+                                                {{ form_widget(formInsc.personne.email, {'id':'email', 'attr': {'class': 'form-control','placeholder':'Email' } }) }}
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <div class="controls col-sm-12">
+                                                {# <input type="number" class="form-control" id="telephone"  required data-validation-required-message="Please enter your name." placeholder="Your number">
+                                                 #}
+                                                {{ form_widget(formInsc.personne.telephone, { 'id':'telephone','attr': {'class': 'form-control','placeholder':'Numéro' } }) }}
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <div class="controls col-sm-12">
+                                                {#
+                                                 <input type="text" class="form-control" id="adresse"  required data-validation-required-message="Please enter your name." placeholder="Your address">
+                                                #}
+                                                {{ form_widget(formInsc.personne.adresse, { 'id':'adresse','attr': {'class': 'form-control','placeholder':'Adresse' } }) }}
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <div class="controls col-sm-12">
+                                                {# <input type="date" class="form-control" id="dateNaissance"  required data-validation-required-message="Please enter your name." placeholder="Your birthday">
+                                                #}
+                                                {{ form_widget(formInsc.personne.dateNaissance, {'id':'dateNaissance', 'attr': {'class': 'form-control','placeholder':'Date de naissance' } }) }}
+                                                <p class="help-block"></p>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls  col-sm-6">
+                                                    {#  <input type="text" class="form-control" id="pays" required data-validation-required-message="Please enter your name." placeholder="Your country">
+                                                     #}
+                                                    {{ form_widget(formInsc.personne.pays, {'id':'pays', 'attr': {'class': 'form-control','placeholder':'Pays' } }) }}
+                                                    <p class="help-block"></p>
+                                                </div>
+                                                <div class="controls  col-sm-6">
+                                                    {# <input type="text" class="form-control" id="ville"required data-validation-required-message="Please enter your name." placeholder="Your city">
+         #}
+                                                    {{ form_widget(formInsc.personne.ville, {'id':'ville', 'attr': {'class': 'form-control','placeholder':'Ville' } }) }}
+                                                    <p class="help-block"></p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="cont_frm2">
+                                <button type="submit" class="btn btn-primary">S'inscrire</button>
+                                <div id="success"></div>
+                                <!-- For success/fail messages -->
+                            </div>
+                        </div>
+
+                        </form>
+                    </div>
+                </div>
+                </div>
+
+                </div>
+
+
+
+    {#        </div>
+                </div>
+    </div>
+#}

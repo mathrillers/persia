@@ -1,0 +1,316 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+/**
+ * Image
+ *
+ * @ORM\Table(name="image", indexes={@ORM\Index(name="FK_Association_10", columns={"Agence_ID"}), @ORM\Index(name="FK_Association_6", columns={"immobilier_ID"})})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
+ */
+class Image
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=254, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=254, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="image_ID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $imageId;
+
+    /**
+     * @var \AppBundle\Entity\Immobilier
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Immobilier")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="immobilier_ID", referencedColumnName="immobilier_ID")
+     * })
+     */
+    private $immobilier;
+
+    /**
+     * @var \AppBundle\Entity\Agence
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agence")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="agence_ID", referencedColumnName="agence_ID")
+     * })
+     */
+    private $agence;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="bien_active", type="boolean",nullable=false)
+     */
+    private $bienActive;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="agence_active", type="boolean",nullable=false)
+     */
+    private $agenceActive;
+
+
+
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+
+    /**
+     * Image constructor.
+     */
+    public function __construct()
+    {
+        $this->bienActive = false;
+        $this->agenceActive = false;
+    }
+
+
+    /**
+     * @return boolean
+     */
+    public function isBienActive()
+    {
+        return $this->bienActive;
+    }
+
+    /**
+     * @param boolean $bienActive
+     */
+    public function setBienActive($bienActive)
+    {
+        $this->bienActive = $bienActive;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAgenceActive()
+    {
+        return $this->agenceActive;
+    }
+
+    /**
+     * @param boolean $agenceActive
+     */
+    public function setAgenceActive($agenceActive)
+    {
+        $this->agenceActive = $agenceActive;
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->url
+            ? null
+            : $this->getUploadRootDir().'/'.$this->url;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->url
+            ? null
+            : $this->getUploadDir().'/'.$this->url;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+/*    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'images/uploads';
+    }*/
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'images/uploads';
+    }
+
+    public function upload()
+    {
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return false;
+        }
+
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->getFile()->getClientOriginalName()
+        );
+
+        // set the path property to the filename where you've saved the file
+        $this->url = $this->getFile()->getClientOriginalName();
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+        return true;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Image
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Image
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Get imageId
+     *
+     * @return integer
+     */
+    public function getImageId()
+    {
+        return $this->imageId;
+    }
+
+    /**
+     * Set immobilier
+     *
+     * @param \AppBundle\Entity\Immobilier $immobilier
+     *
+     * @return Image
+     */
+    public function setImmobilier(\AppBundle\Entity\Immobilier $immobilier = null)
+    {
+        $this->immobilier = $immobilier;
+
+        return $this;
+    }
+
+    /**
+     * Get immobilier
+     *
+     * @return \AppBundle\Entity\Immobilier
+     */
+    public function getImmobilier()
+    {
+        return $this->immobilier;
+    }
+
+    /**
+     * Set agence
+     *
+     * @param \AppBundle\Entity\Agence $agence
+     *
+     * @return Image
+     */
+    public function setAgence(\AppBundle\Entity\Agence $agence = null)
+    {
+        $this->agence= $agence;
+
+        return $this;
+    }
+
+    /**
+     * Get agence
+     *
+     * @return \AppBundle\Entity\Agence
+     */
+    public function getAgence()
+    {
+        return $this->agence;
+    }
+
+    public function __toString(){
+        return $this->url;
+    }
+}

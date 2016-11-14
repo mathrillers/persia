@@ -1,0 +1,649 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}
+        {{ parent() }} - Accueil
+
+    {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}}" alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class=" dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header bradcrumb -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> scott berends </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="index-2.html"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> agent single </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="index-2.html"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+        {% block body %}
+
+            <div class="spacer-60"></div>
+            <div class="container">
+                <div class="row">
+                    <!-- Agent Section -->
+                    <section id="agent_sec" class="col-md-8">
+                        <!-- Agent Info -->
+                        <div class="agen_info2">
+
+                            {{ form_start(form, { 'name':'sentMessage','method': 'POST','attr': {'id':'contactForm','class': 'form'} } ) }}
+                                 {{ form_errors(form) }}
+                                 <div class="control-group form-group first">
+                                            <div class="row">
+                            <div class="col-md-5">
+                                <img class="img-responsive img-hover" src="{{ asset('images/agents/agent_1.jpg')}}" alt="">
+                                {{ form_widget(form.photo.file,{'required':false}) }}
+                                <div class="cont_frm2">
+                                    <h2 class="frm_titl"> MON COMPTE</h2>
+
+                                            <div class="controls">
+                                              {#  <input type="text" class="form-control" required data-validation-required-message="Please enter your name." placeholder="Your Login">
+                                              #}  {{ form_widget(form.personne.compte.username,{'attr':{'class':'form-control','placeholder':'username'}}) }}
+                                                <p class="help-block"></p>
+                                            </div>
+
+                                            <div class="controls">
+                                              {#  <input type="password" class="form-control" id="password"  required data-validation-required-message="Please enter an email address." placeholder="your password">
+                                              #}
+                                                {{ form_widget(form.personne.compte.password,{'id':'password','attr':{'class':'form-control','placeholder':'password'}}) }}
+                                                <p class="help-block"></p>
+                                            </div>
+
+                                    <div class="controls">
+                                        {{ form_widget(form.conf_psw,{'id':'conf_password','attr':{'class':'form-control','placeholder':'password'}}) }}
+
+
+                                        <p class="help-block"></p>
+                                    </div>
+
+                                        </div>
+
+
+                                </div>
+
+                            <div class="col-md-7">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-body">
+                                        <div class="row agen_desc">
+                                            <div class="col-md-7">
+                                              {#  <h3 class="sec_titl">
+                                                    Scott Berends                                       </h3>
+                                                <p class="sec_desc">
+                                                    Buying Agents
+                                                </p>#}
+
+                                            </div>
+                                            <div class="col-md-5 p0">
+                                                <div class="soc_icon">
+                                                   {# <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                                    <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                                    <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                            #}    </div>
+
+                                            </div>
+                                        </div>
+                                        <h2 class="frm_titl"> MES INFORMATIONS</h2>
+                                        <div class="form-group">
+                                        <div class="controls  col-sm-6">
+                                           {# <input type="text" class="form-control " id="name" required data-validation-required-message="Please enter your name." placeholder="Your Name">
+                                            #}
+                                            {{ form_widget(form.personne.nom, { 'id':'nom','attr': {'class': 'form-control','placeholder':'Nom' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="controls  col-sm-6">
+                                          {#  <input type="text" class="form-control" id="username" required data-validation-required-message="Please enter your name." placeholder="Your username">
+                                           #}
+                                            {{ form_widget(form.personne.prenom, {'id':'prenom', 'attr': {'class': 'form-control','placeholder':'Prénom' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        </div>
+                                        <div class="controls col-sm-12">
+                                         {#   <input type="email" class="form-control" id="email"  required data-validation-required-message="Please enter an email address." placeholder="Email Address">
+                                          #}
+                                            {{ form_widget(form.personne.email, {'id':'email', 'attr': {'class': 'form-control','placeholder':'Email' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="controls col-sm-12">
+                                           {# <input type="number" class="form-control" id="telephone"  required data-validation-required-message="Please enter your name." placeholder="Your number">
+                                            #}
+                                           {{ form_widget(form.personne.telephone, { 'id':'telephone','attr': {'class': 'form-control','placeholder':'Numéro' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="controls col-sm-12">
+                                          {#
+                                           <input type="text" class="form-control" id="adresse"  required data-validation-required-message="Please enter your name." placeholder="Your address">
+                                          #}
+                                            {{ form_widget(form.personne.adresse, { 'id':'adresse','attr': {'class': 'form-control','placeholder':'Adresse' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="controls col-sm-12">
+                                            {# <input type="date" class="form-control" id="dateNaissance"  required data-validation-required-message="Please enter your name." placeholder="Your birthday">
+                                            #}
+                                            {{ form_widget(form.personne.dateNaissance, {'id':'dateNaissance', 'attr': {'class': 'form-control','placeholder':'Date de naissance' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="form-group">
+                                        <div class="controls  col-sm-6">
+                                          {#  <input type="text" class="form-control" id="pays" required data-validation-required-message="Please enter your name." placeholder="Your country">
+                                           #}
+                                            {{ form_widget(form.personne.pays, {'id':'pays', 'attr': {'class': 'form-control','placeholder':'Pays' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="controls  col-sm-6">
+                                           {# <input type="text" class="form-control" id="ville"required data-validation-required-message="Please enter your name." placeholder="Your city">
+#}
+                                            {{ form_widget(form.personne.ville, {'id':'ville', 'attr': {'class': 'form-control','placeholder':'Ville' } }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                                            </div>
+                                            <div class="cont_frm2">
+                                             <button type="submit" class="btn btn-primary">S'inscrire</button>
+                                            <div id="success"></div>
+                                            <!-- For success/fail messages -->
+                                        </div>
+                                        </div>
+
+                             </form>
+                        </div>
+                        <div class="spacer-30"></div>
+
+                        <!-- Property Listing -->
+                        <div class="row prlist_sec">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Top annonces
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <!-- Property List 1 -->
+                            {% for annonce in annonces %}
+                            <div class="col-md-6 margBot">
+                                <div class="panel panel-default">
+                                    <div class="panel-image" >
+
+                                        <img class="img-responsive img-hover" style=" height: 250px; width: 100%" src="{{ asset(annonce.immobilier.mainImage) }}" alt="">
+                                        <div class="img_hov_eff">
+                                            <a class="btn btn-default btn_trans" href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"> Plus de details </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="sal_labl">
+                                        {{ annonce.typeAnnonce }}
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="prop_feat">
+                                            <p class="area"><i class="fa fa-home"></i> {{ annonce.immobilier.superficie }} m2</p>
+                                            <p class="bedrom"><i class="fa fa-bed"></i> {{ annonce.immobilier.nbrChambre }} Chambres</p>
+                                            <p class="bedrom"><i class="fa fa-star"></i> {{ annonce.nbreVues }} vues </p>
+                                        </div>
+                                        <h3 class="sec_titl">{{ annonce.titre }}</h3>
+
+                                        <p class="sec_desc">{{ annonce.description|truncate(40, false, "...") }}</p>
+                                        <div class="panel_bottom">
+                                            <div class="col-md-6">
+                                                {% if  annonce.typeAnnonce=='Vente'%}
+                                                    <p class="price text-left"> {{ annonce.montant }} DH</p>
+                                                {% endif %}
+
+                                                {% if  annonce.typeAnnonce=='Location'%}
+                                                    {% if  annonce.typeDelai %}
+                                                        <p class="price text-left"> {{ annonce.prixDelai }} DH/ Jour</p>
+
+                                                    {% else  %}
+                                                        <p class="price text-left"> {{ annonce.prixDelai }} DH/ Mois </p>
+                                                    {% endif %}
+                                                {% endif %}    </div>
+                                            <div class="col-md-6">
+                                                <p class="readmore text-right"> <a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"> Lire la suite </a> </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="spacer-40"></div>
+                            <!-- Pagination -->
+                            <div class="pagin text-center">
+                                {{ knp_pagination_render(annonces) }}
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+
+                    </section>
+
+                    <!-- Sidebar Section -->
+                    <section id="sidebar" class="col-md-4">
+                        <!-- Search Form -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="srch_frm">
+                                    <h3>Recherche</h3>
+                                    {{ form_start(formPart, { 'method': 'POST','attr': {'class': 'form'} } ) }}
+
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <label>Mot-clé</label>
+                                            {{ form_widget(formPart.research.mot_cle,{'id':'keyword','attr':{'autofocus':true,'class':'form-control'} }) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <label>Lieu </label>
+                                            {{ form_widget(formPart.research.ville,{'name':'State','attr':{'class':'form-control'} }) }}
+
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls col-md-6 first">
+                                            <label>Type </label>
+                                            {{ form_widget(formPart.research.typeImmobilier,{'name':'Type','attr':{'class':'form-control'} }) }}
+
+                                        </div>
+                                        <div class="controls col-md-6">
+                                            <label>Actions </label>
+                                            {{ form_widget(formPart.research.actes,{'name':'Actions','attr':{'class':'form-control'} }) }}
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <label>Budget </label>
+
+                                            <div id="location" class="controls row">
+                                                <div class=" col-md-6">
+                                                    <span id="minLoc" class="margin"> {{ mes_annonces.minLoc }} Dh </span>
+                                                </div>
+                                                <div class=" col-md-6">
+                                                    <span id="maxLoc" class="margin"> {{mes_annonces.maxLoc  }} Dh</span>
+
+                                                </div>
+                                                <div class=" col-md-12">
+                                                    {{ form_widget(formPart.research.budgetLoc,{'id':'budgetLoc','name':'BudgetLoc','attr':{'class':'form-control'} }) }}
+                                                </div>
+                                            </div>
+
+                                            <div id="vente" class="controls row" >
+                                                <div class=" col-md-6">
+                                                    <span id="minVente" class="margin"> {{ mes_annonces.minVente }} Dh </span>
+                                                </div>
+                                                <div class=" col-md-6">
+                                                    <span id="maxVente" class="margin"> {{mes_annonces.maxVente  }} Dh</span>
+                                                </div>
+                                                <div class=" col-md-12">
+
+                                                    {{ form_widget(formPart.research.budgetVente,{'id':'budgetVente','name':'BudgetVente','attr':{'class':'form-control'} }) }}
+                                                </div>
+                                            </div>
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
+                                    <div id="success4"></div>
+                                    <!-- For success/fail messages -->
+                                    {{ form_widget(formPart.research.chercher,{'label':'Chercher','attr':{'class':'btn btn-primary'}}) }}
+                                    {{ form_end(formPart,{'render_rest':false}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="spacer-30"></div>
+                        <!-- Categories -->
+                        <div class="row">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Categories
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="categ_info row">
+
+                                {% for type in typeimmob %}
+                                    <div class="info_sec col-md-6 first">
+
+                                        <a href="{{ path('searchType', {'type': type.nom}) }}">
+                                            <i class="fa fa-long-arrow-right"></i>
+                                            <p class="infos">{{ type.nom }} </p>
+                                        </a>
+
+                                    </div>
+
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                        <div class="spacer-30"></div>
+                        <!-- Featured Properties -->
+                        <div class="row">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Featured Properties
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="side_feat">
+                                <div class="panel panel-default">
+                                    <div class="panel-image col-md-3">
+                                        <a href="property_details.html"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_1.jpg')}}" alt=""> </a>
+                                    </div>
+
+                                    <div class="panel-body col-md-9">
+                                        <h3 class="sec_titl">
+                                            <a href="property_details.html"> Nulla sed dolor vestibu porttitor erat ultricies </a>
+                                        </h3>
+
+                                        <div class="prop_feat">
+                                            <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                            <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-image col-md-3">
+                                        <a href="property_details.html"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_2.jpg')}}" alt=""> </a>
+
+                                    </div>
+
+                                    <div class="panel-body col-md-9">
+                                        <h3 class="sec_titl">
+                                            <a href="property_details.html">Nulla sed dolor vestibu porttitor erat ultricies </a>
+                                        </h3>
+
+                                        <div class="prop_feat">
+                                            <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                            <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-image col-md-3">
+                                        <a href="property_details.html"> <img class="img-responsive img-hover" src="{{ asset('images/property/feat_prop_3.jpg')}}" alt=""> </a>
+
+                                    </div>
+
+                                    <div class="panel-body col-md-9">
+                                        <h3 class="sec_titl">
+                                            <a href="property_details.html"> Nulla sed dolor vestibu porttitor erat ultricies  </a>
+                                        </h3>
+
+                                        <div class="prop_feat">
+                                            <p class="area"><i class="fa fa-home"></i> 3000 Sq Ft</p>
+                                            <p class="bedrom"><i class="fa fa-car"></i> 1 Garage</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="spacer-30"></div>
+                        <!-- Tags -->
+                        <div class="row">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Tags
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="tags_sec">
+
+                                <div class="tags_box first">
+                                    <a href="#"> Modern </a>
+                                </div>
+
+                                <div class="tags_box">
+                                    <a href="#"> Amazing</a>
+                                </div>
+
+                                <div class="tags_box">
+                                    <a href="#"> Responsive</a>
+                                </div>
+
+                                <div class="tags_box first">
+                                    <a href="#"> Development</a>
+                                </div>
+
+                                <div class="tags_box">
+                                    <a href="#"> Rent</a>
+                                </div>
+
+                                <div class="tags_box">
+                                    <a href="#"> Properties</a>
+                                </div>
+
+                                <div class="tags_box first">
+                                    <a href="#"> Themeforest</a>
+                                </div>
+
+                                <div class="tags_box">
+                                    <a href="#"> Development</a>
+                                </div>
+
+                                <div class="tags_box">
+                                    <a href="#"> HTML  </a>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="spacer-30"></div>
+
+                    </section>
+
+                    <div class="spacer-60"></div>
+
+                </div>
+            </div>
+            <!-- Footer -->
+{% endblock %}
+
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        $("#budgetLoc").slider({min  : {{mes_annonces.minLoc  }}, max  : {{mes_annonces.maxLoc  }}, value: [2000, 20000], labelledby: ['minLoc', 'maxLoc']});
+        $("#budgetVente").slider({min  : {{mes_annonces.minVente  }}, max  : {{mes_annonces.maxVente  }}, value: [500000, 1000000], labelledby: ['minVente', 'maxVente']});
+
+    </script>
+    <script>
+        $("document").ready(function(){
+            $("#location").hide();
+            $("#vente").show();
+            $("#formPart_research_actes").change(function(){
+                if($(this).val()==='Vente'){
+                    $("#location").hide();
+                    $("#vente").show();
+                }
+                if($(this).val()==='Location'){
+                    $("#location").show();
+                    $("#vente").hide();
+                }
+
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+{% endblock %}

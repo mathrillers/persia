@@ -1,0 +1,128 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reservation
+ *
+ * @ORM\Table(name="reservation")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ReservationRepository")
+ */
+class Reservation
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="annonce_ID", type="integer", nullable=false)
+     */
+    private $annonceId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_reservation", type="datetime", nullable=true)
+     */
+    private $dateReservation;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="montant", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $montant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reservation_ID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $reservationId;
+
+
+
+    /**
+     * Set annonceId
+     *
+     * @param integer $annonceId
+     *
+     * @return Reservation
+     */
+    public function setAnnonceId($annonceId)
+    {
+        $this->annonceId = $annonceId;
+
+        return $this;
+    }
+
+    /**
+     * Get annonceId
+     *
+     * @return integer
+     */
+    public function getAnnonceId()
+    {
+        return $this->annonceId;
+    }
+
+    /**
+     * Set dateReservation
+     *
+     * @param \DateTime $dateReservation
+     *
+     * @return Reservation
+     */
+    public function setDateReservation($dateReservation)
+    {
+        $this->dateReservation = $dateReservation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateReservation
+     *
+     * @return \DateTime
+     */
+    public function getDateReservation()
+    {
+        return $this->dateReservation;
+    }
+
+    /**
+     * Set montant
+     *
+     * @param float $montant
+     *
+     * @return Reservation
+     */
+    public function setMontant($montant)
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get montant
+     *
+     * @return float
+     */
+    public function getMontant()
+    {
+        return $this->montant;
+    }
+
+    /**
+     * Get reservationId
+     *
+     * @return integer
+     */
+    public function getReservationId()
+    {
+        return $this->reservationId;
+    }
+}

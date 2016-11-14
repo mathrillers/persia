@@ -1,0 +1,72 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-files-o"></i> Formulaire De Modification</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                            <li><i class="icon_document_alt"></i>Newsletter</li>
+                            <li><i class="fa fa-files-o"></i>Modifier un Email</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Modifier un Email
+                            </header>
+                            <div class="panel-body">
+                                <div class="form">
+                                    {{ form_start(edit_form) }}
+                                    <div class="form-group">
+                                        <label for="fullname" class="control-label col-lg-2"> {{ form_label(edit_form.email) }} </label>
+                                        <div class="col-lg-9">
+                                            {{ form_widget(edit_form.email,{ 'attr':{'class':'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+                                        <label for="fullname" class="control-label col-lg-2"> Date inscription </label>
+                                        <div class="col-lg-9">
+                                            {{ form_widget(edit_form.dateInscription) }}
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="fullname" class="control-label col-lg-2"> {{ form_label(edit_form.active) }} </label>
+                                        <div class="col-lg-1">
+                                            {{ form_widget(edit_form.active,{ 'attr':{'class':'checkbox form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            {{ form_widget(edit_form.subscribe,{'label':'Modifier','attr':{'class':'btn btn-primary'}}) }}
+                                            <a class="btn btn-default" href="{{ path('newsletter_index') }}">Annuler</a>
+                                        </div>
+                                    </div>
+                                    {{ form_end(edit_form) }}
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+{% endblock %}

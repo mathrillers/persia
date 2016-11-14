@@ -1,0 +1,97 @@
+{#{% extends 'base.html.twig' %}{% block body %}<h1>Personne list</h1><table>        <thead>            <tr>                <th style="text-align: center;border-style: groove;">Compteid</th>                <th style="text-align: center;border-style: groove;">Nom</th>                <th style="text-align: center;border-style: groove;">Prenom</th>                <th style="text-align: center;border-style: groove;">Email</th>                <th style="text-align: center;border-style: groove;">Telephone</th>                <th style="text-align: center;border-style: groove;">Adresse</th>                <th style="text-align: center;border-style: groove;">Datenaissance</th>                <th style="text-align: center;border-style: groove;">Pays</th>                <th style="text-align: center;border-style: groove;">Ville</th>                <th style="text-align: center;border-style: groove;">Personneid</th>                <th style="text-align: center;border-style: groove;">Actions</th>            </tr>        </thead>        <tbody>        {% for personne in personnes %}            <tr>                <td style="text-align: center;border-style: groove;"><a href="{{ path('personne_show', { 'id': personne.personneId }) }}">{{ personne.compteId }}</a></td>                <td style="text-align: center;border-style: groove;">{{ personne.nom }}</td>                <td style="text-align: center;border-style: groove;">{{ personne.prenom }}</td>                <td style="text-align: center;border-style: groove;">{{ personne.email }}</td>                <td style="text-align: center;border-style: groove;">{{ personne.telephone }}</td>                <td style="text-align: center;border-style: groove;">{{ personne.adresse }}</td>                <td style="text-align: center;border-style: groove;">{% if personne.dateNaissance %}{{ personne.dateNaissance|date('Y-m-d H:i:s') }}{% endif %}</td>                <td style="text-align: center;border-style: groove;">{{ personne.pays }}</td>                <td style="text-align: center;border-style: groove;">{{ personne.ville }}</td>                <td style="text-align: center;border-style: groove;">{{ personne.personneId }}</td>                <td style="text-align: center;border-style: groove;">                    <ul>                        <li>                            <a href="{{ path('personne_show', { 'id': personne.personneId }) }}">show</a>                        </li>                        <li>                            <a href="{{ path('personne_edit', { 'id': personne.personneId }) }}">edit</a>                        </li>                    </ul>                </td>            </tr>        {% endfor %}        </tbody>    </table>    <ul>        <li>            <a href="{{ path('personne_new') }}">Create a new entry</a>        </li>    </ul>{% endblock %}#}
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Comptes</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Comptes</li>
+                        <li><i class="fa fa-th-list"></i>Liste Comptes</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading" style="text-align: center;border-top-style: solid;"><br>
+                            Tableau des Utilisateurs<br><br>
+                        </header>
+                        {% if comptes %}
+                        <div class="table-responsive">
+                            <table class="table table-striped table-advance table-hover table-bordered table-condensed table-body-center" >
+                                <tbody>
+                                <tr style="text-align: center;border-style: groove;">
+                                    <th style="text-align: center;border-style: groove;">Photo</th>
+                                    <th style="text-align: center;border-style: groove;">Username</th>
+                                    <th style="text-align: center;border-style: groove;">Password</th>
+                                    <th style="text-align: center;border-style: groove;">Etat</th>
+                                   {# <th style="text-align: center;border-style: groove;">Salt</th>#}
+                                    <th style="text-align: center;border-style: groove;">Date de Création</th>
+                                    <th style="text-align: center;border-style: groove;">Actions</th>
+                                </tr>
+                                {% for compte in pagination %}
+                                    <form method="get">
+                                        <tr style="text-align: center;border-style: groove;">
+                                            <td style="height: 200px;width: 200px;text-align: center;border-style: groove;">{% if compte.photo %}<a  style="width: 90px"
+                                                                                                                              href="{{ path('comptes_show', { 'id': compte.compteId }) }}"><img
+                                                    src="{{ asset(compte.photo) }}"
+                                                    class="img-responsive img-thumbnail"
+                                                    alt="Responsive image"
+                                                    {# style="width: 140px; height: 100px;"#}{# style="/*background-size: cover*/"#}
+                                                    style=" max-width: 100%;max-height: 100%;min-width: 100%;min-height: 100%"></a>{% else %}Aucune Photo{% endif %}
+                                            </td>
+
+                                            <td style="text-align: center;border-style: groove;">{{ compte.username }}</td>
+                                            <td style="text-align: center;border-style: groove;">{{ compte.password|truncate(10 , false, "...") }}</td>
+                                            {% if compte.active == true %}
+                                                <td style="text-align: center;border-style: groove;">ON</td>
+                                            {% else %}
+                                                <td style="text-align: center;border-style: groove;">OFF</td>
+                                            {% endif %}
+                                            {#<td style="text-align: center;border-style: groove;">{{ compte.salt }}</td>#}
+                                            <td style="text-align: center;border-style: groove;">{% if compte.dateCreation %}{{ compte.dateCreation|date('j F,Y H:i:s') }}{% endif %}</td>
+                                            <td style="text-align: center;border-style: groove;">
+                                                <div class="btn-group"> {% if compte.active == true %}
+                                                        <a class="btn btn-danger " style="width: 90px"
+                                                           href="{{ path('comptes_edit', { 'id':compte.compteId}) }}">Desactiver</a>
+                                                    {% else %}
+                                                        <a class="btn btn-success " style="width: 90px"
+                                                           href="{{ path('comptes_edit', { 'id': compte.compteId}) }}">Activer</a>
+                                                    {% endif %}
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </form>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="navigation" style="text-align: center;">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                        {% else %}
+                            <div style="text-align: center;" class="t-text-area"><h2>La Liste est Vide ...</h2><br></div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}

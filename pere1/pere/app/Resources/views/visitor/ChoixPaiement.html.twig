@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}
+        {{ parent() }} - Accueil
+
+    {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}}" alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class=" dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class=" "> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header bradcrumb -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> Type de Paiement  </h1>
+              <h4 class="sub_titl"> Non dextera ut tribunis miserabiles percitus comitatum ferro mortis Paulum. </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="{{ path('homepageAnnonce') }}"> Paiement </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Type de Transaction financiaire </p>
+
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="{{ path('home2') }}"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+        {% block body %}
+
+            <div class="spacer-60"></div>
+            <div class="container">
+                <!-- 404 Section -->
+                <section id="wrng_pg">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h3 class="lrg_titl">Procédure de Paiement  </h3>
+                            <h3 class="sub_titl"> Veuillez choisir un mode de paiement </h3>
+                            <div class="spacer-60"></div>
+                            {% if app.user.compteId %}
+                            <div class="col-xs-4">
+
+                            <script type="text/javascript"   src="https://www.simplify.com/commerce/simplify.pay.js"></script>
+                            <button data-sc-key="{{ key.public_key }}"
+                                    data-name="{{ user.personne.nom }} {{ user.personne.prenom }}"
+                                    data-description="{{ annonce.description|truncate(40) }}"
+                                    data-reference="{{ annonce.reference }}"
+
+                                    data-amount="{{ post.postMontant *100}}"
+
+                                    data-color="#{{color.orange}}"
+                                    data-receipt="true"
+                                    data-masterpass="true"
+                                    data-redirect-url="{{ path('mastercard') }}">
+                                Payer maintenant
+                            </button>
+                                </div>
+                                    <div class="col-xs-4 ">
+                               <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                    <input type='hidden' value="{{ annonce.montant }}" name="amount" />
+                                    <input name="currency_code" type="hidden" value="USD" />
+                                    <input name="shipping" type="hidden" value="0.00" />
+                                    <input name="tax" type="hidden" value="0.00" />
+                                    <input name="return" type="hidden" value="http://localhost:80{{ path('validation', {'id': annonce.annonceId}) }}" />
+                                    <input name="cancel_return" type="hidden" value="http://localhost:80{{ path('annulation', {'id': annonce.annonceId}) }}" />
+                                    <input name="notify_url" type="hidden" value="http://localhost:80{{ path('detailsannonce' , {'id': annonce.annonceId})}}" />
+                                    <input name="cmd" type="hidden" value="_xclick" />
+                                    <input name="business" type="hidden" value="abdelhafidbouazzaoui-facilitator@gmail.com" />
+                                    <input name="item_name" type="hidden" value="{{ annonce.titre }}" />
+                                    <input name="no_note" type="hidden" value="1" />
+                                    <input name="lc" type="hidden" value="FR" />
+                                    <input name="bn" type="hidden" value="PP-BuyNowBF" />
+                                    <input name="custom" type="hidden" value="{{ app.user.compteId }}" />
+                                    <input alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
+                                </form>
+
+                                        </div>
+                            {% endif %}
+                            <div class="col-xs-4">
+                            <div class="btns">
+                                <a href="{{ path('home') }}" class="orn_btn"> Back to Home </a>
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                </section>
+                <div class="spacer-60"></div>
+            </div>
+            <!-- /.container -->
+{% endblock %}
+
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="https://www.simplify.com/commerce/v1/simplify.js"></script>
+    <script>
+        SimplifyCommerce.hostedPayments(
+                function(response) {
+                    console.log(response);
+                    // add your custom handler code here
+                }
+        ).closeOnCompletion();
+    </script>
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+
+{% endblock %}

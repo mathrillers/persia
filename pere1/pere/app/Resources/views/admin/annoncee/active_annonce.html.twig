@@ -1,0 +1,154 @@
+{% extends 'admin/layout.html.twig' %}
+{% block body %}
+    {{ parent() }}
+
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-table"></i> Liste des Annonces</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                            <li><i class="fa fa-table"></i>Annonces</li>
+                            <li><i class="fa fa-th-list"></i>Liste Annonces</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- page start-->
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading" style="text-align: center;border-top-style: solid;"><br>
+                                Tableau des Annonces {#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="btn btn-success" href="{{ path('comptes_new') }}">Nouveau Compte</a>#}
+                                <br><br></header>
+                            {% if annonces %}
+
+                                <div class="table-responsive" style="text-align: center;border-style: groove;">
+                                    <table class="table table-striped table-advance table-hover table-bordered table-condensed table-body-center">
+
+                                        <tbody>
+                                        <tr style="text-align: center;border-style: groove;">
+                                            <th style="text-align: center;border-style: groove;">Photo Principale</th>
+                                            <th style="text-align: center;border-style: groove;">Reference</th>
+                                            <th style="text-align: center;border-style: groove;">Type Annonce</th>
+                                            <th style="text-align: center;border-style: groove;">Montant</th>
+                                            <th style="text-align: center;border-style: groove;">Commission</th>
+                                            <th style="text-align: center;border-style: groove;">Date d'ajout</th>
+                                            <th style="text-align: center;border-style: groove;">Date de publication
+                                            </th>
+                                            <th style="text-align: center;border-style: groove;">Etat d'annonce</th>
+                                            <th style="text-align: center;border-style: groove;">Etat de Validation</th>
+                                            <th style="text-align: center;border-style: groove;">Type delai</th>
+                                            <th style="text-align: center;border-style: groove;">Duree Séjour</th>
+                                            <th style="text-align: center;border-style: groove;">Prix Séjour</th>
+                                            <th style="text-align: center;border-style: groove;">Actions</th>
+                                        </tr>
+                                        {% for annonce in pagination %}
+                                            <tr style="text-align: center;border-style: groove;">
+                                                <td style="height: 200px;width: 250px;text-align: center;border-style: groove;">{% if annonce.immobilier.mainImage %}
+                                                        <a
+                                                        href="{{ path('annoncee_show', { 'id': annonce.annonceId }) }}">
+                                                        <img
+                                                                src="{{ asset(annonce.immobilier.mainImage) }}"
+                                                                class="img-responsive img-thumbnail"
+                                                                alt="Responsive image"
+                                                                {# style="width: 140px; height: 100px;"#}{# style="/*background-size: cover*/"#}
+                                                                style=" max-width: 100%;max-height: 100%;min-width: 100%;min-height: 100%">
+                                                        </a>{% else %}Aucune Photo{% endif %}
+                                                </td>
+                                                <td style="text-align: center;border-style: groove;">
+                                                    N°{{ annonce.reference }}</td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.typeAnnonce }}</td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.montant }}
+                                                    /DH
+                                                </td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.commission }}
+                                                    /DH
+                                                </td>
+                                                <td style="text-align: center;border-style: groove;">{% if annonce.dateDepot %}{{ annonce.dateDepot|date('Y-m-d  H:i:s') }}{% endif %}</td>
+                                                <td style="text-align: center;border-style: groove;">{% if annonce.Datepublication %}  {{ annonce.Datepublication|date('j F,Y,g:i A') }} {% else %} Pas Encore Publier{% endif %}</td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.etat }}</td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.statutDepot }}</td>
+                                                <td style="text-align: center;border-style: groove;">{% if annonce.typeDelai %}Long Durée{% else %}Court Durée{% endif %}</td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.periodeDelai }}</td>
+                                                <td style="text-align: center;border-style: groove;">{{ annonce.prixDelai }}{% if annonce.typeDelai %} DH/Mois{% else %} DH/Jour{% endif %}</td>
+                                                <td style="text-align: center;border-style: groove;">
+
+                                                    <div class="btn-group">
+                                                        {% if  annonce.etat=="Valider" %}
+                                                            {% if  annonce.statutDepot=="En Attente" %}
+                                                                {# <a style="font-size: 12px" href="#reserv_box" class="btn-annonce" data-value="{{ annonce.annonceId }}" data-toggle="modal">Activer</a>#}
+                                                                {# <a class="btn btn-primary "
+                                                                    href="{{ path('annonce_modification_validation', { 'id': annonce.annonceId }) }}">Activer</a>#}
+                                                                <a class="btn btn-primary " style="width: 90px"
+                                                                   href="{{ path('annonce_activation', { 'id':annonce.annonceId }) }}">Activer</a>
+                                                            {% elseif annonce.statutDepot=="Valider" %}
+                                                                <a class="btn btn-success " style="width: 90px"
+                                                                   href="{{ path('annonce_activation', { 'id': annonce.annonceId }) }}">Desactiver</a>
+                                                            {% elseif annonce.statutDepot=="Desactiver" %}
+                                                                <a class="btn btn-danger " style="width: 90px"
+                                                                   href="{{ path('annonce_activation', { 'id':annonce.annonceId }) }}">Activer</a>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="navigation" style="text-align: center;">
+                                    {{ knp_pagination_render(pagination) }}
+                                </div>
+                            {% else %}
+                                <div style="text-align: center;" class="t-text-area"><h2>La Liste est Vide ...</h2><br>
+                                </div>
+                            {% endif %}
+                        </section>
+                    </div>
+                </div>
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+
+
+    {#  <div id="reserv_box" class="modal fade">
+          &#123;&#35;{% include ":admin/annoncee:Annonce_Modification.html.twig" %}&#35;&#125;
+          <div id="box">
+
+          </div>
+      </div>#}
+
+    {#{% block modal %}
+
+        <div id="reserv_box" class="modal fade">
+            &#123;&#35;{% include ":admin/annoncee:Annonce_Modification.html.twig" %}&#35;&#125;
+            <div id="box">
+
+            </div>
+        </div>
+    {% endblock %}#}
+
+{% endblock %}
+
+{#
+{% block javascripts %}
+    {{ parent() }}
+<script>
+$('.btn-annonce').click(function (event){
+    var val=$(this).attr("data-value");
+    $('#box').load('http://localhost/pere_pere/web/app_dev.php/admin/aannoncee/Validation/'+val);
+
+})
+</script>
+{% endblock %}#}

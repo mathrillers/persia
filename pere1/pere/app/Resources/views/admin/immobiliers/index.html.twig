@@ -1,0 +1,118 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Biens</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Biens</li>
+                        <li><i class="fa fa-th-list"></i>Liste Biens</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+           {# <div class="row">
+
+                <div class="col-md-12" id="form-tab">
+
+
+                </div>
+
+            </div>#}
+
+
+                                    <section class="panel">
+                                        <header class="panel-heading" style="text-align: center;border-top-style: solid;"><br>
+                                            <div class="col-lg-10" >Tableau des Biens</div>
+                                                                                     <div class="col-lg-2"><a class="btn btn-success" href="{{ path('immobiliers_new') }}">Nouveau
+                                                    Utilisateur</a></div>
+                                            <br><br>   </header>
+                                        {% if immobiliers %}
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-advance table-hover table-bordered table-condensed table-body-center" >
+                                                    <tbody>
+
+                                                    <tr style="text-align: center;border-style: groove;">
+                                                        <th style="text-align: center;border-style: groove;">Photo Principale</th>
+                                                        <th style="text-align: center;border-style: groove;">Reference</th>
+                                                        <th style="text-align: center;border-style: groove;">Adresse</th>
+                                                        <th style="text-align: center;border-style: groove;">Ville</th>
+                                                        <th style="text-align: center;border-style: groove;">Prix</th>
+                                                        <th style="text-align: center;border-style: groove;">Chambres</th>
+                                                        <th style="text-align: center;border-style: groove;">Salons</th>
+                                                        <th style="text-align: center;border-style: groove;">Superficie</th>
+                                                        <th style="text-align: center;border-style: groove;">Jardin</th>
+                                                        <th style="text-align: center;border-style: groove;">Garage</th>
+
+
+                                                        <th style="text-align: center;border-style: groove;">Actions</th>
+                                                    </tr>
+                                                    {% for immobilier in pagination %}
+                                                        <tr style="text-align: center;border-style: groove;">
+                                                            <td style="height: 200px;width: 250px;text-align: center;border-style: groove;">{% if immobilier.mainImage %}
+                                                                <a  style="width: 90px"
+                                                                    href="{{ path('immobiliers_show', { 'id': immobilier.immobilierId}) }}">
+                                                                    <img src="{{ asset(immobilier.mainImage) }}"
+                                                                         class="img-responsive img-thumbnail"
+                                                                         alt="Responsive image"
+
+                                                                         style=" max-width: 100%;max-height: 100%;min-width: 100%;min-height: 100%">
+                                                                    </a>{% else %}<a  style="width: 90px"
+                                                                                      href="{{ path('immobiliers_show', { 'id': immobilier.immobilierId}) }}">Aucune Photo</a>{% endif %}
+                                                            </td>
+                                                            {#technologie utilisé-----module#}
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.reference }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.adresse }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.quartier.ville }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.prix }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.nbrChambre }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.nbreSalon }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{{ immobilier.superficie }}</td>
+                                                            <td style="text-align: center;border-style: groove;">{% if immobilier.jardin %}Yes{% else %}No{% endif %}</td>
+                                                            <td style="text-align: center;border-style: groove;">{% if immobilier.garage %}Yes{% else %}No{% endif %}</td>
+
+
+                                                            <td style="text-align: center;border-style: groove;">
+                                                                <div class="btn-group-lg"><a class="btn btn-warning" style="width: 90px"
+                                                                                             href="{{ path('immobiliers_edit', { 'id': immobilier.immobilierId }) }}">edit</a>
+
+                                                                </div> {#<br><br> <div class="btn-group">    {% if immobilier.etat == true %}
+                                                <a class="btn btn-danger "
+                                                   href="{{ path('immobiliers_delete', { 'id':immobilier.immobilierId}) }}">Desactiver</a>
+                                            {% else %}
+                                                <a class="btn btn-success  "
+                                                   href="{{ path('immobiliers_delete', { 'id': immobilier.immobilierId}) }}">Activer</a>
+                                            {% endif %}
+                                        </div>#}
+
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="navigation" style="text-align: center;">
+                                                {{ knp_pagination_render(pagination) }}
+                                            </div>
+                                        {% else %}
+                                            <div style="text-align: center;" class="t-text-area"><h2>La Liste est Vide ...</h2><br></div>
+                                        {% endif %}
+                                    </section>
+
+
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}

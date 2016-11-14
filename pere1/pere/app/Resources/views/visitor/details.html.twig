@@ -1,0 +1,740 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Details
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- bxslider -->
+    <link href="{{ asset('assets/css/jquery.bxslider.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}} " alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li > <a  href="{{ path('home') }}"> Accueil </a>
+
+
+                      </li>
+                      <li class="active dropdown"><a class="dropdown-toggle"  href="{{ path('homepageAnnonce') }}"> Annonce </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{  path('homepageAnnonce')}}"> Toutes </a>
+                              </li>
+                              <li>
+                                  <a href="{{  path('typeannonce', {'type': 'Vente'})}}"> Vente & Achat </a>
+                              </li>
+                              <li>
+                                  <a href="{{  path('typeannonce', {'type': 'Location'}) }}"> Location </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Présentation </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header Stat Banner -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> {{ annonce.titre }} </h1>
+              <h4 class="sub_titl"> {{ annonce.immobilier.quartier }}, {{ annonce.immobilier.quartier.ville }} </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="{{ path('homepage') }}"> Accueil </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Détails de l'annonce</p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="{{ path('homepageAnnonce') }}"> Retour aux annonces</a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+{% block body %}
+    <div class="spacer-60"></div>
+    <div class="container">
+        <div class="row">
+            <!-- Proerty Details Section -->
+            <section id="prop_detal" class="col-md-8">
+                <div class="row">
+                    <div class="panel panel-default">
+                        <!-- Proerty Slider Images -->
+                        <div class="panel-image">
+                            <ul id="prop_slid">
+                                {% for image in images %}
+
+                                        <li><img class="img-responsive" src="{{ asset(image.url) }}" alt="Property Slide Image" style="max-height:600px ;width:100%" >
+                                        </li>
+
+                                {% endfor %}
+                            </ul>
+                            <!-- Proerty Slider Thumbnails -->
+                            <div class="col-md-12 rel_img">
+                                <ul id="slid_nav">
+                                    {% set n = -1 %}
+                                    {% for image in images %}
+
+                                            {% set n = n+1 %}
+                                            <li>
+                                                <a data-slide-index="{{ n }}" href="#"><img class="img-responsive img-hover" src="{{ asset(image.url) }}" style="margin-bottom: 10px; max-height:100px ;width:100%"  alt="">
+                                                </a>
+                                            </li>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="prop_feat">
+
+                                <p class="area"><i class="fa fa-home"></i> {{ annonce.immobilier.quartier }}</p>
+
+                                {% if app.user %}
+                                <p id="favorites" class="bedrom btn btn-link"> <a  id="add"><i class="fa fa-star-o"></i> </a> Add to Favorites </p>
+
+                                {% endif %}
+
+                                <p class="bedrom">  <a href="{{ path('printDetails', {'annonceId': annonce.annonceId}) }}"> <i class="fa fa-print"></i> Print This Details</a> </p>
+                                <p class="bedrom"><i class="fa fa-star"></i> {{ annonce.nbreVues }} vues </p>
+                                <div class="share_btn">
+                                    <a href="#"> <i class="fa fa-share-alt"></i>
+                                    </a>
+                                    <div class="soc_btn">
+                                        <ul>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="spacer-20"></div>
+                            <div class="col-md-9 ">
+                                <h3 class="sec_titl">{{ annonce.titre }}</h3>
+                            </div>
+                            <div class="col-md-3 ">
+                                {% if app.user %}
+                                {% if   user.personne.personneID == annonce.depositaire.personneID %}
+                                    <div class="col_labls larg_labl">
+                                        <p class="or_labl">Propriétaire</p>
+                                    </div>
+                                {% else %}
+
+
+                                    {% if not reserv %}
+                                        <p >
+                                        {% if annonce.typeAnnonce=="Location" %}
+                                            {% if   post %}
+                                                <a style="font-size: 12px;text-align :center" href="#choix_payment_box" class="btn btn-danger btn-block"
+                                                   data-toggle="modal">Payer Maintenant</a>
+                                            {% else %}
+
+
+                                                {% if annonce.typeDelai %}
+
+                                                    <a style="font-size: 12px" href="#reserv_court_box" class="btn btn-primary btn-block"
+                                                       data-toggle="modal">Réserver1</a>
+                                                {% else %}
+                                                    <a style="font-size: 12px" href="#reserv_box" class="btn btn-primary btn-block"
+                                                       data-toggle="modal">Réserver</a>
+
+                                                {% endif %}
+
+
+                                            {% endif %}
+                                        {% elseif  annonce.typeAnnonce=="Vente"  %}
+
+                                            {% if   post %}
+                                                <a style="font-size: 12px;text-align :center" href="#choix_payment_box_vente" class="btn btn-danger btn-block"
+                                                   data-toggle="modal">Payer Maintenant</a>
+                                            {% else %}
+                                                <a style="font-size: 12px" href="#reserv_box_vente" class="btn btn-primary btn-block"
+                                                   data-toggle="modal">Réserver</a>
+
+                                            {% endif %}
+
+                                            {% endif %}
+                                        </p>
+                                    {% else %}
+                                        <div class="col_labls larg_labl">
+                                            <p class="or_labl">Réservé</p>
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endif %}
+                                {% else %}
+                                    <a style="font-size: 12px;text-align :center" href="#login_box" class="btn btn-primary btn-block"
+                                       data-toggle="modal">Réserver</a>
+
+
+                                {% endif %}
+
+                            </div>
+
+                            <div>
+                                <div class="col-md-9 ">
+                                    <div class="col_labls larg_labl">
+                                        <p class="or_labl">{{ annonce.typeAnnonce }}</p>
+                                        {% if annonce.typeAnnonce=="Location" %}
+
+                                            {% if annonce.typeDelai %}
+
+                                                <p class="blu_labl"> {{ annonce.prixDelai }} DH /Jour</p>
+                                            {% else %}
+                                                <p class="blu_labl"> {{ annonce.prixDelai }} DH /Mois</p>
+
+                                            {% endif %}
+                                        {% endif %}
+
+                                        {% if annonce.typeAnnonce=="Vente" %}
+
+                                            <p class="blu_labl"> {{ annonce.montant }} DH</p>
+
+                                        {% endif %}
+                                    </div>
+                                    <p class="sec_desc">
+                                        {{ annonce.description }}
+                                    </p>
+                                    {% if app.user %}
+                                        {#  <a href="#payment_box" class="btn btn-primary btn-lg btn-block" data-toggle="modal">Réserver</a>#}
+                                    {% endif %}
+
+                                </div>
+
+
+                                <!-- Property Additional Info -->
+                                <div class="prop_addinfo col-md-12">
+                                    <h2 class="add_titl">
+                                        Additional Details
+                                    </h2>
+
+                                    <div class="info_sec first">
+                                        <div class="col-md-8">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> Ville: <span> {{ annonce.immobilier.quartier.ville }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> superficie: <span> {{ annonce.immobilier.superficie }} m </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> Garages: <span> {{ annonce.immobilier.garage }} </span> </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <ul>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">Chambres: <span> {{ annonce.immobilier.nbrChambre }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">Salon: <span> {{ annonce.immobilier.nbreSalon }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">jardin: <span> {{ annonce.immobilier.jardin }} </span> </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+
+                <!-- Proerty Map -->
+
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                                Property Map
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="prop_map">
+                            <div id="map_canvas" style="width:100%;height:360px;"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+            </section>
+
+            <!-- Sidebar Section -->
+            <section id="sidebar" class="col-md-4">
+                <!-- Search Form -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="srch_frm">
+                            <h3>Recherche</h3>
+                            {{ form_start(formPart, { 'method': 'POST','attr': {'class': 'form'} } ) }}
+
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Mot-clé</label>
+                                    {{ form_widget(formPart.research.mot_cle,{'id':'keyword','attr':{'autofocus':true,'class':'form-control'} }) }}
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Lieu </label>
+                                    {{ form_widget(formPart.research.ville,{'name':'State','attr':{'class':'form-control'} }) }}
+
+                                </div>
+                            </div>
+                            <div class="control-group form-group">
+                                <div class="controls col-md-6 first">
+                                    <label>Type </label>
+                                    {{ form_widget(formPart.research.typeImmobilier,{'name':'Type','attr':{'class':'form-control'} }) }}
+
+                                </div>
+                                <div class="controls col-md-6">
+                                    <label>Actions </label>
+                                    {{ form_widget(formPart.research.actes,{'name':'Actions','attr':{'class':'form-control'} }) }}
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            <div class="control-group form-group">
+                                <div class="controls">
+                                    <label>Budget </label>
+
+                                    <div id="location" class="controls row">
+                                        <div class=" col-md-6">
+                                            <span id="minLoc" class="margin"> {{ mes_annonces.minLoc }} Dh </span>
+                                        </div>
+                                        <div class=" col-md-6">
+                                            <span id="maxLoc" class="margin"> {{mes_annonces.maxLoc  }} Dh</span>
+
+                                        </div>
+                                        <div class=" col-md-12">
+                                            {{ form_widget(formPart.research.budgetLoc,{'id':'budgetLoc','name':'BudgetLoc','attr':{'class':'form-control'} }) }}
+                                        </div>
+                                    </div>
+
+                                    <div id="vente" class="controls row" >
+                                        <div class=" col-md-6">
+                                            <span id="minVente" class="margin"> {{ mes_annonces.minVente }} Dh </span>
+                                        </div>
+                                        <div class=" col-md-6">
+                                            <span id="maxVente" class="margin"> {{mes_annonces.maxVente  }} Dh</span>
+                                        </div>
+                                        <div class=" col-md-12">
+
+                                            {{ form_widget(formPart.research.budgetVente,{'id':'budgetVente','name':'BudgetVente','attr':{'class':'form-control'} }) }}
+                                        </div>
+                                    </div>
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div id="success4"></div>
+                            <!-- For success/fail messages -->
+                            {{ form_widget(formPart.research.chercher,{'label':'Chercher','attr':{'class':'btn btn-primary'}}) }}
+                            {{ form_end(formPart,{'render_rest':false}) }}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+                <!-- Categories -->
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                                Categories
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="categ_info row">
+
+                        {% for type in typeimmob %}
+                            <div class="info_sec col-md-6">
+
+                                    <a href="{{ path('searchType', {'type': type.nom}) }}">
+                                        <i class="fa fa-long-arrow-right"></i>
+                                        <p class="infos">{{ type.nom }} </p>
+                                    </a>
+
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+                <div class="spacer-30"></div>
+                <!-- Featured Properties -->
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                                Annonces similaires
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="side_feat">
+                        {% for an in annonceplus %}
+                            {% if an.annonceId != annonce.annonceId %}
+
+                            <div class="panel panel-default">
+                                <div class="panel-image col-md-3">
+                                    <a href="{{ path('detailsannonce', {'id': an.annonceId}) }}"> <img class="img-responsive img-hover" src="{{ asset(an.immobilier.mainImage) }}" alt=""> </a>
+                                </div>
+
+                                <div class="panel-body col-md-9">
+                                    <h3 class="sec_titl">
+                                        <a href="{{ path('detailsannonce', {'id': an.annonceId}) }}"> {{ an.titre }}</a>
+                                    </h3>
+
+                                    <div class="prop_feat">
+                                        <p class="area"><i class="fa fa-home"></i> {{ an.immobilier.superficie }} m²</p>
+                                        <p class="bedrom"><i class="fa fa-car"></i> {{ an.immobilier.nbrChambre }} Chambres</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+                <!-- Tags -->
+                <div class="row">
+                    <div class="titl_sec">
+                        <div class="col-lg-12">
+
+                            <h3 class="main_titl text-left">
+                                Tags
+                            </h3>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="tags_sec">
+
+                        <div class="tags_box first">
+                            <a href="#"> Modern </a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Amazing</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Responsive</a>
+                        </div>
+
+                        <div class="tags_box first">
+                            <a href="#"> Development</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Rent</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Properties</a>
+                        </div>
+
+                        <div class="tags_box first">
+                            <a href="#"> Themeforest</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> Development</a>
+                        </div>
+
+                        <div class="tags_box">
+                            <a href="#"> php  </a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+
+            </section>
+
+            <div class="spacer-60"></div>
+
+        </div>
+    </div>
+{% endblock %}
+
+  {% block modal %}
+      {{ parent() }}
+
+    <div id="reserv_box" class="modal fade">
+          {% include ":payment:reservation.html.twig" %}
+
+      </div>
+      <div id="reserv_court_box" class="modal fade">
+          {% include ":payment:court-reservation.html.twig" %}
+
+      </div>
+
+      <div id="choix_payment_box" class="modal fade">
+          {% include ":payment:mon-paiement.html.twig" %}
+
+      </div>
+      <div id="reserv_box_vente" class="modal fade">
+          {% include ":payment:reservation-vente.html.twig" %}
+
+      </div>
+
+      <div id="choix_payment_box_vente" class="modal fade">
+{#          {% include ":payment:mon-paiement-vente.html.twig" %}#}
+
+      </div>
+
+  {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- BX Slider -->
+    <script src="{{ asset('assets/js/jquery.bxslider.min.js') }}"></script>
+    <!-- Script to Activate the Carousel -->
+    <script type="text/javascript">
+
+        $("#budgetLoc").slider({min  : {{mes_annonces.minLoc  }}, max  : {{mes_annonces.maxLoc  }}, value: [2000, 20000], labelledby: ['minLoc', 'maxLoc']});
+        $("#budgetVente").slider({min  : {{mes_annonces.minVente  }}, max  : {{mes_annonces.maxVente  }}, value: [500000, 1000000], labelledby: ['minVente', 'maxVente']});
+
+    </script>
+    <script>
+        $("document").ready(function(){
+            $("#location").hide();
+            $("#vente").show();
+            $("#formPart_research_actes").change(function(){
+                if($(this).val()==='Vente'){
+                    $("#location").hide();
+                    $("#vente").show();
+                }
+                if($(this).val()==='Location'){
+                    $("#location").show();
+                    $("#vente").hide();
+                }
+
+            })
+        })
+    </script>
+
+
+    <script>
+
+        /* Product Slider Codes */
+        $(document).ready(function () {
+            'use strict';
+
+            $('#prop_slid').bxSlider({
+                pagerCustom: '#slid_nav'
+            });
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script>
+        var geocoder;
+        var map;
+        var address = '{{ annonce.immobilier.quartier }} {{ annonce.immobilier.quartier.ville}} {{ annonce.immobilier.quartier.ville.pays}}';
+        var titre = '{{ annonce.titre }}';
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var myOptions = {
+                zoom: 13,
+                center: latlng,
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                },
+                navigationControl: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            if (geocoder) {
+                geocoder.geocode({
+                    'address': address
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                            map.setCenter(results[0].geometry.location);
+
+                            var infowindow = new google.maps.InfoWindow({
+                                content: '<b>' + titre + '</b>',
+                                size: new google.maps.Size(150, 50)
+                            });
+
+                            var marker = new google.maps.Marker({
+                                position: results[0].geometry.location,
+                                map: map,
+                                title: address
+                            });
+                            google.maps.event.addListener(marker, 'click', function() {
+                                infowindow.open(map, marker);
+                            });
+
+                        } else {
+                            alert("No results found");
+                        }
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script>
+        $('#favorites').click(function (event){
+           $("#add").load("{{ path('add_favorites', {'annonceId': annonce.annonceId}) }}");
+        });
+    </script>
+
+{% endblock %}

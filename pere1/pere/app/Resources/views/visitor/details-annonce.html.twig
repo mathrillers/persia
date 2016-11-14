@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Détails - annonce</title>
+
+
+     <link rel="stylesheet" href="{{app.request.schemeAndHttpHost ~  asset('assets/css/bootstrap.css')}}"  type="text/css"/>
+
+        <link rel="stylesheet" href="{{app.request.schemeAndHttpHost ~  asset('assets/css/owl.carousel.css') }}"  type="text/css"/>
+        <link rel="stylesheet" href="{{app.request.schemeAndHttpHost ~  asset('assets/css/owl.theme.css') }}"  type="text/css"/>
+        <link rel="stylesheet" href="{{app.request.schemeAndHttpHost ~  asset('assets/css/owl.transitions.css') }}"  type="text/css"/>
+
+        <link rel="stylesheet" href="{{ app.request.schemeAndHttpHost ~ asset('assets/css/bootstrap-slider.css') }}"  type="text/css"/>
+
+        <link rel="stylesheet" href="{{ app.request.schemeAndHttpHost ~ asset('assets/css/flexslider.css') }}"  type="text/css"/>
+        <link rel="stylesheet" href="{{ app.request.schemeAndHttpHost ~ asset('assets/css/main_style.css') }}"  type="text/css"/>
+
+        <link rel="stylesheet" href="{{app.request.schemeAndHttpHost ~  asset('assets/font-awesome/css/font-awesome.min.css') }}"  type="text/css"/>
+
+    <link rel="icon" type="image/x-icon" href="{{app.request.schemeAndHttpHost ~  asset('images/logo.png') }}" />
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- bxslider -->
+    <link href="{{ app.request.schemeAndHttpHost ~ asset('assets/css/jquery.bxslider.css') }}" rel="stylesheet">
+
+
+</head>
+
+<body >
+
+
+
+<div class="row">
+    <div class="spacer-30"></div>
+    <div class="col-xs-12 text-center">
+        <div >
+
+            <a class="img-responsive" href="{{ app.request.schemeAndHttpHost ~path('home') }}"><img src="{{ app.request.schemeAndHttpHost ~ asset('images/logo.png')}} " alt="logo"></a>
+            </div>
+            <div class="spacer-20"></div>
+        <h3 class="lrg_titl">Détails de l'annonce  </h3>
+        <h3 class="sub_titl"> Annonce :{{ annonce.titre }} </h3>
+        <div class="spacer-20"></div>
+
+        </div>
+</div>
+    <div class="spacer-20"></div>
+    <div class="container">
+         <div class="row">
+            <!-- Proerty Details Section -->
+            <section class="row">
+
+                <div class="spacer-30"></div>
+            </section>
+            <section id="prop_detal" class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
+
+                    <div class="panel panel-default">
+                        <!-- Proerty Slider Images -->
+                        <div class="panel-image">
+                            <ul id="prop_slid">
+                                {% for image in images %}
+
+                                        <li><img class="img-responsive" src="{{ app.request.schemeAndHttpHost ~ asset(image.url) }}" alt="Property Slide Image" style="max-height:600px ;width:100%" >
+                                        </li>
+
+                                {% endfor %}
+                            </ul>
+                            <!-- Proerty Slider Thumbnails -->
+                            <div class="col-md-12 rel_img">
+                                <ul id="slid_nav">
+                                    {% set n = -1 %}
+                                    {% for image in images %}
+
+                                            {% set n = n+1 %}
+                                            <li>
+                                                <a data-slide-index="{{ n }}" href="#"><img class="img-responsive img-hover" src="{{ app.request.schemeAndHttpHost ~ asset(image.url) }}" style="margin-bottom: 10px; max-height:100px ;width:100%"  alt="">
+                                                </a>
+                                            </li>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="prop_feat">
+
+                                <p class="area"><i class="fa fa-home"></i> {{ annonce.immobilier.adresse }}</p>
+                                <p class="bedrom"><i class="fa fa-star-o"></i> Add to Favorites </p>
+                                <p class="bedrom"><i class="fa fa-print"></i> Print This Details </p>
+
+                                <div class="share_btn">
+                                    <a href="#"> <i class="fa fa-share-alt"></i>
+                                    </a>
+                                    <div class="soc_btn">
+                                        <ul>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="spacer-20"></div>
+                            <div class="col-md-9 ">
+                            <h3 class="sec_titl">{{ annonce.titre }}</h3>
+                                </div>
+                            <div class="col-md-3 ">
+                                {% if app.user %}
+
+
+                                <div class="col_labls larg_labl">
+                                    <p class="or_labl">Réservé</p>
+                                </div>
+
+
+
+                                {% endif %}
+
+                            </div>
+
+                            <div>
+                                <div class="col-md-9 ">
+                                    <div class="col_labls larg_labl">
+                                        <p class="or_labl">{{ annonce.typeAnnonce }}</p>
+                        {% if annonce.typeAnnonce=="Location" %}
+
+                            {% if annonce.typeDelai %}
+
+                                <p class="blu_labl"> {{ annonce.prixDelai }} DH /Jour</p>
+                                {% else %}
+                                    <p class="blu_labl"> {{ annonce.prixDelai }} DH /Mois</p>
+
+                            {% endif %}
+                        {% endif %}
+
+                                        {% if annonce.typeAnnonce=="Vente" %}
+
+                                            <p class="blu_labl"> {{ annonce.montant }} DH</p>
+
+                                        {% endif %}
+                                    </div>
+                                    <p class="sec_desc">
+                                        {{ annonce.description }}
+                                    </p>
+
+                                 </div>
+
+
+                                <!-- Property Additional Info -->
+                                <div class="prop_addinfo col-md-12">
+                                    <h2 class="add_titl">
+                                        Additional Details
+                                    </h2>
+
+                                    <div class="info_sec first">
+                                        <div class="col-md-8">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> Ville: <span> {{ annonce.immobilier.quartier.ville }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> superficie: <span> {{ annonce.immobilier.superficie }} m </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos"> Garages: <span> {{ annonce.immobilier.garage }} </span> </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <ul>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">Chambres: <span> {{ annonce.immobilier.nbrChambre }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">Salon: <span> {{ annonce.immobilier.nbreSalon }} </span> </p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        <p class="infos">jardin: <span> {{ annonce.immobilier.jardin }} </span> </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="spacer-30"></div>
+
+                <!-- Proerty Map -->
+
+
+
+
+            </section>
+
+
+
+            <div class="spacer-30"></div>
+
+
+
+
+        </div>
+    </div>
+
+<script type="text/javascript" src="{{app.request.schemeAndHttpHost ~  asset('assets/js/jquery.js') }}" > </script>
+<script type="text/javascript" src="{{ app.request.schemeAndHttpHost ~ asset('assets/js/bootstrap.min.js') }}" > </script>
+
+      <script src="{{app.request.schemeAndHttpHost ~  asset('assets/js/jquery.bxslider.min.js') }}"></script>
+      <!-- Script to Activate the Carousel -->
+
+    <script>
+
+        /* Product Slider Codes */
+        $(document).ready(function () {
+            'use strict';
+
+            $('#prop_slid').bxSlider({
+                pagerCustom: '#slid_nav'
+            });
+
+            $('ul.drop_menu [data-toggle=dropdown]').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    </script>
+
+</body >
+
+</html>
+

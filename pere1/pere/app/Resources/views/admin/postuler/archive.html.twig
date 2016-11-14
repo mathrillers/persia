@@ -1,0 +1,118 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Archive des Postulations</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Postulation</li>
+                        <li><i class="fa fa-th-list"></i>Archive Postulations</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+            <a href="{{ path('postuler_index') }}">Liste des Postulations</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading"><br>
+                            Tableau des Postulations Archivée
+                            <br><br>    </header>
+                        {% if postulers %}
+                        <div class="table-responsive">
+                            <table class="table table-striped table-advance table-hover table-bordered table-condensed table-body-center" >
+                            <tbody>
+                            <tr style="text-align: center;border-style: groove;">
+                                {#
+                                   <th>Datereservation</th>#}
+                                <div >
+                                    <th style="text-align: center;border-style: groove;">Titre de l'Annonce</th>
+                                </div>
+                                <div >
+                                    <th style="text-align: center;border-style: groove;">Date de Postulation</th>
+                                </div>
+                                <div >
+                                    <th style="text-align: center;border-style: groove;">Statut</th>
+                                </div>
+
+                                <div >
+                                    <th style="text-align: center;border-style: groove;">Montant</th>
+                                </div>
+                                <div >
+                                    <th style="text-align: center;border-style: groove;">Période</th>
+                                </div>
+                                <div >
+                                    <th style="text-align: center;border-style: groove;">Actions</th>
+                                </div>
+                            </tr>
+                            {% for postuler in pagination %}
+                                <tr>
+                                    <div >
+                                        <td style="text-align: center;border-style: groove;"> <a href="{{ path('postuler_show', { 'id': postuler.postId }) }}">{{ postuler.annonce.titre }}</a></td>
+                                    </div>
+                                    <div >
+                                        <td style="text-align: center;border-style: groove;">
+                                           {{ postuler.datePost|date('j F,Y | H:i:s') }}
+                                        </td>
+                                    </div>
+                                    <div >
+                                        <td style="text-align: center;border-style: groove;">{{ postuler.statut }}</td>
+                                    </div>
+
+                                    <div >
+                                        <td style="text-align: center;border-style: groove;">{{ postuler.postMontant }}</td>
+                                    </div>
+
+                                    <div >
+                                        <td style="text-align: center;border-style: groove;">{% if postuler.annonce.typedelai %}
+                                   {{postuler.annonce.periodeDelai }} Jour
+                                        {% else %}
+                                        {{ postuler.annonce.periodeDelai  }} Mois
+                                            {% endif %}
+                                        </td>                                      </div>
+
+
+                                    <div >
+                                        <td style="text-align: center;border-style: groove;">
+                                            <ul>
+                                                <br> <li>
+                                   <div class="btn-group">      <a class="btn btn-warning " style="width: 90px"
+                                                       href="{{ path('postuler_edit', { 'id': postuler.postId }) }}">Modifier</a>
+                                    </div> <br><br> <div class="btn-group">    <a class="btn btn-danger " style="width: 90px"
+                                                       href="{{ path('postuler_delete', { 'id':postuler.postId}) }}">Supprimer</a>
+                                    </div>     </li>
+                                            </ul>
+                                        </td>
+                                    </div>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                            </div>
+                        <div class="navigation" style="text-align: center;">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                        {% else %}
+                            <div style="text-align: center;" class="t-text-area"><h2>La Liste est Vide ...</h2><br></div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}
+

@@ -1,0 +1,240 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Annonces</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Annonce</li>
+                        <li><i class="fa fa-th-list"></i>Modifier Annonce</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+            <ul>
+                <li>
+                    <a href="{{ path('annoncee_index') }}">Back to the list Annonces</a>
+                </li>
+
+            </ul>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Modifier Info Annonce
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                                {{ form_start(edit_form) }}
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.typeAnnonce) }}</div>
+                                    <div class="col-lg-6">  {{ form_widget(edit_form.typeAnnonce) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group" >
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.description) }} </div>
+                                    <div class="col-lg-6">   {{ form_widget(edit_form.description) }}
+                                    </div>
+
+
+                                </div><br>
+<br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center"> {{ form_label(edit_form.reference) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.reference) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.depositaire) }} </div>
+                                    <div class="col-lg-6">    {{ form_widget(edit_form.depositaire) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6"  style="text-align: center" >{{ form_label(edit_form.immobilier) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier) }}
+                                    </div>
+
+
+                                </div><br><br>
+                               {% if edit_form.typeAnnonce=="Location" %} <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.type_delai) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.type_delai) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.periode_delai) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.periode_delai) }}
+                                    </div>
+
+
+                                </div><br><br>{% endif %}
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6" style="text-align: center">{{ form_label(edit_form.prix_delai) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.prix_delai) }}
+                                    </div>
+
+
+                                </div><br><br>
+                              {#  <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.quartier) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.quartier) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.prix) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.prix) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.nbrChambre) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.nbrChambre) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.nbreSalon) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.nbreSalon) }}
+                                    </div>
+
+
+                                </div><br><br><div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.superficie) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.superficie) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.jardin) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.jardin) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.garage) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.garage) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.etat) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.etat) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.proprietaire) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.proprietaire) }}
+                                    </div>
+
+
+                                </div><br><br>
+                                <div class="form-group">
+
+
+                                    <div class="col-lg-6">{{ form_label(edit_form.immobilier.idType) }} </div>
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.immobilier.idType) }}
+                                    </div>
+
+
+                                </div><br><br>#}
+
+                                 <br><br>  <br><br>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-6">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-warning" type="submit">Modifier</button>
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(edit_form,{'render_rest':false}) }}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}

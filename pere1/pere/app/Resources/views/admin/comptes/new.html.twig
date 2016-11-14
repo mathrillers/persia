@@ -1,0 +1,140 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Nouveau Compte</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Comptes</li>
+                        <li><i class="fa fa-th-list"></i>Nouveau Comptes</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+
+            <a class="btn btn-navbar" href="{{ path('utilisateur_index') }}">Liste des Utilisateurs</a>
+
+
+
+
+
+           <!--***********************************************************************************-->
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Cree Un Nouveau Utilisateur
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+                               {# <form class="form-validate form-horizontal " id="register_form" method="get" action="{{ path('utilisateur_new') }}">#}
+                                    {#<div class="form-group ">
+                                        <label for="nom" class="control-label col-lg-2">Nom <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control " id="nom" name="nom" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="prenom" class="control-label col-lg-2">Prenom <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control " id="prenom" name="prenom" type="text" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control " id="email" name="email" type="email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="telephone" class="control-label col-lg-2">Telephone <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                            <input class="form-control " id="telephone" name="telephone" type="tel" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="date_naissance" class="control-label col-lg-2">Date de Naissance <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                            <input class=" form-control" id="date_naissance" name="date_naissance" type="date" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="address" class="control-label col-lg-2">Address <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                            <input class=" form-control" id="address" name="address" type="text" />
+                                        </div>
+                                    </div>
+                                    &#123;&#35;<div class="form-group ">
+                                        <label for="pays" class="control-label col-lg-2">Pays <span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="pays" name="pays" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="ville" class="control-label col-lg-2">Ville <span class="required">*</span></label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="ville" name="ville" type="text" />
+                                        </div>
+                                    </div>&#35;&#125;
+                                    <div class="form-group " >
+                                        <label for="nom" class="control-label col-lg-2">Pays <span class="required">*</span></label>
+                                        <div class="col-lg-6">
+                                        <select class="form-control input-lg m-bot15" title="Pays">
+                                        <option>Maroc</option>
+                                        <option>France</option>
+                                        <option>Belgique</option>
+                                    </select>
+                                        </div>
+                                    </div>
+                                            <div class="form-group " >
+                                                <label for="nom" class="control-label col-lg-2">Ville <span class="required">*</span></label>
+                                            <div class="col-lg-6">
+                                    <select class="form-control input-lg m-bot15" title="Ville">
+                                        <option>Casablanca</option>
+                                        <option>Rabat</option>
+                                        <option>Tanger</option>
+                                    </select>
+                                    </div>
+                                            </div>
+                                    <div class="form-group ">
+                                        <label for="agree" class="control-label col-lg-2 col-sm-3">Agree to Our Policy <span class="required">*</span></label>
+                                        <div class="col-lg-10 col-sm-9">
+                                            <input  type="checkbox" style="width: 20px" class="checkbox form-control" id="agree" name="agree" />
+                                        </div>
+                                    </div>#}
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form) }}
+                                   {# <input type="submit" value="Create" />#}
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-primary" type="submit">Save</button>
+                                            <button class="btn btn-default" type="reset">Cancel</button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                {#</form>#}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+{% endblock %}

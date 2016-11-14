@@ -1,0 +1,51 @@
+
+{% if error %}
+    <div class="alert alert-danger">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="log_form">
+                <h2 class="frm_titl"> Formulaire de connexion </h2>
+
+                <form name="sentMessage" id="loginForm" novalidate  action="{{ path('login_check') }}" method="post">
+
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <input type="text" class="form-control" id="u-name" name="_username" value="{{ last_username }}" required data-validation-required-message="Please enter your username." placeholder="Username">
+
+                            <p class="help-block"></p>
+                        </div>
+
+                        <div class="controls">
+                            <input type="password" class="form-control" id="password" name="_password" required data-validation-required-message="Please enter your password." placeholder="Password">
+
+                            <p class="help-block"></p>
+                        </div>
+                        <div class="checkbox col-md-6">
+                            <label>
+                                <label for="remember_me">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" checked> Remember me
+                                </label>
+                            </label>
+                        </div>
+                        <div class="forg_pass col-md-6 text-right">
+                            <a class="" href="{{ path("password_reset") }}"> Forgot your password?  </a>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+
+                        <div id="success2"></div>
+                        <!-- For success/fail messages -->
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

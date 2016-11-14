@@ -1,0 +1,317 @@
+{% extends 'base.html.twig' %}
+
+
+    {% block title %}
+        {{ parent() }} - Accueil
+
+    {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
+  {% block header %}
+      {{ parent() }}
+
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}}" alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li > <a  href="{{ path('home') }}"> Accueil </a>
+
+
+                      </li>
+                      <li class=" dropdown"><a class="dropdown-toggle"  href="{{ path('homepageAnnonce') }}"> Annonce </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{  path('homepageAnnonce')}}"> Toutes </a>
+                              </li>
+                              <li>
+                                  <a href="{{  path('typeannonce', {'type': 'Vente'})}}"> Vente & Achat </a>
+                              </li>
+                              <li>
+                                  <a href="{{  path('typeannonce', {'type': 'Location'}) }}"> Location </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Présentation </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="active" >
+                          <a href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>        <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header bradcrumb -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> Contactez-nous </h1>
+              <h4 class="sub_titl"> Echo Park occupy mustache gastropub </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="index-2.html"> Home </a> </p>
+                          <p class="lnk_pag"> / </p>
+                          <p class="lnk_pag"> Contact Us </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="index-2.html"> Go Back to Home </a> </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+  {% endblock %}
+
+        {% block body %}
+
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="alert text-center alert-success flash-notice alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashbag.get('error') %}
+                <div class="alert text-center alert-danger flash-notice alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+
+            <div class="spacer-60"></div>
+            <div class="container">
+                <div class="row">
+                    <!-- Contact Section -->
+                    <section id="contact_sec" class="col-md-8">
+                        <!-- Contact form -->
+                        <div class="row">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Envoyez-nous un email
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="cont_frm">
+
+                                        {{ form_start(formContact,  { 'name':'contact','method': 'POST','attr': {'id':'contactForm','class': 'form'} } ) }}
+
+                                        <div class="control-group form-group col-md-6 first">
+                                            <div class="controls">
+
+                                                {{ form_widget(formContact.name, { 'id':'name1','attr': {'class': 'form-control','placeholder':'Put your name'}} ) }}
+                                                <div class="in_ico">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <p class="help-block"></p>
+                                            </div>
+
+                                            <div class="controls">
+
+                                                {{ form_widget(formContact.email, { 'id':'email1','attr': {'class': 'form-control','placeholder':'Put your email address'}} ) }}
+                                                <div class="in_ico">
+                                                    <i class="fa fa-envelope-o"></i>
+                                                </div>
+                                                <p class="help-block"></p>
+                                            </div>
+
+                                            <div class="controls">
+
+                                                {{ form_widget(formContact.number, { 'id':'number1','attr': {'class': 'form-control','placeholder':'Put your number'}}) }}
+                                                <div class="in_ico">
+                                                    <i class="fa fa-phone"></i>
+                                                </div>
+                                                <p class="help-block"></p>
+                                            </div>
+
+                                            <div class="controls last">
+
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div class="control-group form-group col-md-6">
+                                            <div class="controls">
+
+                                                {{ form_widget(formContact.message, { 'id':'msg1','attr': {'class': 'form-control','placeholder':'Put your message'}} ) }}
+                                                <div class="in_ico">
+                                                    <i class="fa fa-paper-plane-o"></i>
+                                                </div>
+                                            </div>
+                                            {{ form_widget(formContact.valider,{'id':'valider','attr':{'class':'btn  btn-primary'}}) }}
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div id="success"></div>
+                                        <!-- For success/fail messages -->
+                                    {{ form_end(formContact, {'render_rest': false}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="spacer-30"></div>
+                        <!-- Location Map -->
+                        <div class="row">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Notre position
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="map_ara">
+
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.9021856216605!2d-7.615590678544588!3d33.581888834012965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xe2619b07bf1bc2f9!2sInstitut+Europ%C3%A9en+D&#39;Electronique+Et+D&#39;Informatique+Au+Maroc+(Eurelec+Centre)!5e0!3m2!1sfr!2sfr!4v1455287741013"
+                                            width="600" height="350" ></iframe>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                    </section>
+
+                    <!-- Sidebar Section -->
+                    <section id="sidebar" class="col-md-4">
+                        <!-- Contact Information -->
+                        <div class="row">
+                            <div class="titl_sec">
+                                <div class="col-lg-12">
+
+                                    <h3 class="main_titl text-left">
+                                        Nos Informations
+                                    </h3>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="cont_info">
+                                <div class="info_sec first">
+                                    <div class="icon_box">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <p class="infos">{{ agence.adresse }}</p>
+                                </div>
+
+                                <div class="info_sec">
+                                    <div class="icon_box">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </div>
+                                    <p class="infos"><a href="mailto:pereson.immobilier@gmail.com?Subject=template%20enquiry">{{ agence.email }} </a>
+                                    </p>
+                                </div>
+
+                                <div class="info_sec">
+                                    <div class="icon_box">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <p class="infos"> <a href="tel:+212 5 27 08 51 68"> +212 {{ agence.telephone }}  </a> </p>
+                                </div>
+
+                                <div class="info_sec">
+                                    <div class="icon_box">
+                                        <i class="fa fa-facebook"></i>
+                                    </div>
+                                    <p class="infos">facebook.com/Pereson-Immobilier-Sarl</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </section>
+
+                    <div class="spacer-60"></div>
+
+                </div>
+            </div>
+{% endblock %}
+
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}

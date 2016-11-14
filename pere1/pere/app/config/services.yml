@@ -1,0 +1,41 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    image_entity: AppBundle\Entity\Image
+#    parameter_name: value
+
+services:
+    mes_actions:
+        class: AppBundle\Services\MesAnnoncesService
+        arguments: ['@doctrine.orm.entity_manager','%agence%']
+    file_upload:
+        class: AppBundle\Services\FileService
+        arguments:
+    payment_validation:
+        class: AppBundle\Services\PaymentService
+        arguments:
+    email_confirmation:
+        class:     AppBundle\Services\EmailConfirmationService
+        arguments: ['@mailer', '@templating','%url%']
+    counter:
+        class:     AppBundle\Services\CounterService
+        arguments: ['@service_container','@doctrine.orm.entity_manager']
+    notification:
+            class:     AppBundle\Services\NotificationService
+            arguments: ['@doctrine.orm.entity_manager', "@security.token_storage"]
+    app.annonce_voter:
+        class: AppBundle\Security\AnnonceVoter
+        arguments: ['@security.access.decision_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+    app.post_voter:
+        class: AppBundle\Security\PostVoter
+        arguments: ['@security.access.decision_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

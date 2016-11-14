@@ -1,0 +1,105 @@
+{#{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <h1>Postuler creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('postuler_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}#}
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-table"></i> Liste des Postulations</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a href="{{ path('index_page') }}">Home</a></li>
+                        <li><i class="fa fa-table"></i>Postulations</li>
+                        <li><i class="fa fa-th-list"></i>Nouvelle Postulation</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page start-->
+
+
+            <a class="btn btn-navbar" href="{{ path('postuler_index') }}">Liste des Postulations</a>
+
+
+            <!--***********************************************************************************-->
+            <!-- Form validations -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Crée Une Nouvelle Postulation
+                        </header>
+                        <div class="panel-body">
+                            <div class="form">
+
+                                {{ form_start(form,{'method':'POST'}) }}
+                                {#{{ form_widget(form) }}#}
+
+                                {{ form_errors(form) }}
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.annonce) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.annonce) }}
+
+                                    </div>
+
+                                </div><br><br>
+                                <div class="form-group ">
+
+                                    <div class="col-lg-6">{{ form_label(form.personne) }}</div>
+                                    <div class="col-lg-4">
+
+                                        {{ form_widget(form.personne) }}
+
+                                    </div>
+
+                                </div><br><br>
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-5 col-lg-10">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-default" type="reset">Cancel</button>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- page end-->
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section end -->
+
+{% endblock %}
+{#{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}#}

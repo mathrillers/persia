@@ -1,0 +1,87 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-user-md"></i> Information de l'Utilisateur</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a href="../layout.html.twig">Home</a></li>
+                            <li><i class="icon_documents_alt"></i>Utilisateur</li>
+                            <li><i class="fa fa-user-md"></i>Information Utilisateur</li>
+                        </ol>
+                    </div>
+                </div>
+                <a class="btn btn-navbar" href="{{ path('utilisateur_index') }}">Liste des Utilisateur</a>
+
+                <!-- page start-->
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                            <div class="panel-body">
+                                <div class="tab-content">
+
+                                    <!-- profile -->
+                                    <div id="profile" class="tab-pane active">
+                                        <section class="panel">
+
+                                            <div class="panel-body bio-graph-info">
+                                                <h1>Information Utilisateur </h1>
+                                                <div class="row">
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Nom :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.nom }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Prenom :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.prenom }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Email :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.email }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Adresse :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.adresse }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Date de naissance :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.dateNaissance|date('j F,Y,g:i A') }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Pays :</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.pays }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Ville :</span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.ville }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Login :</span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ personne.compte.username }}</p>
+                                                    </div>
+                                                    <div class="bio-row">
+                                                        <p><span class="label label-info">Etat du Compte :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% if personne.compte.active==0 %}  Activé {% else %} Désactivé{% endif %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <!-- edit-profile -->
+
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+
+                <!-- page end-->
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+{% endblock %}

@@ -1,0 +1,397 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Accueil
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block body_id 'blog_index' %}
+
+  {% block header %}
+      {{ parent() }}
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png')}} " alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li > <a  href="{{ path('home') }}"> Accueil </a>
+
+
+                      </li>
+                      <li class="active dropdown"><a class="dropdown-toggle"  href="{{ path('homepageAnnonce') }}"> Annonce </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{  path('homepageAnnonce')}}"> Toutes </a>
+                              </li>
+                              <li>
+                                  <a href="{{  path('typeannonce', {'type': 'Vente'})}}"> Vente & Achat </a>
+                              </li>
+                              <li>
+                                  <a href="{{  path('typeannonce', {'type': 'Location'}) }}"> Location </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Présentation </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list')}}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single')}}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="{{ path('features')}}">Features </a> </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list')}}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single')}}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about')}}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services')}}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing')}}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404')}}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact')}}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+      {% for flash_message in app.session.flashbag.get('notice') %}
+          <div class="alert text-center alert-success flash-notice alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{ flash_message }}
+          </div>
+      {% endfor %}
+      {% for flash_message in app.session.flashbag.get('error') %}
+          <div class="alert text-center alert-danger flash-notice alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              {{ flash_message }}
+          </div>
+      {% endfor %}
+
+      {% if link %}
+          <!-- Header Stat Banner -->
+          <header id="banner" class="stat_bann">
+              <div class="bannr_sec">
+                  <img src="{{ asset(link)}}" alt="Banner">
+                  <h1 class="main_titl">
+                     {{ ville.villeNom }}
+                  </h1>
+                  <h4 class="sub_titl">
+                      Wes Anderson American Apparel
+                  </h4>
+
+              </div>
+          </header>
+
+{% else %}
+      <!-- Header Stat Banner -->
+      <header id="banner" class="stat_bann">
+          <div class="bannr_sec">
+              <img src="{{ asset('images/banner_5.jpg')}}" alt="Banner">
+              <h1 class="main_titl">
+                  Best Real Estate Deals site
+              </h1>
+              <h4 class="sub_titl">
+                  Wes Anderson American Apparel
+              </h4>
+
+          </div>
+      </header>
+      {% endif %}
+
+  {% endblock %}
+
+        {% block body %}
+    <section id="srch_slide">
+
+        <div class="container">
+
+            <!-- Search Form -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="srch_frm">
+                        <h3>Particuliers Search</h3>
+                        {{ form_start(formPart, { 'name':'researchPartForm','method': 'POST','attr': {'id':'contactForm','class': 'form'} } ) }}
+
+                        <div class="control-group form-group">
+                            <div class="controls col-md-4 first">
+                                <label>Mot-clé</label>
+                                {{ form_widget(formPart.research.mot_cle,{'id':'keyword2','attr':{'autofocus':true,'class':'form-control','value':''} }) }}
+                                <p class="help-block"></p>
+                            </div>
+
+                            <div class="controls col-md-4">
+                                <label>Lieu </label>
+                                {{ form_widget(formPart.research.ville,{'name':'State','attr':{'class':'form-control'} }) }}
+
+                            </div>
+
+                            <div class="controls col-md-4 first">
+                                <label>Type </label>
+                                {{ form_widget(formPart.research.typeImmobilier,{'name':'Type','attr':{'class':'form-control'} }) }}
+
+                            </div>
+
+
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="control-group form-group col-md-10">
+
+                            <div class="controls col-md-5">
+                                <label>Actions </label>
+                                {{ form_widget(formPart.research.actes,{'name':'Actions','attr':{'class':'form-control'} }) }}
+                            </div>
+                            <div id="location" class="controls col-md-7">
+                                <label>Budget </label>
+                                {#  <br>#}
+                                <p>
+                                    <span id="minLoc" class="margin"> {{ mes_annonces.minLoc }} Dh </span>
+                                    {{ form_widget(formPart.research.budgetLoc,{'id':'budgetLoc','name':'BudgetLoc','attr':{'class':'form-control'} }) }}
+
+                                    <span id="maxLoc" class="margin"> {{mes_annonces.maxLoc  }} Dh</span>
+                                </p>
+                            </div>
+
+                            <div id="vente" class="controls col-md-7" >
+                                <label>Budget </label>
+                                {#  <br>#}
+                                <p>
+                                    <span id="minVente" class="margin"> {{ mes_annonces.minVente }} Dh </span>
+                                    {{ form_widget(formPart.research.budgetVente,{'id':'budgetVente','name':'BudgetVente','attr':{'class':'form-control'} }) }}
+
+                                    <span id="maxVente" class="margin"> {{mes_annonces.maxVente  }} Dh</span>
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="sub_btn col-md-2">
+                            {{ form_widget(formPart.research.chercher,{'label':'Chercher','attr':{'class':'btn btn-lg btn-block btn-primary'}}) }}
+                            <a href="{{ path('homepageAnnonce') }}" class="btn btn-block btn-primary"> Clear </a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="success"></div>
+                        <!-- For success/fail messages -->
+                        {{ form_end(formPart, {'render_rest': false}) }}
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+
+
+                                    </section>
+    <div class="spacer-40"></div>
+    <section id="feat_propty">
+    <div class="container">
+        <div class="row">
+            <!-- Properties Section -->
+            <section id="feat_propty">
+                <div class="container">
+
+
+                    {% set nb=0 %}
+                    {% for annonce in annonces %}
+                        <!-- Property listing 1 -->
+                        {% set nb=nb+1 %}
+                        {% if(nb==1) %}
+                            {#         <div class="row">#}
+                        {% endif %}
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-image" >
+
+                                    <img class="img-responsive img-hover" style=" height: 250px; width: 100%" src="{{ asset(annonce.immobilier.mainImage) }}" alt="">
+                                    <div class="img_hov_eff">
+                                        <a class="btn btn-default btn_trans" href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"> Plus de details </a>
+                                    </div>
+
+                                </div>
+                                <div class="sal_labl">
+                                    {{ annonce.typeAnnonce }}
+                                </div>
+
+                                <div class="panel-body">
+                                    <div class="prop_feat">
+                                        <p class="area"><i class="fa fa-home"></i> {{ annonce.immobilier.superficie }} m2</p>
+                                        <p class="bedrom"><i class="fa fa-bed"></i> {{ annonce.immobilier.nbrChambre }} Chambres</p>
+                                        <p class="bedrom"><i class="fa fa-star"></i> {{ annonce.nbreVues }} vues </p>
+                                        <br/>
+                                        <p class="bedrom"><i class="fa fa-star"></i> {{ annonce.immobilier.quartier.ville }} </p>
+                                    </div>
+                                    <h3 class="sec_titl">{{ annonce.titre }}</h3>
+
+                                    <p class="sec_desc">{{ annonce.description|truncate(40, false, "...") }}</p>
+                                    <div class="panel_bottom">
+                                        <div class="col-md-6">
+                                            {% if  annonce.typeAnnonce=='Vente'%}
+                                            <p class="price text-left"> {{ annonce.montant }} DH</p>
+                                            {% endif %}
+
+                                            {% if  annonce.typeAnnonce=='Location'%}
+                                                {% if  annonce.typeDelai %}
+                                                    <p class="price text-left"> {{ annonce.prixDelai }} DH/ Jour</p>
+
+                                                {% else  %}
+                                                    <p class="price text-left"> {{ annonce.prixDelai }} DH/ Mois </p>
+                                                {% endif %}
+                                            {% endif %}
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="readmore text-right"> <a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"> Lire la suite </a> </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="share_btn">
+                                <i class="fa fa-share-alt"></i>
+                                <div class="soc_btn">
+                                    <ul>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-google-plus"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% if(nb==3 or loop.last) %}
+                            {# </div>#}
+                            {% if(not loop.last) %}
+                                <div class="spacer-30"></div>
+                            {% endif %}
+                            {% set nb=0 %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="spacer-40"></div>
+                    <!-- Pagination -->
+                    <div class="pagin text-center">
+                        {{ knp_pagination_render(annonces) }}
+                    </div>
+
+                </div>
+
+                <!-- /.container -->
+            </section>
+            <div class="spacer-60"></div>
+
+        </div>
+    </div>
+    </section>
+        {% endblock %}
+
+
+ {% block footer %}
+
+     <!-- Copyright -->
+     {{ parent() }}
+
+ {% endblock %}
+
+ {% block modal %}
+     {{ parent() }}
+
+ {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- Flexslider JavaScript -->
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.flexslider-min.js')}}"></script>
+
+    <!-- Script to Activate the Carousels -->
+
+    <script type="text/javascript">
+
+        $("#budgetLoc").slider({min  : {{mes_annonces.minLoc  }}, max  : {{mes_annonces.maxLoc  }}, value: [2000, 20000], labelledby: ['minLoc', 'maxLoc']});
+        $("#budgetVente").slider({min  : {{mes_annonces.minVente  }}, max  : {{mes_annonces.maxVente  }}, value: [ {{mes_annonces.minVente  }},  2*{{mes_annonces.minVente  }}], labelledby: ['minVente', 'maxVente']});
+
+    </script>
+    <script>
+        $("document").ready(function my_budget() {
+            var acte=$('#formPart_research_actes').val();
+            if (acte=== 'Vente') {
+                $("#location").hide();
+                $("#vente").show();
+            }
+            if (acte=== 'Location') {
+                $("#location").show();
+                $("#vente").hide();
+            }
+        }  ) ;
+    </script>
+    <script>
+        $("document").ready(function() {
+            $("#formPart_research_actes").change(function(){
+                if($(this).val()==='Vente'){
+                    $("#location").hide();
+                    $("#vente").show();
+                }
+                if($(this).val()==='Location'){
+                    $("#location").show();
+                    $("#vente").hide();
+                }
+
+            })
+        })
+    </script>
+{% endblock %}

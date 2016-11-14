@@ -1,0 +1,454 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Accueil
+
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block body_id 'blog_index' %}
+
+  {% block header %}
+      {{ parent() }}
+
+      <!-- Navigation -->
+      <nav class="navbar" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse"
+                          data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <!-- Logo -->
+                  <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png') }} "
+                                                                         alt="logo">
+                  </a>
+              </div>
+              <!-- Navigation -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right drop_menu">
+                      <li class="active dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Home </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('home') }}"> Home 1 </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('home2') }}"> Home 2 </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Property </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('property-list') }}"> Property Listings </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('property-single') }}"> Property Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Agents </a>
+                          <ul class="dropdown-menu">
+                              <li class="dropdown">
+                                  <a href="{{ path('agent-list') }}">Our Agents </a>
+                                  <span class="dropdown-toggle" data-toggle="dropdown"> </span>
+                                  <ul class="sub_drop dropdown-menu">
+                                      <li>
+                                          <a href="{{ path('agent-single') }}"> Agent Single </a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </li>
+                      <li><a href="{{ path('features') }}">Features </a></li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Blog </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a href="{{ path('blog-list') }}"> Blog </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('blog-single') }}"> Blog Single </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Pages </a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a class="active" href="{{ path('about') }}"> About us </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('services') }}"> Services </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('pricing') }}"> Pricing Table </a>
+                              </li>
+                              <li>
+                                  <a href="{{ path('404') }}"> 404 Page </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a class="" href="{{ path('contact') }}">Contact </a>
+                      </li>
+
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
+
+      <!-- Header Stat Banner -->
+      <header class="bread_crumb">
+          <div class="pag_titl_sec">
+              <h1 class="pag_titl"> DEPOSER UNE ANNONCE </h1>
+              <h4 class="sub_titl"> Creez votre annonce </h4>
+          </div>
+          <div class="pg_links">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p class="lnk_pag"><a href="index.html"> Home </a></p>
+
+                          <p class="lnk_pag"> / </p>
+
+                          <p class="lnk_pag"> Deposer une annonce </p>
+                      </div>
+                      <div class="col-md-6 text-right">
+                          <p class="lnk_pag"><a href="index.html"> Go Back to Home </a></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+  {% endblock %}
+
+        {% block body %}
+            <div class="spacer-30"></div>
+            <div class="container">
+                <div class="row skill_sec">
+                    <div class="col-lg-9">
+                        <div class="titl_sec">
+                            <div class="col-lg-12">
+                                <h3 class="main_titl text-left">
+                                    Deposer une annonce
+                                </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+
+                        {% if not app.user %}
+
+
+                        {% include ':security:login-subscribe.html.twig' %}
+
+
+
+
+
+{% else %}
+
+                        <div class=" col-lg-12">
+                            {{ form_start(formannonce) }}
+                            <div class="col-lg-12 serv_col">
+                                <div class="log_form">
+
+                                    <div class="controls">
+                                        <p class="help-block">Sometimes contextual background classes cannot be applied.</p>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls col-md-6 first">
+                                            {{ form_row(formannonce.annonce.titre) }}
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="controls col-md-6">
+                                            {{ form_row(formannonce.annonce.typeAnnonce) }}
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="loc" class="control-group form-group">
+                                        <div class="controls col-md-4 first">
+                                            {{ form_row(formannonce.annonce.type_delai) }}
+                                        </div>
+                                        <div class="controls col-md-4">
+                                            {{ form_row(formannonce.annonce.periode_delai) }}
+                                        </div>
+                                        <div class="controls col-md-4 ">
+                                            {{ form_row(formannonce.annonce.prix_delai) }}
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            {{ form_row(formannonce.annonce.description) }}
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="controls">
+                                        <p class="help-block">Sometimes contextual background classes cannot be applied.</p>
+                                    </div>
+                                    {% if app.user %}
+                                        <div class="control-group form-group">
+                                            <hr class="myhr">
+                                            <div class="bs-callout bs-callout-info" id="callout-helper-bg-specificity">
+                                                <div class="radio">
+                                                    <label><input type="radio" checked onclick="disable()" name="optradio">Choisissez une immobilier existe.</label>
+                                                </div>
+                                            </div>
+                                            <div class="controls col-md-3" >
+                                                {{ form_row(formannonce.immobilierpers) }}
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <hr class="myhr">
+                                        </div>
+                                        <div class="bs-callout bs-callout-info" id="callout-helper-bg-specificity">
+                                            <div class="radio">
+                                                <label><input type="radio" onclick="undisable()" name="optradio">Ou ajouter une nouvelle immobilier.</label>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div id="myRadio" >
+                                        {{ form_row(formannonce.isimmo) }}
+                                        <div class="control-group form-group">
+                                            <div class="controls col-md-9 first">
+                                                {{ form_row(formannonce.immobilier.adresse,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="controls col-md-3">
+                                                {{ form_row(formannonce.immobilier.prix,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="control-group form-group">
+                                            <div class="controls col-md-3 first">
+                                                {{ form_row(formannonce.pays,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="controls col-md-3">
+                                                <label id="labelville" class="required">Ville : </label>
+                                                {{ form_row(formannonce.ville) }}
+                                            </div>
+                                            {#<div class="controls col-md-3">
+                                                {{ form_row(formannonce.immobilier.quartier,{'attr':{'class':'form-control'}}) }}
+                                            </div>#}
+                                            <div class="controls col-md-3">
+                                                <label id="labelquartier" class="required">Quartier : </label>
+                                                <select id="mon_quartier" name="mon_quartier" class="form-control"></select>
+                                            </div>
+                                            <div class="controls col-md-3 ">
+                                                {{ form_row(formannonce.immobilier.idType,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="control-group form-group">
+                                            <div class="controls col-md-3 first">
+                                                {{ form_row(formannonce.immobilier.nbrChambre,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="controls col-md-3">
+                                                {{ form_row(formannonce.immobilier.nbreSalon,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="controls col-md-2">
+                                                {{ form_row(formannonce.immobilier.superficie,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                            <div class="controls col-md-2">
+                                                {{ form_row(formannonce.immobilier.garage,{'attr':{'class':'form-control'},'required':false}) }}
+                                            </div>
+                                            <div class="controls col-md-2">
+                                                {{ form_row(formannonce.immobilier.jardin,{'attr':{'class':'form-control'},'required':false}) }}
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="control-group form-group">
+                                            <div class="controls col-md-6 first">
+                                                {{ form_row(formannonce.files,{'attr':{'class':'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <button type="submit" class="btn btn-primary">DEPOSER UNE ANNONCE</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+                    <div class="col-lg-3 serv_col">
+                        <div class="col-lg-12 text-center">
+                            <div class="circ_ico">
+                                <i class="fa fa-laptop"></i>
+                            </div>
+                            <h3 class="fun_num">fully responsive</h3>
+
+                            <p class="desc"> Heirloom art party iPhone American Apparel stumptown try-hard torganic
+                                daw </p>
+                        </div>
+
+                        <div class="col-lg-12 text-center">
+                            <div class="circ_ico">
+                                <i class="fa fa-cogs"></i>
+                            </div>
+                            <h3 class="fun_num">easy to customize</h3>
+
+                            <p class="desc"> Heirloom art party iPhone American Apparel stumptown try-hard torganic
+                                daw </p>
+                        </div>
+
+                        <div class="col-lg-12 text-center">
+                            <div class="circ_ico">
+                                <i class="fa fa-file-code-o"></i>
+                            </div>
+                            <h3 class="fun_num">html / css</h3>
+
+                            <p class="desc">Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic
+                                Daw</p>
+                        </div>
+
+                        <div class="col-lg-12 text-center">
+                            <div class="circ_ico">
+                                <i class="fa fa-wrench"></i>
+                            </div>
+                            <h3 class="fun_num">free support</h3>
+
+                            <p class="desc">Heirloom Art Party IPhone American Apparel Stumptown Try-Hard Torganic
+                                Daw</p>
+                        </div>
+
+                        <div class="spacer-60"></div>
+                    </div>
+                    <div class="spacer-60"></div>
+                </div>
+            </div>
+
+        {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+
+    <!-- Flexslider JavaScript -->
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.flexslider-min.js') }}"></script>
+    <!-- Counter JavaScript -->
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+{#    <script src="{{ asset('assets/js/main.js') }}"></script>#}
+
+
+    <script >
+    $("document").ready(function(){
+    $("#formAnnonce_ville").change(function(){
+    //console.log($( "#formAnnonce_ville" ).val());
+    $.ajax({
+    type:'get',
+    url:'http://localhost/pere/web/app_dev.php/quartier/' + $(this).val(),
+    beforeSend: function(){
+    //console.log('ca charge');
+    $("#mon_quartier option").remove();
+    },
+    success: function(data){
+    //$("#formAnnonce_annonce_description").val(data.quartiers).change();
+    $.each(data.quartiers, function(index,value){
+    $("#mon_quartier").append($('<option>',{value:value['id'] , text:value['nom']}));
+    });
+    }
+    });
+    });
+
+    $("#formAnnonce_pays").change(function(){
+    //console.log($( "#formAnnonce_pays" ).val());
+    $.ajax({
+    type:'get',
+    url:'http://localhost/pere/web/app_dev.php/ville/' + $(this).val(),
+    beforeSend: function(){
+    //console.log('ca charge');
+    $("#formAnnonce_ville option").remove();
+    $("#mon_quartier option").remove();
+    },
+    success: function(data){
+    //$("#formAnnonce_annonce_description").val(data.quartiers).change();
+    $.each(data.villes, function(index,value){
+    $("#formAnnonce_ville").append($('<option>',{value:value['id'] , text:value['nom']}));
+    });
+    }
+    });
+
+    if($(this).val()==2){
+    //console.log('ok');
+    $("#labelville").text("Departement");
+    $("#labelquartier").text("Ville");
+    }else{
+    $("#labelville").text("Ville");
+    $("#labelquartier").text("Quartier");
+    }
+    })
+    });
+    </script>
+    <script>
+        $(document).ready(
+                 disable()
+        );
+
+            function disable() {
+                document.getElementById("formAnnonce_immobilier_adresse").disabled = true;
+                document.getElementById("formAnnonce_ville").disabled = true;
+                document.getElementById("mon_quartier").disabled = true;
+                document.getElementById("formAnnonce_immobilier_idType").disabled = true;
+                document.getElementById("formAnnonce_immobilier_prix").disabled = true;
+                document.getElementById("formAnnonce_immobilier_nbrChambre").disabled = true;
+                document.getElementById("formAnnonce_immobilier_nbreSalon").disabled = true;
+                document.getElementById("formAnnonce_immobilier_superficie").disabled = true;
+                document.getElementById("formAnnonce_immobilier_garage").disabled = true;
+                document.getElementById("formAnnonce_immobilier_jardin").disabled = true;
+                document.getElementById("formAnnonce_files").disabled = true;
+                document.getElementById("formAnnonce_immobilierpers").disabled = false;
+                document.getElementById("formAnnonce_isimmo").value = "no";
+                $('#myRadio').hide();
+                $('#formAnnonce_immobilierpers').show();
+            }
+
+            function undisable() {
+                $('#myRadio').show();
+                $('#formAnnonce_immobilierpers').hide();
+                document.getElementById("formAnnonce_isimmo").value = "yes";
+                document.getElementById("formAnnonce_immobilierpers").disabled = true;
+                document.getElementById("formAnnonce_immobilier_adresse").disabled = false;
+                document.getElementById("formAnnonce_ville").disabled = false;
+                document.getElementById("mon_quartier").disabled = false;
+                document.getElementById("formAnnonce_immobilier_idType").disabled = false;
+                document.getElementById("formAnnonce_immobilier_prix").disabled = false;
+                document.getElementById("formAnnonce_immobilier_nbrChambre").disabled = false;
+                document.getElementById("formAnnonce_immobilier_nbreSalon").disabled = false;
+                document.getElementById("formAnnonce_immobilier_superficie").disabled = false;
+                document.getElementById("formAnnonce_immobilier_garage").disabled = false;
+                document.getElementById("formAnnonce_immobilier_jardin").disabled = false;
+                document.getElementById("formAnnonce_files").disabled = false;
+
+        }
+    </script>
+    <script type="text/javascript">
+        $('#disable').on('click', function () {
+            //   $('.demo').disable();
+            $('.demo').removeClass("demo").addClass("disable");
+        });
+        $('#enable').on('click', function () {
+            $('.demo').enable();
+        });
+    </script>
+
+{% endblock %}

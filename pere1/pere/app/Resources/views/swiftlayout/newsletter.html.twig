@@ -1,0 +1,239 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Pereson Immobilier Sarl.</title>
+        <style type="text/css">
+            body {
+                margin: 0px;
+                padding: 0px;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body><!--Start Table -->
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#d4cdc8" style="background:#d4cdc8; padding:0px; margin:0px;">
+            <tbody>
+                <tr>
+                    <td><!--Start Main Table -->
+                        <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td align="left" valign="top"><!--Start Header-->
+                                    <table width="600" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr>
+                                            <td align="right" valign="top" style="padding:10px 20px 10px 20px; font-size:12px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10" align="left" valign="top">
+                                                <img src="{{ data.top_bg }}" alt="" width="600" height="10" style="display:block;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#ECE9E7" style="padding:0px 20px 10px 20px; font-size:12px; line-height:18px; font-family:Helvetica, Arial, sans-serif; color:#ece9e7;">
+                                                <table width="560" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td width="198" align="left" valign="top">
+                                                            <a href="{{ path('home') }}"><img src="{{ data.logo }}" alt="" width="198" height="68" border="0" style="display:block;"></a></td>
+                                                        <td width="362" align="right" valign="middle" style="font-size:12px; font-weight:bold; font-family:Helvetica, Arial, sans-serif; color:#5c3321;">
+                                                            <img src="{{ data.date }}" alt="" width="13" height="13" hspace="5" vspace="0" border="0">{{ 'now'|date('d - m -Y') }}
+                                                            <img src="{{ data.website }}" alt="" width="12" height="12" hspace="5" vspace="0" border="0" style="margin-left:20px;">
+                                                            <a href="{{ path('home') }}" style=" text-decoration:none; color:#5c3321;">Visitez notre site Web</a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--End Header--></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" bgcolor="#a42503"><!--Start Banner-->
+                                    <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                            <td height="5" style="padding:0px;">
+                                                <img src="{{ data.line }}" alt="" width="600" height="5" border="0" style="display:block;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" style="padding:0px;">
+                                                <img src="{{ data.banner_image }}" alt="" width="600" height="248" border="0" style="display:block;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="5" style="padding:0px;">
+                                                <img src="{{ data.line }}" alt="" width="600" height="5" border="0" style="display:block;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" style=" display:block; padding:20px 20px 5px 20px; font-size:20px; font-family:Helvetica, Arial, sans-serif; color:#ffffff;">
+                                                Bienvenue chez Personne Immobilier.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" style="padding:5px 20px 20px 20px; font-size:12px; line-height:18px; font-family:Helvetica, Arial, sans-serif; color:#deb0a4;">
+                                                Ut tempus, lorem in alquam vulputate, ipsaum ligula volutpat sapiene, in pulv dolor
+                                                neque nec lectus Suspendisse potenti. Donec tincidunt scelerisque dapibus. Aenean
+                                                tincidunt dapibus elit vitae arcue sodales interdum sed. Fusce vel ligula magna,
+                                                vitae molestie mi. Pellentes que facilisis bibendume est. Nunc vel libero sed
+                                                neque...
+                                                <a href="#" style="font-size:12px; font-weight:bold; text-decoration:none; font-family:tahoma, Helvetica, Arial, sans-serif; color:#ffffff;">Lire la suite </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="5">
+                                                <img src="{{ data.line }}" alt="" width="600" height="5" border="0" style="display:block;"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--End Banner--></td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" bgcolor="#c8c1bd" style="padding:10px 11px 0px 11px;">
+                                    <!-- Start Three column Listing -->
+                                    {#<table width="578" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr>
+                                            {% for annonce in annonces %}
+                                            <td width="264" align="left" valign="top" bgcolor="#ece9e7" style="padding:10px;">
+                                                <table width="264" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"><img src="{{ data3[annonce.annonceId] }}" alt="" width="264" height="160" border="0" style="display:block;"></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top">
+                                                            <a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}" style="display:block; padding-top:10px; text-decoration:none; font-size:18px; font-family:Helvetica, Arial, sans-serif; color:#a42503;">{{ annonce.titre }} - {{ annonce.typeAnnonce }}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="font-size:11px; font-family:Helvetica, Arial, sans-serif; color:#92847c;">
+                                                            {{ annonce.immobilier.superficie }} m2 / {{ annonce.immobilier.nbrChambre }} Chambres / {{ annonce.immobilier.garage }} Garage
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="padding:5px 0px 5px 0px; font-size:18px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+                                                            {{ annonce.montant }} DH
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="padding-bottom:10px; font-size:12px; line-height:18px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+                                                            {{ annonce.description|truncate(20, false, "...") }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" valign="top"><a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}">
+                                                                <img src="{{ data.view_details }}" alt="" width="154" height="44" border="0"></a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                                {% if(not loop.last) %}
+                                                    <td width="10">&nbsp;</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td height="10" colspan="3" align="left" valign="top"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>#}
+                                    {% for annonce in annonces %}
+                                    <table width="578" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr bgcolor="#ece9e7">
+                                            <td width="264" align="left" valign="top" style="padding:10px;">
+                                                <a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"><img src="{{ data3[annonce.annonceId] }}" alt="" width="264" height="160" border="0"></a></td>
+                                            <td width="274" align="left" valign="top" style="padding:10px;">
+                                                <table width="274" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td align="left" valign="top">
+                                                            <a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}" style="display:block; padding-top:5px; text-decoration:none; font-size:18px; font-family:Helvetica, Arial, sans-serif; color:#a42503;">{{ annonce.titre }} - {{ annonce.typeAnnonce }}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="font-size:11px; font-family:Helvetica, Arial, sans-serif; color:#92847c;">
+                                                            {{ annonce.immobilier.superficie }} m2 / {{ annonce.immobilier.nbrChambre }} Chambres / {{ annonce.immobilier.garage }} Garage
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="padding:5px 0px 5px 0px; font-size:18px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+                                                            {{ annonce.montant }} DH
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="padding-bottom:5px; font-size:12px; line-height:18px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+                                                            {{ annonce.description|truncate(20, false, "...") }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top">
+                                                            <a href="{{ path('detailsannonce', {'id': annonce.annonceId}) }}"><img src="{{ data.view_details }}" alt="" width="154" height="44" border="0"></a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10" colspan="2"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    {% endfor %}
+                                    <!-- End Three column Listing -->          </td>
+                            </tr>
+                            <tr>
+                                <td><!--Start Footer-->
+                                    <table width="600" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                        <tr>
+                                            <td bgcolor="#ECE9E7" align="left" valign="top" style="padding:15px 20px 10px 20px; font-size:12px; line-height:20px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+                                                <table width="560" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td width="340" align="left" valign="top">
+                                                            <span style="color:#a42503; text-transform:uppercase; display:block;">Pereson Immobilier Sarl.</span>
+                                                            Bureaux :10, rue Liberte, 3ieme Etage, Num 6, Mers Sultan. <br>20000 Casablanca MAROC <br>
+                                                            0+212 5 27 08 51 68 / +212 699 24 74 82 <br>
+                                                            <a href="mailto:contact@pereson-immobilier.com" style="text-decoration:none; color:#2c1308;">contact@pereson-immobilier.com</a>
+                                                        </td>
+                                                        <td width="220" align="right" valign="top">
+                                                            <span style="color:#a42503; text-transform:uppercase; display:block; margin-bottom:10px;">Rejoignez-nous sur</span>
+                                                            <a href="#"><img src="{{ data.facebook }}" alt="Facebook" width="21" height="21" border="0" style="margin-left:3px;"></a>
+                                                            <a href="#"><img src="{{ data.twitter }}" alt="Twitter" width="21" height="21" border="0" style="margin-left:3px;"></a>
+                                                            <a href="#"><img src="{{ data.google_plus }}" alt="Google Plus" width="21" height="20" border="0" style="margin-left:3px;"></a>
+                                                            <a href="#"><img src="{{ data.linkedin }}" alt="Linkedin" width="20" height="20" border="0" style="margin-left:3px;"></a>
+                                                            <a href="#"><img src="{{ data.youtube }}" alt="Youtube" width="20" height="21" border="0" style="margin-left:3px;"></a>
+                                                            <a href="#"><img src="{{ data.skype }}" alt="Skype" width="20" height="20" border="0" style="margin-left:3px;"></a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10" align="left" valign="top">
+                                                <img src="{{ data.btm_bg }}" alt="" width="600" height="10" style="display:block;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" valign="top" style="padding:15px 20px 15px 20px; font-size:12px; font-family:Helvetica, Arial, sans-serif; color:#2c1308;">
+                                                Si vous ne souhaitez pas recevoir plus des courriels de nous, vous pouvez cliquer ici pour vous
+                                                <a href="{{ path('newsletter_desabonner', {'email': email }) }}" style="text-decoration:none; color:#a42503;">d�sabonner.</a><br>
+                                                Copyright � {{ 'now'|date('Y') }}
+                                                <a href="#" style="font-weight:bold; text-decoration:none; color:#a42503;">www.personne-immobilier.com</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--End Footer--></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--End Main Table --></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
